@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.medqueue.mapper.FollowMapper">
+
+    <select id="countFollow" resultType="int">
+        SELECT COUNT(1) FROM tb_follow
+        WHERE user_id = #{userId} AND follow_id = #{followId} AND follow_type = #{followType}
+    </select>
+
+    <select id="queryMyFollows" resultType="com.medqueue.entity.Follow">
+        SELECT * FROM tb_follow
+        WHERE user_id = #{userId} AND follow_type = #{followType}
+        ORDER BY create_time DESC
+    </select>
+</mapper>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.medqueue.mapper.DoctorScheduleMapper">
+
+    <select id="querySchedules" resultType="com.medqueue.entity.DoctorSchedule">
+        SELECT * FROM tb_doctor_schedule
+        WHERE doctor_id = #{doctorId} AND date = #{date}
+        ORDER BY begin_time ASC
+    </select>
+
+    <select id="queryAvailableSchedules" resultType="com.medqueue.entity.DoctorSchedule">
+        SELECT * FROM tb_doctor_schedule
+        WHERE doctor_id = #{doctorId}
+          AND date BETWEEN #{beginDate} AND #{endDate}
+          AND remain_count > 0
+        ORDER BY date ASC, begin_time ASC
+    </select>
+</mapper>
