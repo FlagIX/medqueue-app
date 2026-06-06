@@ -12,6 +12,7 @@ frontend/dist/
 
 # IDE - IntelliJ IDEA
 .idea/
+dataSources/
 /*.xml
 
 # OS
