@@ -22,6 +22,21 @@ public class HospitalController {
         return hospitalService.queryById(id);
     }
 
+    @GetMapping("/{id}/pass-through")
+    public Result queryWithPassThrough(@PathVariable("id") Long id) {
+        return hospitalService.queryWithPassThrough(id);
+    }
+
+    @GetMapping("/{id}/mutex")
+    public Result queryWithMutex(@PathVariable("id") Long id) {
+        return hospitalService.queryWithMutex(id);
+    }
+
+    @GetMapping("/{id}/logical-expire")
+    public Result queryWithLogicalExpire(@PathVariable("id") Long id) {
+        return hospitalService.queryWithLogicalExpire(id);
+    }
+
     @PostMapping
     public Result saveHospital(@RequestBody Hospital hospital) {
         hospitalService.save(hospital);

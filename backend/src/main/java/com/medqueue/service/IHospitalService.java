@@ -8,5 +8,11 @@ public interface IHospitalService extends IService<Hospital> {
 
     Result queryById(Long id);
 
+    Result queryWithPassThrough(Long id);
+
+    Result queryWithMutex(Long id);
+
+    Result queryWithLogicalExpire(Long id);
+
     Result updateHospital(Hospital hospital);
 }

@@ -25,9 +25,10 @@ public class CacheClient {
         this.stringRedisTemplate = stringRedisTemplate;
     }
 
-    // 方法1：设置带TTL的缓存
+    // 方法1：设置带TTL的缓存（添加随机抖动防雪崩）
     public void set(String key, Object value, Long time, TimeUnit unit) {
-        stringRedisTemplate.opsForValue().set(key, JSONUtil.toJsonStr(value), time, unit);
+        long ttlWithJitter = (long) (time * (0.9 + 0.2 * Math.random()));
+        stringRedisTemplate.opsForValue().set(key, JSONUtil.toJsonStr(value), ttlWithJitter, unit);
     }
 
     // 方法2：设置带逻辑过期时间的缓存
