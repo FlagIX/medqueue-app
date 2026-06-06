@@ -6,5 +6,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
 
 public interface IDepartmentService extends IService<Department> {
 
-    Result queryTypeListWithCache();
+    Result queryListWithCache();
 }

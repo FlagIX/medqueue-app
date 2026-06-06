@@ -15,7 +15,7 @@ public class DepartmentController {
     private IDepartmentService departmentService;
 
     @GetMapping("list")
-    public Result queryTypeList() {
-        return departmentService.queryTypeListWithCache();
+    public Result queryList() {
+        return departmentService.queryListWithCache();
     }
 }

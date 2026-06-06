@@ -1,6 +1,5 @@
 package com.medqueue.service.impl;
 
-import cn.hutool.core.util.StrUtil;
 import cn.hutool.json.JSONUtil;
 import com.medqueue.dto.Result;
 import com.medqueue.entity.Department;
@@ -14,8 +13,11 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import static com.medqueue.utils.RedisConstants.CACHE_DEPARTMENT_KEY;
+import static com.medqueue.utils.RedisConstants.CACHE_DEPARTMENT_TTL;
+import static com.medqueue.utils.RedisConstants.CACHE_NULL_TTL;
 
 @Service
 public class DepartmentServiceImpl extends ServiceImpl<DepartmentMapper, Department> implements IDepartmentService {
@@ -23,25 +25,32 @@ public class DepartmentServiceImpl extends ServiceImpl<DepartmentMapper, Departm
     private StringRedisTemplate stringRedisTemplate;
 
     @Override
-    public Result queryTypeListWithCache() {
+    public Result queryListWithCache() {
         String key = CACHE_DEPARTMENT_KEY;
-        List<String> typeJsonList = stringRedisTemplate.opsForList().range(key, 0, -1);
-        if (typeJsonList != null && !typeJsonList.isEmpty()) {
-            List<Department> typeList = new ArrayList<>();
-            for (String JSON : typeJsonList) {
-                typeList.add(JSONUtil.toBean(JSON, Department.class));
+        List<String> cacheList = stringRedisTemplate.opsForList().range(key, 0, -1);
+        if (cacheList != null) {
+            if (cacheList.isEmpty() || "_".equals(cacheList.get(0))) {
+                return Result.fail("科室不存在");
             }
-            return Result.ok(typeList);
+            List<Department> list = new ArrayList<>(cacheList.size());
+            for (String json : cacheList) {
+                list.add(JSONUtil.toBean(json, Department.class));
+            }
+            return Result.ok(list);
         }
-        List<Department> typeList = query().orderByAsc("sort").list();
-        if (typeList == null || typeList.isEmpty()) {
-            return Result.fail("科室类型不存在");
+        List<Department> dbList = query().orderByAsc("sort").list();
+        if (dbList == null || dbList.isEmpty()) {
+            stringRedisTemplate.opsForList().rightPushAll(key, "_");
+            stringRedisTemplate.expire(key, CACHE_NULL_TTL, TimeUnit.MINUTES);
+            return Result.fail("科室不存在");
         }
-        List<String> jsonList = new ArrayList<>();
-        for (Department department : typeList) {
+        List<String> jsonList = new ArrayList<>(dbList.size());
+        for (Department department : dbList) {
             jsonList.add(JSONUtil.toJsonStr(department));
         }
         stringRedisTemplate.opsForList().rightPushAll(key, jsonList);
-        return Result.ok(typeList);
+        long ttlWithJitter = (long) (CACHE_DEPARTMENT_TTL * (0.9 + 0.2 * Math.random()));
+        stringRedisTemplate.expire(key, ttlWithJitter, TimeUnit.MINUTES);
+        return Result.ok(dbList);
     }
 }

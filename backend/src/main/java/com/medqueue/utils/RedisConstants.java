@@ -10,6 +10,7 @@ public class RedisConstants {
 
     public static final Long CACHE_HOSPITAL_TTL = 30L;
     public static final String CACHE_HOSPITAL_KEY = "cache:hospital:";
+    public static final Long CACHE_DEPARTMENT_TTL = 60L;
     public static final String CACHE_DEPARTMENT_KEY = "cache:department:type";
 
     public static final String LOCK_HOSPITAL_KEY = "lock:hospital:";
