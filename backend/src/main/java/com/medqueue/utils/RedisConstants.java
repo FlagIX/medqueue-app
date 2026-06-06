@@ -16,6 +16,9 @@ public class RedisConstants {
     public static final String LOCK_HOSPITAL_KEY = "lock:hospital:";
     public static final Long LOCK_HOSPITAL_TTL = 10L;
 
+    public static final Long CACHE_DOCTOR_TTL = 30L;
+    public static final String CACHE_DOCTOR_KEY = "cache:doctor:";
+
     public static final String SECKILL_STOCK_KEY = "seckill:stock:";
     public static final String REVIEW_LIKED_KEY = "review:liked:";
     public static final String FEED_KEY = "feed:";

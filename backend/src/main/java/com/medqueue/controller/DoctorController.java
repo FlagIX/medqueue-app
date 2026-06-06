@@ -1,13 +1,14 @@
 package com.medqueue.controller;
 
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.medqueue.dto.Result;
 import com.medqueue.entity.Doctor;
 import com.medqueue.service.IDoctorService;
-import com.medqueue.utils.SystemConstants;
+import com.medqueue.service.IDoctorScheduleService;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.time.LocalDate;
 
 @RestController
 @RequestMapping("/doctor")
@@ -16,13 +17,12 @@ public class DoctorController {
     @Resource
     private IDoctorService doctorService;
 
+    @Resource
+    private IDoctorScheduleService doctorScheduleService;
+
     @GetMapping("/{id}")
     public Result queryDoctorById(@PathVariable("id") Long id) {
-        Doctor doctor = doctorService.getById(id);
-        if (doctor == null) {
-            return Result.fail("医生不存在");
-        }
-        return Result.ok(doctor);
+        return doctorService.queryById(id);
     }
 
     @GetMapping("/of/department")
@@ -30,10 +30,40 @@ public class DoctorController {
             @RequestParam("departmentId") Long departmentId,
             @RequestParam(value = "current", defaultValue = "1") Integer current
     ) {
-        Page<Doctor> page = doctorService.query()
-                .eq("department_id", departmentId)
-                .page(new Page<>(current, SystemConstants.DEFAULT_PAGE_SIZE));
-        return Result.ok(page.getRecords());
+        return doctorService.queryByDepartment(departmentId, current);
+    }
+
+    @GetMapping("/of/hospital")
+    public Result queryDoctorByHospital(
+            @RequestParam("hospitalId") Long hospitalId,
+            @RequestParam(value = "current", defaultValue = "1") Integer current
+    ) {
+        return doctorService.queryByHospital(hospitalId, current);
+    }
+
+    @GetMapping("/page")
+    public Result queryDoctorPage(
+            @RequestParam(value = "current", defaultValue = "1") Integer current,
+            @RequestParam(value = "name", required = false) String name
+    ) {
+        return doctorService.queryPage(current, name);
+    }
+
+    @GetMapping("/{id}/schedule")
+    public Result querySchedule(
+            @PathVariable("id") Long doctorId,
+            @RequestParam("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date
+    ) {
+        return doctorScheduleService.querySchedules(doctorId, date);
+    }
+
+    @GetMapping("/{id}/schedule/available")
+    public Result queryAvailableSchedules(
+            @PathVariable("id") Long doctorId,
+            @RequestParam("beginDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate beginDate,
+            @RequestParam("endDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate
+    ) {
+        return doctorScheduleService.queryAvailableSchedules(doctorId, beginDate, endDate);
     }
 
     @PostMapping
