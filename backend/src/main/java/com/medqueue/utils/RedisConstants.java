@@ -8,16 +8,16 @@ public class RedisConstants {
 
     public static final Long CACHE_NULL_TTL = 2L;
 
-    public static final Long CACHE_SHOP_TTL = 30L;
-    public static final String CACHE_SHOP_KEY = "cache:shop:";
-    public static final String CACHE_SHOP_TYPE_KEY = "cache:shop:type";
+    public static final Long CACHE_HOSPITAL_TTL = 30L;
+    public static final String CACHE_HOSPITAL_KEY = "cache:hospital:";
+    public static final String CACHE_DEPARTMENT_KEY = "cache:department:type";
 
-    public static final String LOCK_SHOP_KEY = "lock:shop:";
-    public static final Long LOCK_SHOP_TTL = 10L;
+    public static final String LOCK_HOSPITAL_KEY = "lock:hospital:";
+    public static final Long LOCK_HOSPITAL_TTL = 10L;
 
     public static final String SECKILL_STOCK_KEY = "seckill:stock:";
-    public static final String BLOG_LIKED_KEY = "blog:liked:";
+    public static final String REVIEW_LIKED_KEY = "review:liked:";
     public static final String FEED_KEY = "feed:";
-    public static final String SHOP_GEO_KEY = "shop:geo:";
+    public static final String HOSPITAL_GEO_KEY = "hospital:geo:";
     public static final String USER_SIGN_KEY = "sign:";
 }

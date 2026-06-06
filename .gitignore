@@ -19,6 +19,9 @@ dataSources/
 .DS_Store
 Thumbs.db
 
+# Misc
+bash.exe.stackdump
+
 # Environment / secrets
 .env
 *.local

@@ -8,49 +8,41 @@ import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-/**
- * <p>
- * 
- * </p>
- *
- * @author 虎哥
- * @since 2021-12-22
- */
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@TableName("tb_follow")
-public class Follow implements Serializable {
+@TableName("tb_appointment_record")
+public class AppointmentRecord implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    /**
-     * 主键
-     */
-    @TableId(value = "id", type = IdType.AUTO)
+    @TableId(value = "id", type = IdType.INPUT)
     private Long id;
 
-    /**
-     * 用户id
-     */
     private Long userId;
 
-    /**
-     * 关联的用户id
-     */
-    private Long followId;
+    private Long patientId;
 
-    /**
-     * 关注类型 0：用户 1：医院 2：医生
-     */
-    private Integer followType;
+    private Long doctorId;
 
-    /**
-     * 创建时间
-     */
+    private Long scheduleId;
+
+    private Long hospitalId;
+
+    private Long feeId;
+
+    private LocalDate appointDate;
+
+    private String timeSlot;
+
+    private Integer payType;
+
+    private Integer status;
+
     private LocalDateTime createTime;
 
-
+    private LocalDateTime updateTime;
 }
