@@ -11,7 +11,7 @@ export const useUserStore = defineStore('user', () => {
     if (res.success) {
       token.value = res.data
       localStorage.setItem('token', res.data)
-      await fetchUser()
+      try { await fetchUser() } catch (_) {}
     }
     return res
   }
@@ -30,5 +30,9 @@ export const useUserStore = defineStore('user', () => {
     userApi.logout()
   }
 
-  return { user, token, login, fetchUser, logout }
+  async function register(registerForm) {
+    return await userApi.register(registerForm)
+  }
+
+  return { user, token, login, fetchUser, logout, register }
 })

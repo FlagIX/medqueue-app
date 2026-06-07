@@ -4,6 +4,7 @@ const routes = [
   // 用户端
   { path: '/', name: 'Home', component: () => import('@/views/user/Home.vue') },
   { path: '/login', name: 'Login', component: () => import('@/views/user/Login.vue') },
+  { path: '/register', name: 'Register', component: () => import('@/views/user/Register.vue') },
   { path: '/hospital', name: 'HospitalList', component: () => import('@/views/user/HospitalList.vue') },
   { path: '/hospital/:id', name: 'HospitalDetail', component: () => import('@/views/user/HospitalDetail.vue') },
   { path: '/doctor/:id', name: 'DoctorDetail', component: () => import('@/views/user/DoctorDetail.vue') },
@@ -31,7 +32,7 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
   const token = localStorage.getItem('token')
   const adminToken = localStorage.getItem('adminToken')
-  const needAuth = !['Home', 'Login', 'HospitalList', 'HospitalDetail', 'DoctorDetail'].includes(to.name)
+  const needAuth = !['Home', 'Login', 'Register', 'HospitalList', 'HospitalDetail', 'DoctorDetail'].includes(to.name)
   const isAdminRoute = to.path.startsWith('/admin')
 
   if (isAdminRoute && to.name !== 'AdminLogin') {

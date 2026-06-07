@@ -8,9 +8,9 @@ import { userApi } from '@/api/user'
 const router = useRouter()
 const userStore = useUserStore()
 
-const activeTab = ref('password')
 const phone = ref('')
 const password = ref('')
+const confirmPassword = ref('')
 const code = ref('')
 const codeBtnText = ref('获取验证码')
 const codeBtnDisabled = ref(false)
@@ -43,71 +43,74 @@ async function sendCode() {
   }
 }
 
-async function handleLogin() {
-  if (!phone.value) return ElMessage.warning('请输入手机号')
-  if (activeTab.value === 'password') {
-    if (!password.value) return ElMessage.warning('请输入密码')
-  } else {
-    if (!code.value) return ElMessage.warning('请输入验证码')
+async function handleRegister() {
+  if (!/^1[3-9]\d{9}$/.test(phone.value)) {
+    return ElMessage.warning('请输入正确的手机号')
+  }
+  if (!password.value || password.value.length < 6) {
+    return ElMessage.warning('密码长度不能少于6位')
+  }
+  if (password.value !== confirmPassword.value) {
+    return ElMessage.warning('两次密码输入不一致')
+  }
+  if (!code.value || code.value.length !== 6) {
+    return ElMessage.warning('请输入验证码')
   }
   loading.value = true
   try {
-    const params = { phone: phone.value }
-    if (activeTab.value === 'password') {
-      params.password = password.value
-    } else {
-      params.code = code.value
-    }
-    const res = await userStore.login(params)
+    const res = await userStore.register({
+      phone: phone.value,
+      password: password.value,
+      code: code.value
+    })
     if (res.success) {
-      ElMessage.success('登录成功')
-      router.push('/')
+      ElMessage.success('注册成功')
+      router.push('/login')
     }
   } catch (e) {
-    console.error('登录失败:', e)
+    console.error('注册失败:', e)
   } finally {
     loading.value = false
   }
 }
 
-function goRegister() {
-  router.push('/register')
+function goLogin() {
+  router.push('/login')
 }
 </script>
 
 <template>
-  <div class="login-page">
-    <div class="login-card">
+  <div class="register-page">
+    <div class="register-card">
       <h2 class="title">MedQueue</h2>
-      <p class="subtitle">医疗预约挂号平台</p>
+      <p class="subtitle">创建账号</p>
 
-      <div class="tab-bar">
-        <span
-          :class="['tab', { active: activeTab === 'password' }]"
-          @click="activeTab = 'password'"
-        >密码登录</span>
-        <span
-          :class="['tab', { active: activeTab === 'code' }]"
-          @click="activeTab = 'code'"
-        >短信登录</span>
-      </div>
-
-      <el-form label-width="0" class="login-form">
+      <el-form label-width="0" class="register-form">
         <el-form-item>
           <el-input v-model="phone" placeholder="手机号" size="large" maxlength="11" />
         </el-form-item>
 
-        <el-form-item v-if="activeTab === 'password'">
+        <el-form-item>
           <el-input
             v-model="password"
             type="password"
-            placeholder="密码"
+            placeholder="密码（不少于6位）"
             size="large"
             show-password
           />
         </el-form-item>
 
-        <el-form-item v-else>
+        <el-form-item>
+          <el-input
+            v-model="confirmPassword"
+            type="password"
+            placeholder="确认密码"
+            size="large"
+            show-password
+          />
+        </el-form-item>
+
+        <el-form-item>
           <div class="code-row">
             <el-input v-model="code" placeholder="验证码" size="large" maxlength="6" style="flex:1" />
             <el-button
@@ -124,27 +127,27 @@ function goRegister() {
             size="large"
             :loading="loading"
             style="width:100%"
-            @click="handleLogin"
-          >登录</el-button>
+            @click="handleRegister"
+          >注册</el-button>
         </el-form-item>
       </el-form>
 
-      <div class="register-link">
-        没有账号？<span @click="goRegister">去注册</span>
+      <div class="login-link">
+        已有账号？<span @click="goLogin">去登录</span>
       </div>
     </div>
   </div>
 </template>
 
 <style scoped>
-.login-page {
+.register-page {
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   background: linear-gradient(135deg, #e8f4fd 0%, #f0f5ff 100%);
 }
-.login-card {
+.register-card {
   width: 400px;
   padding: 40px;
   background: #fff;
@@ -161,31 +164,9 @@ function goRegister() {
   text-align: center;
   color: #909399;
   font-size: 14px;
-  margin-bottom: 24px;
+  margin-bottom: 32px;
 }
-.tab-bar {
-  display: flex;
-  justify-content: center;
-  gap: 32px;
-  margin-bottom: 24px;
-  border-bottom: 1px solid #e4e7ed;
-  padding-bottom: 12px;
-}
-.tab {
-  font-size: 15px;
-  color: #909399;
-  cursor: pointer;
-  padding-bottom: 12px;
-  border-bottom: 2px solid transparent;
-  margin-bottom: -13px;
-  transition: all 0.2s;
-}
-.tab.active {
-  color: var(--color-primary);
-  border-bottom-color: var(--color-primary);
-  font-weight: 600;
-}
-.login-form {
+.register-form {
   max-width: 320px;
   margin: 0 auto;
 }
@@ -194,17 +175,17 @@ function goRegister() {
   gap: 8px;
   width: 100%;
 }
-.register-link {
+.login-link {
   text-align: center;
   margin-top: 16px;
   font-size: 14px;
   color: #909399;
 }
-.register-link span {
+.login-link span {
   color: var(--color-primary);
   cursor: pointer;
 }
-.register-link span:hover {
+.login-link span:hover {
   text-decoration: underline;
 }
 </style>

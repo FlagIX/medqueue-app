@@ -12,5 +12,8 @@ export const userApi = {
   },
   getMe() {
     return request.get('/user/me')
+  },
+  register(data) {
+    return request.post('/user/register', data)
   }
 }
