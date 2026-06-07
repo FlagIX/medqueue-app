@@ -31,3 +31,22 @@
 > **优先级定义：** P0 = 核心功能（MVP必须有），P1 = 重要功能，P2 = 锦上添花
 >
 > **复用说明：** "复用"表示在原项目对应功能基础上修改主题和字段
+
+## Java 17 兼容性注意事项
+
+| 依赖 | 问题 | 修复 |
+|------|------|------|
+| MyBatis-Plus 3.4.3 | `SerializedLambda.capturingClass` 反射被 Java 9+ 模块系统禁止 | 升级到 3.5.3.1 |
+| mysql-connector-java 5.1.47 | 未认证 Java 17 | 升级到 mysql-connector-j 8.0.33 |
+| Lombok 1.18.12 | 不支持 Java 17 | 显式声明 1.18.30 |
+| Spring Boot 2.3.12 | CGLIB/ASM 需要 --add-opens | pom.xml 配置 jvmArguments |
+
+## 前后端联调已知问题（已修复）
+
+| 问题 | 根因 | 修复 |
+|------|------|------|
+| 分页列表空白 | 后端返回 `page.getRecords()` 数组，前端期望 `{ records, total }` | 后端返回完整 Page 对象 |
+| 医生列表不按医院过滤 | `doctorApi.page({hospitalId})` 但后端 `/doctor/page` 不接收 hospitalId | 改用 `/doctor/of/hospital` 端点 |
+| 预约列表状态筛选无效 | 后端 `queryUserRecords()` 无参数 | 添加 current/pageSize/status 参数 |
+| 关注列表医院信息缺失 | `Follow` 实体无关联数据 | FollowController 关联查询 Hospital/Doctor |
+| 评价列表未登录 401 | `/review/page` 被 LoginInterceptor 拦截 | 加入排除列表 |

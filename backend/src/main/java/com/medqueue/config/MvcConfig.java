@@ -25,10 +25,13 @@ public class MvcConfig implements WebMvcConfigurer {
                         "/appointment-item/**",
                         "/upload/**",
                         "/review/hot",
+                        "/review/page",
+                        "/review-comment/of/**",
                         "/doctor/**",
                         "/user/code",
                         "/user/login",
-                        "/user/register"
+                        "/user/register",
+                        "/user/info/{id}"
                 ).order(1);
         // token刷新的拦截器
         registry.addInterceptor(new RefreshTokenInterceptor(stringRedisTemplate)).addPathPatterns("/**").order(0);

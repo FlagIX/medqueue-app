@@ -43,8 +43,7 @@ public class ReviewController {
         UserDTO user = UserHolder.getUser();
         Page<MedicalReview> page = reviewService.query()
                 .eq("user_id", user.getId()).page(new Page<>(current, SystemConstants.MAX_PAGE_SIZE));
-        List<MedicalReview> records = page.getRecords();
-        return Result.ok(records);
+        return Result.ok(page);
     }
 
     @GetMapping("/page")
@@ -60,7 +59,7 @@ public class ReviewController {
                 review.setIcon(user.getIcon());
             }
         });
-        return Result.ok(records);
+        return Result.ok(page);
     }
 
     @GetMapping("/hot")
@@ -75,6 +74,6 @@ public class ReviewController {
             review.setName(user.getNickName());
             review.setIcon(user.getIcon());
         });
-        return Result.ok(records);
+        return Result.ok(page);
     }
 }

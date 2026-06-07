@@ -9,5 +9,11 @@ export const reviewApi = {
   },
   like(id) {
     return request.put(`/review/like/${id}`)
+  },
+  ofMe(params) {
+    return request.get('/review/of/me', { params })
+  },
+  hot(params) {
+    return request.get('/review/hot', { params })
   }
 }

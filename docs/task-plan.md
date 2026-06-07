@@ -40,7 +40,21 @@
 | 3.2 | 全局异常完善（业务异常码） | `config/WebExceptionAdvice.java` | 0.5天 | 无 |
 | 3.3 | 最终全量接口测试 | — | 1天 | 3.1, 3.2 |
 
+## Phase 4 — Java 17 兼容 + 前后端联调修复
+
+| 序号 | 任务内容 | 涉及文件 | 预估时间 |
+|------|----------|----------|----------|
+| 4.1 | Java 17 兼容：pom.xml 升级（java.version=17, mysql-connector-j 8.0.33, lombok 1.18.30） | `pom.xml` | 0.5天 |
+| 4.2 | MySQL driver 更新（com.mysql.cj.jdbc.Driver） | `application.yaml` | 0.1天 |
+| 4.3 | 拦截器路径修复：补充公开端点排除 | `config/MvcConfig.java` | 0.3天 |
+| 4.4 | 分页接口修复：返回完整 Page 对象而非 records 数组 | `HospitalServiceImpl`, `DoctorServiceImpl`, `ReviewController`, `HospitalController` | 0.5天 |
+| 4.5 | AppointmentRecordController 支持分页 + status 过滤 | `AppointmentRecordController`, `IAppointmentRecordService`, `AppointmentRecordServiceImpl` | 0.3天 |
+| 4.6 | FollowController 返回关联医院/医生数据 | `FollowController` | 0.3天 |
+| 4.7 | 前端补充缺失 API 方法 + 修复医生过滤调用 | `api/doctor.js`, `api/review.js`, `api/follow.js`, `api/patient.js`, `api/hospital.js`, `HospitalDetail.vue`, `ScheduleManage.vue` | 0.3天 |
+
 ---
+
+## 总计
 
 ## 总计
 
@@ -49,4 +63,5 @@
 | Phase 1 — 基础平台 | ~11天 |
 | Phase 2 — 增强功能 | ~4.5天 |
 | Phase 3 — 收尾 | ~2天 |
-| **总计** | **~17.5天** |
+| Phase 4 — Java 17 兼容 + 前后端联调修复 | ~2天 |
+| **总计** | **~19.5天** |

@@ -10,8 +10,8 @@
 一个基于 Spring Boot 的医疗预约挂号平台后端，提供医院/医生信息查询、号源管理、在线预约挂号、就医评价等核心功能。
 
 ### 技术栈
-- Spring Boot 2.3.12 + MyBatis Plus + MySQL + Redis + Redisson
-- Java 8，Lombok，Hutool
+- Spring Boot 2.7.18 + MyBatis Plus 3.5.3.1 + MySQL 8.0 + Redis + Redisson
+- Java 17，Lombok 1.18.30，Hutool
 
 ### 简历卖点
 1. **Redis+Lua 原子扣号源防超卖** — 高并发预约场景下的库存准确性保证
@@ -428,14 +428,17 @@ PUT /api/appointment/{id}/cancel
 
 ```bash
 # 前置依赖
-MySQL localhost:3306, 数据库 medqueue
-Redis localhost:6379, database 1, password: 123456
+MySQL localhost:3306, 数据库 medqueue（Connector/J 8.0.33, driver: com.mysql.cj.jdbc.Driver）
+Redis localhost:6379, database 2, password: 123456
 
-# 启动
-mvn spring-boot:run
+# 后端启动（跳过测试）
+cd backend && mvn spring-boot:run
+
+# 前端启动
+cd frontend && npm run dev
 
 # 端口
-8081
+后端 8081，前端 3000（Vite 代理 /api → localhost:8081）
 ```
 
 ---

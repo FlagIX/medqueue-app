@@ -7,6 +7,9 @@ export const patientApi = {
   save(data) {
     return request.post('/patient', data)
   },
+  update(data) {
+    return request.put('/patient', data)
+  },
   remove(id) {
     return request.delete(`/patient/${id}`)
   }

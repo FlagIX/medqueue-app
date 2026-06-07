@@ -13,6 +13,7 @@ import com.medqueue.service.IAppointmentRecordService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.medqueue.utils.RedisIdWorker;
 import com.medqueue.utils.UserHolder;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.redisson.api.RLock;
 import org.redisson.api.RedissonClient;
 import org.springframework.core.io.ClassPathResource;
@@ -188,8 +189,13 @@ public class AppointmentRecordServiceImpl extends ServiceImpl<AppointmentRecordM
     }
 
     @Override
-    public Result queryUserRecords(Long userId) {
-        return Result.ok(baseMapper.queryUserRecords(userId));
+    public Result queryUserRecords(Long userId, Integer current, Integer pageSize, Integer status) {
+        Page<AppointmentRecord> page = lambdaQuery()
+                .eq(AppointmentRecord::getUserId, userId)
+                .eq(status != null && status > 0, AppointmentRecord::getStatus, status)
+                .orderByDesc(AppointmentRecord::getCreateTime)
+                .page(new Page<>(current, pageSize));
+        return Result.ok(page);
     }
 
     @Override

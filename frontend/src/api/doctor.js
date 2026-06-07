@@ -10,6 +10,12 @@ export const doctorApi = {
   getSchedule(id, params) {
     return request.get(`/doctor/${id}/schedule`, { params })
   },
+  byHospital(hospitalId, params) {
+    return request.get('/doctor/of/hospital', { params: { hospitalId, ...params } })
+  },
+  byDepartment(departmentId, params) {
+    return request.get('/doctor/of/department', { params: { departmentId, ...params } })
+  },
   save(data) {
     return request.post('/doctor', data)
   },

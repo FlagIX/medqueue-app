@@ -22,9 +22,12 @@ public class AppointmentRecordController {
     }
 
     @GetMapping("/list")
-    public Result queryUserRecords() {
+    public Result queryUserRecords(
+            @RequestParam(value = "current", defaultValue = "1") Integer current,
+            @RequestParam(value = "pageSize", defaultValue = "10") Integer pageSize,
+            @RequestParam(required = false) Integer status) {
         UserDTO user = UserHolder.getUser();
-        return appointmentRecordService.queryUserRecords(user.getId());
+        return appointmentRecordService.queryUserRecords(user.getId(), current, pageSize, status);
     }
 
     @PutMapping("/{id}/cancel")

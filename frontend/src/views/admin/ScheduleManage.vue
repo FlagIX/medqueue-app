@@ -19,7 +19,7 @@ onMounted(async () => {
 })
 
 async function selectHospital(hospitalId) {
-  const dRes = await doctorApi.page({ hospitalId, current: 1, pageSize: 999 })
+  const dRes = await doctorApi.byHospital(hospitalId, { current: 1, pageSize: 999 })
   if (dRes.success) doctors.value = dRes.data?.records || []
   selectedDoctor.value = null
   schedules.value = []

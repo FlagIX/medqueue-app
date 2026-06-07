@@ -56,7 +56,7 @@ public class HospitalController {
         Page<Hospital> page = hospitalService.query()
                 .eq("department_id", typeId)
                 .page(new Page<>(current, SystemConstants.DEFAULT_PAGE_SIZE));
-        return Result.ok(page.getRecords());
+        return Result.ok(page);
     }
 
     @GetMapping("/of/name")
@@ -67,7 +67,7 @@ public class HospitalController {
         Page<Hospital> page = hospitalService.query()
                 .like(StrUtil.isNotBlank(name), "name", name)
                 .page(new Page<>(current, SystemConstants.MAX_PAGE_SIZE));
-        return Result.ok(page.getRecords());
+        return Result.ok(page);
     }
 
     @GetMapping("/page")

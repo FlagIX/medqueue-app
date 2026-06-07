@@ -15,7 +15,7 @@ onMounted(async () => {
   try {
     const res = await hospitalApi.getById(route.params.id)
     if (res.success) hospital.value = res.data
-    const docRes = await doctorApi.page({ hospitalId: route.params.id, current: 1 })
+    const docRes = await doctorApi.byHospital(route.params.id, { current: 1 })
     if (docRes.success) doctors.value = docRes.data?.records || []
   } catch (_) {} finally { loading.value = false }
 })

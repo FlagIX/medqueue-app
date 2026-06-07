@@ -9,5 +9,8 @@ export const followApi = {
   },
   list(params) {
     return request.get('/follow/list', { params })
+  },
+  isFollow(id, type = 0) {
+    return request.get(`/follow/or/${id}/${type}`)
   }
 }

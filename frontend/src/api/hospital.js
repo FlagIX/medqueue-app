@@ -10,6 +10,9 @@ export const hospitalApi = {
   nearby(params) {
     return request.get('/hospital/nearby', { params })
   },
+  byType(typeId, params) {
+    return request.get('/hospital/of/type', { params: { typeId, ...params } })
+  },
   save(data) {
     return request.post('/hospital', data)
   },

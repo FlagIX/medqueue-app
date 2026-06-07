@@ -34,19 +34,21 @@ public class DoctorServiceImpl extends ServiceImpl<DoctorMapper, Doctor> impleme
     }
 
     @Override
-    public Result queryByDepartment(Long departmentId, Integer current) {
+    public Result queryByDepartment(Long departmentId, Integer current, Integer pageSize) {
+        if (pageSize == null) pageSize = SystemConstants.DEFAULT_PAGE_SIZE;
         Page<Doctor> page = query()
                 .eq("department_id", departmentId)
-                .page(new Page<>(current, SystemConstants.DEFAULT_PAGE_SIZE));
-        return Result.ok(page.getRecords());
+                .page(new Page<>(current, pageSize));
+        return Result.ok(page);
     }
 
     @Override
-    public Result queryByHospital(Long hospitalId, Integer current) {
+    public Result queryByHospital(Long hospitalId, Integer current, Integer pageSize) {
+        if (pageSize == null) pageSize = SystemConstants.DEFAULT_PAGE_SIZE;
         Page<Doctor> page = query()
                 .eq("hospital_id", hospitalId)
-                .page(new Page<>(current, SystemConstants.DEFAULT_PAGE_SIZE));
-        return Result.ok(page.getRecords());
+                .page(new Page<>(current, pageSize));
+        return Result.ok(page);
     }
 
     @Override
@@ -54,6 +56,6 @@ public class DoctorServiceImpl extends ServiceImpl<DoctorMapper, Doctor> impleme
         Page<Doctor> page = query()
                 .like(StrUtil.isNotBlank(name), "name", name)
                 .page(new Page<>(current, SystemConstants.DEFAULT_PAGE_SIZE));
-        return Result.ok(page.getRecords());
+        return Result.ok(page);
     }
 }

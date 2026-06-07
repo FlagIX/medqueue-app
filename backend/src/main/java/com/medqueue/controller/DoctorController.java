@@ -28,17 +28,17 @@ public class DoctorController {
     @GetMapping("/of/department")
     public Result queryDoctorByDepartment(
             @RequestParam("departmentId") Long departmentId,
-            @RequestParam(value = "current", defaultValue = "1") Integer current
-    ) {
-        return doctorService.queryByDepartment(departmentId, current);
+            @RequestParam(value = "current", defaultValue = "1") Integer current,
+            @RequestParam(value = "pageSize", required = false) Integer pageSize) {
+        return doctorService.queryByDepartment(departmentId, current, pageSize);
     }
 
     @GetMapping("/of/hospital")
     public Result queryDoctorByHospital(
             @RequestParam("hospitalId") Long hospitalId,
-            @RequestParam(value = "current", defaultValue = "1") Integer current
-    ) {
-        return doctorService.queryByHospital(hospitalId, current);
+            @RequestParam(value = "current", defaultValue = "1") Integer current,
+            @RequestParam(value = "pageSize", required = false) Integer pageSize) {
+        return doctorService.queryByHospital(hospitalId, current, pageSize);
     }
 
     @GetMapping("/page")

@@ -11,7 +11,7 @@ public interface IAppointmentRecordService extends IService<AppointmentRecord> {
 
     Result createAppointmentRecord(AppointmentBookingDTO dto);
 
-    Result queryUserRecords(Long userId);
+    Result queryUserRecords(Long userId, Integer current, Integer pageSize, Integer status);
 
     Result cancelAppointment(Long id, Long userId);
 }

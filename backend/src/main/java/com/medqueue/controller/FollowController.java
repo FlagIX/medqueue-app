@@ -2,12 +2,20 @@ package com.medqueue.controller;
 
 import com.medqueue.dto.Result;
 import com.medqueue.dto.UserDTO;
+import com.medqueue.entity.Doctor;
 import com.medqueue.entity.Follow;
+import com.medqueue.entity.Hospital;
+import com.medqueue.service.IDoctorService;
 import com.medqueue.service.IFollowService;
+import com.medqueue.service.IHospitalService;
 import com.medqueue.utils.UserHolder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/follow")
@@ -15,6 +23,12 @@ public class FollowController {
 
     @Resource
     private IFollowService followService;
+
+    @Resource
+    private IHospitalService hospitalService;
+
+    @Resource
+    private IDoctorService doctorService;
 
     @PostMapping("/{id}")
     public Result follow(@PathVariable("id") Long followId,
@@ -62,9 +76,30 @@ public class FollowController {
     @GetMapping("/list")
     public Result queryMyFollows(@RequestParam(value = "type", defaultValue = "0") Integer followType) {
         UserDTO user = UserHolder.getUser();
-        return Result.ok(followService.query()
+        List<Follow> follows = followService.query()
                 .eq("user_id", user.getId())
                 .eq("follow_type", followType)
-                .list());
+                .list();
+
+        List<Map<String, Object>> items = new ArrayList<>();
+        for (Follow f : follows) {
+            Map<String, Object> item = new HashMap<>();
+            item.put("id", f.getId());
+            item.put("followId", f.getFollowId());
+            item.put("followType", f.getFollowType());
+            item.put("createTime", f.getCreateTime());
+            if (f.getFollowType() == 1) {
+                Hospital hospital = hospitalService.getById(f.getFollowId());
+                item.put("hospital", hospital);
+            } else if (f.getFollowType() == 2) {
+                Doctor doctor = doctorService.getById(f.getFollowId());
+                item.put("doctor", doctor);
+            }
+            items.add(item);
+        }
+        Map<String, Object> result = new HashMap<>();
+        result.put("records", items);
+        result.put("total", (long) items.size());
+        return Result.ok(result);
     }
 }

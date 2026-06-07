@@ -89,7 +89,7 @@ public class HospitalServiceImpl extends ServiceImpl<HospitalMapper, Hospital> i
         Page<Hospital> page = query()
                 .like(StrUtil.isNotBlank(name), "name", name)
                 .page(new Page<>(current, SystemConstants.DEFAULT_PAGE_SIZE));
-        return Result.ok(page.getRecords());
+        return Result.ok(page);
     }
 
     @Override

@@ -21,19 +21,19 @@ cd frontend && npm run dev
 
 ## 前置依赖
 
-- **Java 8**（source/target 1.8）
-- **MySQL** `localhost:3306`，数据库 `medqueue`
-- **Redis** `localhost:6379`，database 1（用作缓存和登录态存储）
-- 应用运行在 **8081 端口**
+- **Java 17**（source/target 17）
+- **MySQL** `localhost:3306`，数据库 `medqueue`（Connector/J 8.0.33）
+- **Redis** `localhost:6379`，database 2（用作缓存和登录态存储）
+- 后端运行在 **8081 端口**，前端运行在 **3000 端口**
 
 ## 技术栈
 
-- Spring Boot 2.3.12.RELEASE
-- MyBatis Plus 3.4.3（分页插件）
-- MySQL 5.x（connector 5.1.47）
+- Spring Boot 2.7.18
+- MyBatis Plus 3.5.3.1
+- MySQL 8.0（connector 8.0.33）
 - Redis（Lettuce 客户端 + commons-pool2 连接池）
 - Redisson 3.22.0（分布式锁）
-- Lombok、Hutool 5.7.17
+- Lombok 1.18.30、Hutool 5.7.17
 
 ## 项目结构
 
