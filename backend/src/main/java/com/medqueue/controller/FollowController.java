@@ -16,25 +16,36 @@ public class FollowController {
     @Resource
     private IFollowService followService;
 
-    @PutMapping("/{id}/{type}")
-    public Result follow(@PathVariable("id") Long followId, @PathVariable("type") Integer followType) {
+    @PostMapping("/{id}")
+    public Result follow(@PathVariable("id") Long followId,
+                         @RequestParam(value = "type", defaultValue = "0") Integer followType) {
         UserDTO user = UserHolder.getUser();
-        Long userId = user.getId();
         Follow one = followService.query()
-                .eq("user_id", userId)
+                .eq("user_id", user.getId())
                 .eq("follow_id", followId)
                 .eq("follow_type", followType)
                 .one();
         if (one != null) {
-            followService.removeById(one.getId());
-            return Result.ok("已取消关注");
+            return Result.ok("已关注");
         }
         Follow follow = new Follow();
-        follow.setUserId(userId);
+        follow.setUserId(user.getId());
         follow.setFollowId(followId);
         follow.setFollowType(followType);
         followService.save(follow);
         return Result.ok("已关注");
+    }
+
+    @DeleteMapping("/{id}")
+    public Result unfollow(@PathVariable("id") Long followId,
+                           @RequestParam(value = "type", defaultValue = "0") Integer followType) {
+        UserDTO user = UserHolder.getUser();
+        followService.lambdaUpdate()
+                .eq(Follow::getUserId, user.getId())
+                .eq(Follow::getFollowId, followId)
+                .eq(Follow::getFollowType, followType)
+                .remove();
+        return Result.ok("已取消关注");
     }
 
     @GetMapping("/or/{id}/{type}")
@@ -48,8 +59,8 @@ public class FollowController {
         return Result.ok(count > 0);
     }
 
-    @GetMapping("/my/{type}")
-    public Result queryMyFollows(@PathVariable("type") Integer followType) {
+    @GetMapping("/list")
+    public Result queryMyFollows(@RequestParam(value = "type", defaultValue = "0") Integer followType) {
         UserDTO user = UserHolder.getUser();
         return Result.ok(followService.query()
                 .eq("user_id", user.getId())

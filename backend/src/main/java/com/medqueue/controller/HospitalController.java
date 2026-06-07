@@ -69,4 +69,21 @@ public class HospitalController {
                 .page(new Page<>(current, SystemConstants.MAX_PAGE_SIZE));
         return Result.ok(page.getRecords());
     }
+
+    @GetMapping("/page")
+    public Result queryPage(
+            @RequestParam(value = "current", defaultValue = "1") Integer current,
+            @RequestParam(value = "name", required = false) String name
+    ) {
+        return hospitalService.queryPage(current, name);
+    }
+
+    @GetMapping("/nearby")
+    public Result queryNearby(
+            @RequestParam("x") Double x,
+            @RequestParam("y") Double y,
+            @RequestParam(value = "distance", defaultValue = "5") Integer distance
+    ) {
+        return hospitalService.queryNearby(x, y, distance);
+    }
 }

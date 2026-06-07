@@ -26,7 +26,6 @@ public class MvcConfig implements WebMvcConfigurer {
                         "/upload/**",
                         "/review/hot",
                         "/doctor/**",
-                        "/patient-profile/**",
                         "/user/code",
                         "/user/login"
                 ).order(1);

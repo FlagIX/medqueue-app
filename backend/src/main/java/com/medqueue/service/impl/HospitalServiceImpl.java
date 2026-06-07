@@ -4,14 +4,25 @@ import com.medqueue.dto.Result;
 import com.medqueue.entity.Hospital;
 import com.medqueue.mapper.HospitalMapper;
 import com.medqueue.service.IHospitalService;
+import cn.hutool.core.util.StrUtil;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.medqueue.utils.CacheClient;
+import com.medqueue.utils.SystemConstants;
+import org.springframework.data.geo.Circle;
+import org.springframework.data.geo.Distance;
+import org.springframework.data.geo.GeoResults;
+import org.springframework.data.geo.Metrics;
+import org.springframework.data.geo.Point;
+import org.springframework.data.redis.connection.RedisGeoCommands;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-
+import java.util.Collections;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
 import static com.medqueue.utils.RedisConstants.*;
 
@@ -71,5 +82,28 @@ public class HospitalServiceImpl extends ServiceImpl<HospitalMapper, Hospital> i
     public void saveHospital2Redis(Long id, Long expireSeconds) {
         Hospital hospital = getById(id);
         cacheClient.setWithLogicalExpire(CACHE_HOSPITAL_KEY + id, hospital, expireSeconds, TimeUnit.SECONDS);
+    }
+
+    @Override
+    public Result queryPage(Integer current, String name) {
+        Page<Hospital> page = query()
+                .like(StrUtil.isNotBlank(name), "name", name)
+                .page(new Page<>(current, SystemConstants.DEFAULT_PAGE_SIZE));
+        return Result.ok(page.getRecords());
+    }
+
+    @Override
+    public Result queryNearby(Double x, Double y, Integer distance) {
+        Circle circle = new Circle(new Point(x, y), new Distance(distance, Metrics.KILOMETERS));
+        GeoResults<RedisGeoCommands.GeoLocation<String>> results =
+                stringRedisTemplate.opsForGeo().radius(HOSPITAL_GEO_KEY, circle);
+        List<Long> ids = results.getContent().stream()
+                .map(r -> Long.valueOf(r.getContent().getName()))
+                .collect(Collectors.toList());
+        if (ids.isEmpty()) {
+            return Result.ok(Collections.emptyList());
+        }
+        List<Hospital> list = lambdaQuery().in(Hospital::getId, ids).list();
+        return Result.ok(list);
     }
 }

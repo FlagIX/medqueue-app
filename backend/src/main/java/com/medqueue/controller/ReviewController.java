@@ -47,6 +47,22 @@ public class ReviewController {
         return Result.ok(records);
     }
 
+    @GetMapping("/page")
+    public Result queryPage(@RequestParam(value = "current", defaultValue = "1") Integer current) {
+        Page<MedicalReview> page = reviewService.query()
+                .orderByDesc("create_time")
+                .page(new Page<>(current, SystemConstants.MAX_PAGE_SIZE));
+        List<MedicalReview> records = page.getRecords();
+        records.forEach(review -> {
+            User user = userService.getById(review.getUserId());
+            if (user != null) {
+                review.setName(user.getNickName());
+                review.setIcon(user.getIcon());
+            }
+        });
+        return Result.ok(records);
+    }
+
     @GetMapping("/hot")
     public Result queryHotReview(@RequestParam(value = "current", defaultValue = "1") Integer current) {
         Page<MedicalReview> page = reviewService.query()
