@@ -1,30 +1,38 @@
 package com.medqueue.service.impl;
 
+import com.medqueue.dto.AppointmentBookingDTO;
 import com.medqueue.dto.Result;
 import com.medqueue.dto.UserDTO;
-import com.medqueue.entity.DoctorSchedule;
 import com.medqueue.entity.AppointmentRecord;
+import com.medqueue.entity.Doctor;
+import com.medqueue.entity.DoctorSchedule;
 import com.medqueue.mapper.AppointmentRecordMapper;
 import com.medqueue.service.IDoctorScheduleService;
+import com.medqueue.service.IDoctorService;
 import com.medqueue.service.IAppointmentRecordService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.medqueue.utils.RedisIdWorker;
 import com.medqueue.utils.UserHolder;
 import org.redisson.api.RLock;
 import org.redisson.api.RedissonClient;
-import org.springframework.aop.framework.AopContext;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.core.script.DefaultRedisScript;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
-import static com.medqueue.utils.RedisConstants.SECKILL_STOCK_KEY;
+import static com.medqueue.utils.RedisConstants.APPOINTMENT_ORDER_KEY;
+import static com.medqueue.utils.RedisConstants.APPOINTMENT_STOCK_KEY;
 
 @Service
 public class AppointmentRecordServiceImpl extends ServiceImpl<AppointmentRecordMapper, AppointmentRecord> implements IAppointmentRecordService {
@@ -32,68 +40,181 @@ public class AppointmentRecordServiceImpl extends ServiceImpl<AppointmentRecordM
     @Resource
     private IDoctorScheduleService doctorScheduleService;
     @Resource
+    private IDoctorService doctorService;
+    @Resource
     private RedisIdWorker redisIdWorker;
     @Resource
     private StringRedisTemplate stringRedisTemplate;
     @Resource
     private RedissonClient redissonClient;
 
-    private BlockingQueue<AppointmentRecord> orderQueue = new ArrayBlockingQueue<>(1024 * 1024);
+    private final BlockingQueue<AppointmentRecord> queue = new ArrayBlockingQueue<>(1024 * 1024);
 
-    private static final DefaultRedisScript<Long> SECKILL_SCRIPT;
+    private static final DefaultRedisScript<Long> APPOINTMENT_SCRIPT;
 
     static {
-        SECKILL_SCRIPT = new DefaultRedisScript<>();
-        SECKILL_SCRIPT.setLocation(new ClassPathResource("seckill.lua"));
-        SECKILL_SCRIPT.setResultType(Long.class);
+        APPOINTMENT_SCRIPT = new DefaultRedisScript<>();
+        APPOINTMENT_SCRIPT.setLocation(new ClassPathResource("appointment.lua"));
+        APPOINTMENT_SCRIPT.setResultType(Long.class);
+    }
+
+    @PostConstruct
+    public void initConsumer() {
+        ExecutorService consumer = Executors.newSingleThreadExecutor(r -> {
+            Thread t = new Thread(r, "appointment-queue-consumer");
+            t.setDaemon(true);
+            return t;
+        });
+        consumer.execute(() -> {
+            while (true) {
+                try {
+                    AppointmentRecord record = queue.take();
+                    save(record);
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                    break;
+                } catch (Exception e) {
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException ex) {
+                        Thread.currentThread().interrupt();
+                        break;
+                    }
+                }
+            }
+        });
     }
 
     @Override
-    public Result bookAppointment(Long scheduleId) {
+    public Result bookAppointment(AppointmentBookingDTO dto) {
+        if (dto.getScheduleId() == null || dto.getPatientId() == null) {
+            return Result.fail("参数错误");
+        }
+
         UserDTO user = UserHolder.getUser();
-        Long userId = user.getId();
+
+        DoctorSchedule schedule = doctorScheduleService.getById(dto.getScheduleId());
+        if (schedule == null) {
+            return Result.fail("排班不存在");
+        }
+
+        Doctor doctor = doctorService.getById(dto.getDoctorId());
+        if (doctor == null) {
+            return Result.fail("医生不存在");
+        }
+
         Long result = stringRedisTemplate.execute(
-                SECKILL_SCRIPT,
-                Arrays.asList(SECKILL_STOCK_KEY + scheduleId, "seckill:order:" + scheduleId),
-                userId.toString()
+                APPOINTMENT_SCRIPT,
+                Arrays.asList(APPOINTMENT_STOCK_KEY + dto.getScheduleId(),
+                        APPOINTMENT_ORDER_KEY + dto.getScheduleId()),
+                user.getId().toString()
         );
         int r = result.intValue();
         if (r != 0) {
             return Result.fail(r == 1 ? "号源不足" : "用户已预约，不可重复预约");
         }
 
+        long orderId = redisIdWorker.nextId("appointment");
         AppointmentRecord record = new AppointmentRecord();
-        long orderId = redisIdWorker.nextId("order");
         record.setId(orderId);
-        record.setUserId(userId);
-        record.setScheduleId(scheduleId);
+        record.setUserId(user.getId());
+        record.setPatientId(dto.getPatientId());
+        record.setDoctorId(dto.getDoctorId());
+        record.setScheduleId(dto.getScheduleId());
+        record.setHospitalId(doctor.getHospitalId());
+        record.setFeeId(schedule.getFeeId());
+        record.setAppointDate(LocalDate.parse(dto.getDate()));
+        record.setTimeSlot(dto.getTimeSlot());
+        record.setStatus(1);
+        record.setCreateTime(LocalDateTime.now());
+        record.setUpdateTime(LocalDateTime.now());
 
-        orderQueue.add(record);
+        queue.add(record);
 
         return Result.ok(orderId);
     }
 
+    @Override
     @Transactional
-    public Result createAppointmentRecord(Long scheduleId) {
+    public Result createAppointmentRecord(AppointmentBookingDTO dto) {
+        if (dto.getScheduleId() == null || dto.getPatientId() == null) {
+            return Result.fail("参数错误");
+        }
+
         Long userId = UserHolder.getUser().getId();
-        int count = query().eq("user_id", userId).eq("schedule_id", scheduleId).count();
-        if (count > 0) {
-            return Result.fail("用户已经预约过一次！");
+        RLock lock = redissonClient.getLock("lock:appointment:" + dto.getScheduleId());
+        try {
+            lock.lock();
+            int count = lambdaQuery()
+                    .eq(AppointmentRecord::getUserId, userId)
+                    .eq(AppointmentRecord::getScheduleId, dto.getScheduleId())
+                    .count();
+            if (count > 0) {
+                return Result.fail("用户已预约，不可重复预约");
+            }
+
+            boolean success = doctorScheduleService.update()
+                    .setSql("remain_count = remain_count - 1")
+                    .eq("schedule_id", dto.getScheduleId())
+                    .gt("remain_count", 0)
+                    .update();
+            if (!success) {
+                return Result.fail("号源不足");
+            }
+
+            DoctorSchedule schedule = doctorScheduleService.getById(dto.getScheduleId());
+            Doctor doctor = doctorService.getById(dto.getDoctorId());
+
+            long orderId = redisIdWorker.nextId("appointment");
+            AppointmentRecord record = new AppointmentRecord();
+            record.setId(orderId);
+            record.setUserId(userId);
+            record.setPatientId(dto.getPatientId());
+            record.setDoctorId(dto.getDoctorId());
+            record.setScheduleId(dto.getScheduleId());
+            record.setHospitalId(doctor != null ? doctor.getHospitalId() : null);
+            record.setFeeId(schedule != null ? schedule.getFeeId() : null);
+            record.setAppointDate(LocalDate.parse(dto.getDate()));
+            record.setTimeSlot(dto.getTimeSlot());
+            record.setStatus(1);
+            record.setCreateTime(LocalDateTime.now());
+            record.setUpdateTime(LocalDateTime.now());
+            save(record);
+
+            return Result.ok(orderId);
+        } finally {
+            lock.unlock();
         }
-        boolean success = doctorScheduleService.update()
-                .setSql("remain_count = remain_count - 1")
-                .eq("schedule_id", scheduleId)
-                .gt("remain_count", 0)
+    }
+
+    @Override
+    public Result queryUserRecords(Long userId) {
+        return Result.ok(baseMapper.queryUserRecords(userId));
+    }
+
+    @Override
+    @Transactional
+    public Result cancelAppointment(Long id, Long userId) {
+        AppointmentRecord record = getById(id);
+        if (record == null) {
+            return Result.fail("预约记录不存在");
+        }
+        if (!record.getUserId().equals(userId)) {
+            return Result.fail("无权取消该预约");
+        }
+        if (record.getStatus() != 1) {
+            return Result.fail("当前状态不可取消");
+        }
+
+        record.setStatus(3);
+        record.setUpdateTime(LocalDateTime.now());
+        updateById(record);
+
+        doctorScheduleService.update()
+                .setSql("remain_count = remain_count + 1")
+                .eq("schedule_id", record.getScheduleId())
                 .update();
-        if (!success) {
-            return Result.fail("号源不足");
-        }
-        AppointmentRecord record = new AppointmentRecord();
-        long orderId = redisIdWorker.nextId("order");
-        record.setId(orderId);
-        record.setUserId(userId);
-        record.setScheduleId(scheduleId);
-        save(record);
-        return Result.ok(orderId);
+
+        return Result.ok();
     }
 }

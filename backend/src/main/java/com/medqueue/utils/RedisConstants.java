@@ -19,7 +19,8 @@ public class RedisConstants {
     public static final Long CACHE_DOCTOR_TTL = 30L;
     public static final String CACHE_DOCTOR_KEY = "cache:doctor:";
 
-    public static final String SECKILL_STOCK_KEY = "seckill:stock:";
+    public static final String APPOINTMENT_STOCK_KEY = "appointment:stock:";
+    public static final String APPOINTMENT_ORDER_KEY = "appointment:order:";
     public static final String REVIEW_LIKED_KEY = "review:liked:";
     public static final String FEED_KEY = "feed:";
     public static final String HOSPITAL_GEO_KEY = "hospital:geo:";
