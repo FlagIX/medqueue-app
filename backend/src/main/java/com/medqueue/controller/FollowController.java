@@ -51,7 +51,7 @@ public class FollowController {
     @GetMapping("/or/{id}/{type}")
     public Result isFollow(@PathVariable("id") Long followId, @PathVariable("type") Integer followType) {
         UserDTO user = UserHolder.getUser();
-        int count = followService.query()
+        long count = followService.query()
                 .eq("user_id", user.getId())
                 .eq("follow_id", followId)
                 .eq("follow_type", followType)

@@ -6,21 +6,29 @@ export const useUserStore = defineStore('user', () => {
   const user = ref(null)
   const token = ref(localStorage.getItem('token') || '')
 
+  async function fetchUser() {
+    if (!token.value) return
+    try {
+      const res = await userApi.getMe()
+      if (res.success) {
+        user.value = res.data
+      }
+    } catch (_) {}
+  }
+
+  // 初始化时如果有 token 则拉取用户信息
+  if (token.value) {
+    fetchUser()
+  }
+
   async function login(loginForm) {
     const res = await userApi.login(loginForm)
     if (res.success) {
       token.value = res.data
       localStorage.setItem('token', res.data)
-      try { await fetchUser() } catch (_) {}
+      await fetchUser()
     }
     return res
-  }
-
-  async function fetchUser() {
-    const res = await userApi.getMe()
-    if (res.success) {
-      user.value = res.data
-    }
   }
 
   function logout() {

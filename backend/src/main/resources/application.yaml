@@ -21,6 +21,9 @@ spring:
         time-between-eviction-runs: 10s
   jackson:
     default-property-inclusion: non_null # JSON处理时忽略非空字段
+    date-format: yyyy-MM-dd HH:mm:ss
+    serialization:
+      write-dates-as-timestamps: false # LocalDate/LocalDateTime 序列化为字符串而非数组
 mybatis-plus:
   type-aliases-package: com.medqueue.entity # 别名扫描包
 logging:

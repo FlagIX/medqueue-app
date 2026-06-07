@@ -25,6 +25,7 @@ function goMyAppointments() { router.push('/appointment/list') }
 function goMyPatients() { router.push('/patient') }
 function goMyReviews() { router.push('/review/list') }
 function goMyFollows() { router.push('/follow/list') }
+function goProfile() { router.push('/profile/edit') }
 
 function doSearch() {
   if (searchKeyword.value.trim()) {
@@ -87,6 +88,7 @@ function handleLogout() {
               <el-dropdown-menu>
                 <el-dropdown-item @click="goMyAppointments">我的预约</el-dropdown-item>
                 <el-dropdown-item @click="goMyPatients">就诊人管理</el-dropdown-item>
+                <el-dropdown-item @click="goProfile">个人信息</el-dropdown-item>
                 <el-dropdown-item @click="goMyReviews">我的评价</el-dropdown-item>
                 <el-dropdown-item @click="goMyFollows">我的关注</el-dropdown-item>
                 <el-dropdown-item divided @click="handleLogout">退出登录</el-dropdown-item>

@@ -145,7 +145,7 @@ public class AppointmentRecordServiceImpl extends ServiceImpl<AppointmentRecordM
         RLock lock = redissonClient.getLock("lock:appointment:" + dto.getScheduleId());
         try {
             lock.lock();
-            int count = lambdaQuery()
+            long count = lambdaQuery()
                     .eq(AppointmentRecord::getUserId, userId)
                     .eq(AppointmentRecord::getScheduleId, dto.getScheduleId())
                     .count();

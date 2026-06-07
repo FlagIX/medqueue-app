@@ -11,6 +11,7 @@ const routes = [
   { path: '/appointment/create', name: 'AppointmentCreate', component: () => import('@/views/user/AppointmentCreate.vue') },
   { path: '/appointment/list', name: 'AppointmentList', component: () => import('@/views/user/AppointmentList.vue') },
   { path: '/patient', name: 'PatientProfile', component: () => import('@/views/user/PatientProfile.vue') },
+  { path: '/profile/edit', name: 'ProfileEdit', component: () => import('@/views/user/ProfileEdit.vue') },
   { path: '/review/list', name: 'MyReviews', component: () => import('@/views/user/MyReviews.vue') },
   { path: '/follow/list', name: 'MyFollows', component: () => import('@/views/user/MyFollows.vue') },
   // 管理端

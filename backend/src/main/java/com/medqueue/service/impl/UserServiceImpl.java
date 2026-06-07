@@ -6,13 +6,17 @@ import cn.hutool.core.util.RandomUtil;
 import cn.hutool.crypto.digest.BCrypt;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.medqueue.dto.LoginFormDTO;
+import com.medqueue.dto.ProfileUpdateDTO;
 import com.medqueue.dto.Result;
 import com.medqueue.dto.UserDTO;
 import com.medqueue.entity.User;
+import com.medqueue.entity.UserInfo;
 import com.medqueue.mapper.UserMapper;
+import com.medqueue.service.IUserInfoService;
 import com.medqueue.service.IUserService;
 import com.medqueue.utils.RedisConstants;
 import com.medqueue.utils.RegexUtils;
+import com.medqueue.utils.UserHolder;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
@@ -32,6 +36,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
 
     @Resource
     private StringRedisTemplate stringRedisTemplate;
+
+    @Resource
+    private IUserInfoService userInfoService;
 
     @Override
     public Result sendCode(String phone, HttpSession session) {
@@ -111,8 +118,47 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         User user = new User();
         user.setPhone(phone);
         user.setPassword(BCrypt.hashpw(password, BCrypt.gensalt()));
-        user.setNickName(USER_NICK_NAME_PREFIX + RandomUtil.randomString(10));
+        String nickName = loginForm.getNickName();
+        if (nickName != null && !nickName.trim().isEmpty()) {
+            user.setNickName(nickName.trim());
+        } else {
+            user.setNickName(USER_NICK_NAME_PREFIX + RandomUtil.randomString(10));
+        }
         save(user);
+
+        return Result.ok();
+    }
+
+    @Override
+    public Result updateProfile(ProfileUpdateDTO dto) {
+        UserDTO userDTO = UserHolder.getUser();
+        if (userDTO == null) {
+            return Result.fail("请先登录");
+        }
+        Long userId = userDTO.getId();
+
+        String nickName = dto.getNickName();
+        if (nickName != null && !nickName.trim().isEmpty()) {
+            nickName = nickName.trim();
+            lambdaUpdate().set(User::getNickName, nickName).eq(User::getId, userId).update();
+        }
+
+        String icon = dto.getIcon();
+        if (icon != null) {
+            lambdaUpdate().set(User::getIcon, icon).eq(User::getId, userId).update();
+        }
+
+        UserInfo userInfo = userInfoService.getById(userId);
+        if (userInfo == null) {
+            userInfo = new UserInfo();
+            userInfo.setUserId(userId);
+        }
+        if (dto.getCity() != null) userInfo.setCity(dto.getCity());
+        if (dto.getIntroduce() != null) userInfo.setIntroduce(dto.getIntroduce());
+        if (dto.getGender() != null) userInfo.setGender(dto.getGender());
+        if (dto.getBirthday() != null) userInfo.setBirthday(dto.getBirthday());
+
+        userInfoService.saveOrUpdate(userInfo);
 
         return Result.ok();
     }

@@ -1,6 +1,7 @@
 package com.medqueue.controller;
 
 import com.medqueue.dto.LoginFormDTO;
+import com.medqueue.dto.ProfileUpdateDTO;
 import com.medqueue.dto.Result;
 import com.medqueue.dto.UserDTO;
 import com.medqueue.entity.UserInfo;
@@ -59,5 +60,20 @@ public class UserController {
         info.setCreateTime(null);
         info.setUpdateTime(null);
         return Result.ok(info);
+    }
+
+    @GetMapping("/info")
+    public Result myInfo() {
+        UserDTO userDTO = UserHolder.getUser();
+        if (userDTO == null) {
+            return Result.fail("请先登录");
+        }
+        UserInfo info = userInfoService.getById(userDTO.getId());
+        return Result.ok(info);
+    }
+
+    @PutMapping("/profile")
+    public Result updateProfile(@RequestBody ProfileUpdateDTO profileUpdate) {
+        return userService.updateProfile(profileUpdate);
     }
 }

@@ -15,5 +15,11 @@ export const userApi = {
   },
   register(data) {
     return request.post('/user/register', data)
+  },
+  getUserInfo() {
+    return request.get('/user/info')
+  },
+  updateProfile(data) {
+    return request.put('/user/profile', data)
   }
 }

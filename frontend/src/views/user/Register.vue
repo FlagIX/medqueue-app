@@ -9,6 +9,7 @@ const router = useRouter()
 const userStore = useUserStore()
 
 const phone = ref('')
+const nickName = ref('')
 const password = ref('')
 const confirmPassword = ref('')
 const code = ref('')
@@ -60,6 +61,7 @@ async function handleRegister() {
   try {
     const res = await userStore.register({
       phone: phone.value,
+      nickName: nickName.value,
       password: password.value,
       code: code.value
     })
@@ -88,6 +90,10 @@ function goLogin() {
       <el-form label-width="0" class="register-form">
         <el-form-item>
           <el-input v-model="phone" placeholder="手机号" size="large" maxlength="11" />
+        </el-form-item>
+
+        <el-form-item>
+          <el-input v-model="nickName" placeholder="昵称（选填）" size="large" maxlength="20" />
         </el-form-item>
 
         <el-form-item>
