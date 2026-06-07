@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 
 @RestController
-@RequestMapping("/patient-profile")
+@RequestMapping("/patient")
 public class PatientProfileController {
 
     @Resource
@@ -19,26 +19,23 @@ public class PatientProfileController {
     @PostMapping
     public Result addPatientProfile(@RequestBody PatientProfile profile) {
         UserDTO user = UserHolder.getUser();
-        profile.setUserId(user.getId());
-        patientProfileService.save(profile);
-        return Result.ok(profile.getId());
+        return patientProfileService.addProfile(profile, user.getId());
     }
 
-    @GetMapping("/my")
+    @GetMapping("/list")
     public Result queryMyProfiles() {
         UserDTO user = UserHolder.getUser();
-        return Result.ok(patientProfileService.query().eq("user_id", user.getId()).list());
+        return patientProfileService.queryMyProfiles(user.getId());
     }
 
     @PutMapping
     public Result updatePatientProfile(@RequestBody PatientProfile profile) {
-        patientProfileService.updateById(profile);
-        return Result.ok();
+        return patientProfileService.updateProfile(profile);
     }
 
     @DeleteMapping("/{id}")
     public Result deletePatientProfile(@PathVariable("id") Long id) {
-        patientProfileService.removeById(id);
-        return Result.ok();
+        UserDTO user = UserHolder.getUser();
+        return patientProfileService.deleteProfile(id, user.getId());
     }
 }
