@@ -1,4 +1,5 @@
 <script setup>
+import { getHospitalGradient } from '@/utils/format'
 defineProps({
   hospital: Object,
   showDistance: Boolean
@@ -8,7 +9,9 @@ defineProps({
 <template>
   <div class="hospital-card">
     <div class="card-img">
-      <img :src="hospital.images?.split(',')[0] || '/placeholder.svg'" :alt="hospital.name" />
+      <div class="card-img-placeholder" :style="{ background: getHospitalGradient(hospital.id) }">
+        <span class="card-img-emoji">🏥</span>
+      </div>
     </div>
     <div class="card-body">
       <h3 class="name">{{ hospital.name }}</h3>
@@ -47,10 +50,16 @@ defineProps({
   overflow: hidden;
   flex-shrink: 0;
 }
-.card-img img {
+.card-img-placeholder {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.card-img-placeholder .card-img-emoji {
+  font-size: 32px;
+  line-height: 1;
 }
 .card-body { flex: 1; }
 .name {

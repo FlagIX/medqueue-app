@@ -3,6 +3,7 @@ import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { departmentApi } from '@/api/department'
 import { hospitalApi } from '@/api/hospital'
+import { getHospitalGradient } from '@/utils/format'
 
 const deptEmoji = {
   '内科': '💊',
@@ -79,7 +80,9 @@ function goHospital(id) { router.push(`/hospital/${id}`) }
           class="hospital-item"
           @click="goHospital(h.id)"
         >
-          <img :src="h.images?.split(',')[0] || '/placeholder.svg'" :alt="h.name" class="h-img" />
+          <div class="h-img-placeholder" :style="{ background: getHospitalGradient(h.id) }">
+            <span class="h-img-emoji">🏥</span>
+          </div>
           <div class="h-info">
             <h3>{{ h.name }}</h3>
             <p class="h-tags">
@@ -164,12 +167,18 @@ function goHospital(id) { router.push(`/hospital/${id}`) }
   transition: box-shadow 0.2s;
 }
 .hospital-item:hover { box-shadow: 0 2px 12px rgba(0,0,0,0.1); }
-.h-img {
+.h-img-placeholder {
   width: 120px;
   height: 90px;
   border-radius: 6px;
-  object-fit: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   flex-shrink: 0;
+}
+.h-img-emoji {
+  font-size: 32px;
+  line-height: 1;
 }
 .h-info { flex: 1; }
 .h-info h3 { font-size: 16px; margin-bottom: 6px; }
