@@ -526,4 +526,553 @@ CREATE TABLE `tb_review_comment`  (
 -- Records of tb_review_comment
 -- ----------------------------
 
+-- ----------------------------
+-- 新增医院数据 (科室3-10全覆盖 + 内科/外科补充)
+-- ----------------------------
+INSERT INTO `tb_hospital` VALUES (7, '复旦大学附属儿科医院', 3, '', '闵行区', '上海市闵行区万源路399号', 121.3835, 31.1339, '三甲', '021-64931990', '08:00-17:00', 47, 200, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_hospital` VALUES (8, '上海交通大学医学院附属上海儿童医学中心', 3, '', '浦东新区', '上海市浦东新区东方路1678号', 121.5172, 31.2025, '三甲', '021-38626161', '08:00-17:00', 46, 180, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_hospital` VALUES (9, '复旦大学附属妇产科医院', 4, '', '黄浦区', '上海市黄浦区方斜路419号', 121.4789, 31.2198, '三甲', '021-63770161', '08:00-17:00', 48, 220, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_hospital` VALUES (10, '上海市第一妇婴保健院', 4, '', '浦东新区', '上海市浦东新区高科西路2699号', 121.5306, 31.1788, '三甲', '021-20261111', '08:00-17:00', 45, 190, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_hospital` VALUES (11, '复旦大学附属眼耳鼻喉科医院', 5, '', '徐汇区', '上海市徐汇区汾阳路83号', 121.4499, 31.2162, '三甲', '021-64377134', '08:00-17:00', 49, 250, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_hospital` VALUES (12, '上海爱尔眼科医院', 5, '', '徐汇区', '上海市徐汇区吴中路83号', 121.4028, 31.1928, '二甲', '021-54899900', '08:30-17:30', 42, 150, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_hospital` VALUES (13, '上海交通大学医学院附属新华医院', 6, '', '杨浦区', '上海市杨浦区控江路1665号', 121.5267, 31.2728, '三甲', '021-25078999', '08:00-17:00', 46, 210, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_hospital` VALUES (14, '上海市浦东医院', 6, '', '浦东新区', '上海市浦东新区惠南镇拱为路2800号', 121.7532, 31.0509, '二甲', '021-68035001', '08:00-17:00', 40, 90, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_hospital` VALUES (15, '上海交通大学医学院附属第九人民医院', 7, '', '黄浦区', '上海市黄浦区制造局路639号', 121.4853, 31.2140, '三甲', '021-23271699', '08:00-17:00', 48, 260, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_hospital` VALUES (16, '上海市口腔医院', 7, '', '黄浦区', '上海市黄浦区北京东路356号', 121.4836, 31.2417, '三甲', '021-63601100', '08:00-17:00', 44, 140, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_hospital` VALUES (17, '上海市皮肤病医院', 8, '', '长宁区', '上海市长宁区武夷路238号', 121.4186, 31.2187, '三甲', '021-61833100', '08:00-17:00', 45, 170, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_hospital` VALUES (18, '上海市长宁区中心医院', 8, '', '长宁区', '上海市长宁区仙霞路1111号', 121.3790, 31.2191, '二甲', '021-62909911', '08:00-17:00', 39, 80, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_hospital` VALUES (19, '上海市第六人民医院', 9, '', '徐汇区', '上海市徐汇区宜山路600号', 121.4315, 31.1754, '三甲', '021-64369181', '08:00-17:00', 48, 240, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_hospital` VALUES (20, '上海长征医院', 9, '', '黄浦区', '上海市黄浦区凤阳路415号', 121.4770, 31.2318, '三甲', '021-81886999', '08:00-17:00', 47, 200, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_hospital` VALUES (21, '上海交通大学医学院附属瑞金医院', 10, '', '黄浦区', '上海市黄浦区瑞金二路197号', 121.4640, 31.2104, '三甲', '021-64370045', '08:00-17:00', 49, 280, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_hospital` VALUES (22, '上海市同济医院', 10, '', '普陀区', '上海市普陀区新村路389号', 121.4155, 31.2716, '三甲', '021-56051080', '08:00-17:00', 44, 160, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_hospital` VALUES (23, '复旦大学附属中山医院', 1, '', '徐汇区', '上海市徐汇区医学院路136号', 121.4613, 31.2021, '三甲', '021-64041990', '08:00-17:00', 49, 300, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_hospital` VALUES (24, '上海市第十人民医院', 1, '', '静安区', '上海市静安区延长中路301号', 121.4520, 31.2802, '三甲', '021-66303643', '08:00-17:00', 45, 175, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_hospital` VALUES (25, '海军军医大学第一附属医院（上海长海医院）', 2, '', '杨浦区', '上海市杨浦区长海路168号', 121.5270, 31.3077, '三甲', '021-31166666', '08:00-17:00', 47, 230, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_hospital` VALUES (26, '上海市普陀区中心医院', 2, '', '普陀区', '上海市普陀区兰溪路164号', 121.4010, 31.2604, '二甲', '021-62549931', '08:00-17:00', 40, 100, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+
+-- ----------------------------
+-- 新增挂号费用标准
+-- ----------------------------
+INSERT INTO `tb_appointment_item` VALUES (19, 7, '普通号', 2500, 1, 1, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_appointment_item` VALUES (20, 7, '专家号', 5000, 2, 1, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_appointment_item` VALUES (21, 7, '特需号', 20000, 3, 1, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_appointment_item` VALUES (22, 8, '普通号', 2500, 1, 1, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_appointment_item` VALUES (23, 8, '专家号', 5000, 2, 1, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_appointment_item` VALUES (24, 8, '特需号', 20000, 3, 1, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_appointment_item` VALUES (25, 9, '普通号', 2500, 1, 1, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_appointment_item` VALUES (26, 9, '专家号', 5000, 2, 1, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_appointment_item` VALUES (27, 9, '特需号', 20000, 3, 1, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_appointment_item` VALUES (28, 10, '普通号', 2500, 1, 1, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_appointment_item` VALUES (29, 10, '专家号', 5000, 2, 1, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_appointment_item` VALUES (30, 10, '特需号', 20000, 3, 1, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_appointment_item` VALUES (31, 11, '普通号', 2500, 1, 1, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_appointment_item` VALUES (32, 11, '专家号', 5000, 2, 1, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_appointment_item` VALUES (33, 11, '特需号', 20000, 3, 1, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_appointment_item` VALUES (34, 12, '普通号', 1500, 1, 1, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_appointment_item` VALUES (35, 12, '专家号', 3000, 2, 1, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_appointment_item` VALUES (36, 12, '特需号', 10000, 3, 1, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_appointment_item` VALUES (37, 13, '普通号', 2500, 1, 1, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_appointment_item` VALUES (38, 13, '专家号', 5000, 2, 1, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_appointment_item` VALUES (39, 13, '特需号', 20000, 3, 1, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_appointment_item` VALUES (40, 14, '普通号', 1500, 1, 1, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_appointment_item` VALUES (41, 14, '专家号', 3000, 2, 1, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_appointment_item` VALUES (42, 14, '特需号', 10000, 3, 1, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_appointment_item` VALUES (43, 15, '普通号', 2500, 1, 1, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_appointment_item` VALUES (44, 15, '专家号', 5000, 2, 1, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_appointment_item` VALUES (45, 15, '特需号', 20000, 3, 1, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_appointment_item` VALUES (46, 16, '普通号', 2500, 1, 1, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_appointment_item` VALUES (47, 16, '专家号', 5000, 2, 1, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_appointment_item` VALUES (48, 16, '特需号', 20000, 3, 1, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_appointment_item` VALUES (49, 17, '普通号', 2500, 1, 1, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_appointment_item` VALUES (50, 17, '专家号', 5000, 2, 1, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_appointment_item` VALUES (51, 17, '特需号', 20000, 3, 1, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_appointment_item` VALUES (52, 18, '普通号', 1500, 1, 1, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_appointment_item` VALUES (53, 18, '专家号', 3000, 2, 1, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_appointment_item` VALUES (54, 18, '特需号', 10000, 3, 1, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_appointment_item` VALUES (55, 19, '普通号', 2500, 1, 1, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_appointment_item` VALUES (56, 19, '专家号', 5000, 2, 1, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_appointment_item` VALUES (57, 19, '特需号', 20000, 3, 1, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_appointment_item` VALUES (58, 20, '普通号', 2500, 1, 1, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_appointment_item` VALUES (59, 20, '专家号', 5000, 2, 1, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_appointment_item` VALUES (60, 20, '特需号', 20000, 3, 1, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_appointment_item` VALUES (61, 21, '普通号', 2500, 1, 1, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_appointment_item` VALUES (62, 21, '专家号', 5000, 2, 1, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_appointment_item` VALUES (63, 21, '特需号', 20000, 3, 1, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_appointment_item` VALUES (64, 22, '普通号', 2500, 1, 1, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_appointment_item` VALUES (65, 22, '专家号', 5000, 2, 1, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_appointment_item` VALUES (66, 22, '特需号', 20000, 3, 1, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_appointment_item` VALUES (67, 23, '普通号', 2500, 1, 1, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_appointment_item` VALUES (68, 23, '专家号', 5000, 2, 1, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_appointment_item` VALUES (69, 23, '特需号', 20000, 3, 1, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_appointment_item` VALUES (70, 24, '普通号', 2500, 1, 1, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_appointment_item` VALUES (71, 24, '专家号', 5000, 2, 1, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_appointment_item` VALUES (72, 24, '特需号', 20000, 3, 1, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_appointment_item` VALUES (73, 25, '普通号', 2500, 1, 1, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_appointment_item` VALUES (74, 25, '专家号', 5000, 2, 1, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_appointment_item` VALUES (75, 25, '特需号', 20000, 3, 1, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_appointment_item` VALUES (76, 26, '普通号', 1500, 1, 1, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_appointment_item` VALUES (77, 26, '专家号', 3000, 2, 1, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_appointment_item` VALUES (78, 26, '特需号', 10000, 3, 1, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+
+-- ----------------------------
+-- 新增医生
+-- ----------------------------
+-- 复旦大学附属儿科医院（儿科）
+INSERT INTO `tb_doctor` VALUES (16, 7, 3, '陈建平', '主任医师', '', '复旦大学附属儿科医院儿内科主任，从事儿科临床工作35年，擅长小儿呼吸系统疾病、哮喘及过敏性疾病的诊治，对儿童重症肺炎有丰富的临床经验。', 48, 1800, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor` VALUES (17, 7, 3, '李敏', '副主任医师', '', '儿科副主任医师，专注新生儿疾病及婴幼儿喂养指导，擅长早产儿管理及新生儿黄疸的规范化治疗。', 44, 900, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor` VALUES (18, 7, 3, '周晓峰', '主治医师', '', '儿科主治医师，擅长儿童常见病如发热、咳嗽、腹泻的诊治，在儿童保健及计划免疫方面有丰富经验。', 39, 500, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+-- 上海儿童医学中心（儿科）
+INSERT INTO `tb_doctor` VALUES (19, 8, 3, '王磊', '主任医师', '', '上海儿童医学中心小儿心脏科主任，从事儿童心血管疾病诊治30年，擅长先天性心脏病的介入治疗及术后管理。', 47, 1500, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor` VALUES (20, 8, 3, '张婷', '副主任医师', '', '儿科血液肿瘤专家，专注儿童白血病及实体瘤的化疗与支持治疗，在儿童血液病诊治领域有深厚造诣。', 43, 700, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor` VALUES (21, 8, 3, '徐明', '主治医师', '', '儿科主治医师，擅长小儿消化系统疾病及营养指导，对儿童慢性腹痛、腹泻的鉴别诊断经验丰富。', 38, 350, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+-- 复旦大学附属妇产科医院（妇产科）
+INSERT INTO `tb_doctor` VALUES (22, 9, 4, '林芳', '主任医师', '', '红房子医院妇产科主任，从事妇科肿瘤诊治30余年，擅长宫颈癌、卵巢癌的根治性手术及综合治疗，在妇科微创手术领域享有盛誉。', 49, 2000, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor` VALUES (23, 9, 4, '顾晓燕', '副主任医师', '', '妇产科副主任医师，专注高危孕产妇管理及产前诊断，在妊娠期糖尿病、妊娠期高血压的规范化治疗方面经验丰富。', 44, 850, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor` VALUES (24, 9, 4, '唐艳', '主治医师', '', '妇产科主治医师，擅长妇科常见病如子宫肌瘤、卵巢囊肿的诊治，计划生育手术及宫腔镜检查技术娴熟。', 40, 450, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+-- 上海市第一妇婴保健院（妇产科）
+INSERT INTO `tb_doctor` VALUES (25, 10, 4, '孙丽君', '主任医师', '', '上海市第一妇婴保健院产科主任，从事围产医学30年，擅长高危妊娠的诊治及产前筛查咨询，在早产防治方面有深入研究。', 46, 1600, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor` VALUES (26, 10, 4, '何雯', '副主任医师', '', '妇科副主任医师，专注妇科内分泌疾病及不孕不育诊治，擅长多囊卵巢综合征、子宫内膜异位症的综合治疗。', 42, 650, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+-- 复旦大学附属眼耳鼻喉科医院（眼科）
+INSERT INTO `tb_doctor` VALUES (27, 11, 5, '孙强', '主任医师', '', '复旦大学附属眼耳鼻喉科医院眼科主任，国内白内障手术权威，擅长超声乳化白内障吸除术及高端人工晶体植入，年手术量逾千例。', 49, 2200, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor` VALUES (28, 11, 5, '赵敏', '副主任医师', '', '眼科副主任医师，专注青光眼及眼底病的诊治，擅长视网膜脱离、糖尿病视网膜病变的激光及手术治疗。', 45, 1000, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor` VALUES (29, 11, 5, '周文', '主治医师', '', '眼科主治医师，擅长近视防控及儿童斜弱视诊治，在角膜塑形镜验配及视功能训练方面经验丰富。', 41, 500, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+-- 上海爱尔眼科医院（眼科）
+INSERT INTO `tb_doctor` VALUES (30, 12, 5, '刘志刚', '副主任医师', '', '上海爱尔眼科医院屈光科主任，擅长飞秒激光近视矫正手术及ICL晶体植入术，已完成各类屈光手术逾万例。', 43, 1200, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor` VALUES (31, 12, 5, '陈晓燕', '主治医师', '', '眼科主治医师，擅长干眼症的综合诊治及眼表疾病治疗，在白内障术前术后管理方面经验丰富。', 39, 350, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+-- 新华医院（耳鼻喉科）
+INSERT INTO `tb_doctor` VALUES (32, 13, 6, '杨建平', '主任医师', '', '新华医院耳鼻咽喉-头颈外科主任，从事耳鼻喉科临床工作30年，擅长喉癌、下咽癌的根治性手术及功能重建，在头颈肿瘤外科领域造诣深厚。', 47, 1700, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor` VALUES (33, 13, 6, '吴敏', '副主任医师', '', '耳鼻喉科副主任医师，专注鼻科疾病诊治，擅长慢性鼻窦炎、鼻息肉的内镜微创手术及过敏性鼻炎的综合治疗。', 44, 800, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor` VALUES (34, 13, 6, '林晓', '主治医师', '', '耳鼻喉科主治医师，擅长儿童腺样体肥大、扁桃体炎的微创手术及分泌性中耳炎的规范化治疗。', 40, 400, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+-- 上海市浦东医院（耳鼻喉科）
+INSERT INTO `tb_doctor` VALUES (35, 14, 6, '黄伟', '副主任医师', '', '浦东医院耳鼻喉科副主任，擅长慢性咽炎、声带息肉的诊治及喉显微手术，对变应性鼻炎的特异性免疫治疗有丰富经验。', 41, 550, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor` VALUES (36, 14, 6, '张丽华', '主治医师', '', '耳鼻喉科主治医师，专注耳科疾病诊治，擅长突发性耳聋、良性阵发性位置性眩晕（耳石症）的手法复位及药物治疗。', 37, 280, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+-- 上海第九人民医院（口腔科）
+INSERT INTO `tb_doctor` VALUES (37, 15, 7, '郑建华', '主任医师', '', '上海第九人民医院口腔颌面外科主任，国内口腔颌面肿瘤权威，擅长口腔癌的根治性手术及术后缺损的修复重建，在颌面外科领域享有崇高声誉。', 49, 1900, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor` VALUES (38, 15, 7, '陈洁', '副主任医师', '', '口腔正畸科副主任医师，专注儿童及成人错颌畸形的矫治，擅长隐形矫治及自锁托槽矫治技术。', 45, 900, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+-- 上海市口腔医院（口腔科）
+INSERT INTO `tb_doctor` VALUES (39, 16, 7, '马晓军', '副主任医师', '', '上海市口腔医院牙体牙髓科副主任，擅长显微根管治疗及牙体美容修复，在疑难根管再治疗方面经验丰富。', 44, 750, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor` VALUES (40, 16, 7, '徐莉', '主治医师', '', '口腔修复科主治医师，擅长全瓷冠、贴面及种植牙修复，在前牙美学修复及可摘局部义齿设计方面具有丰富临床经验。', 40, 380, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor` VALUES (41, 16, 7, '高磊', '主治医师', '', '口腔颌面外科主治医师，擅长各类复杂阻生智齿的微创拔除及牙槽外科手术。', 38, 320, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+-- 上海市皮肤病医院（皮肤科）
+INSERT INTO `tb_doctor` VALUES (42, 17, 8, '章力', '主任医师', '', '上海市皮肤病医院皮肤内科主任，从事皮肤病临床工作30余年，擅长银屑病、白癜风等疑难皮肤病的综合治疗及生物制剂应用。', 46, 1400, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor` VALUES (43, 17, 8, '王婷婷', '副主任医师', '', '皮肤科副主任医师，专注痤疮、玫瑰痤疮及面部敏感性皮肤的治疗，在皮肤美容及激光治疗方面经验丰富。', 43, 700, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+-- 上海市长宁区中心医院（皮肤科）
+INSERT INTO `tb_doctor` VALUES (44, 18, 8, '郭峰', '副主任医师', '', '长宁区中心医院皮肤科主任，擅长湿疹、荨麻疹、带状疱疹等常见皮肤病的规范化诊治及慢性皮肤病的长期管理。', 40, 500, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor` VALUES (45, 18, 8, '周莉', '主治医师', '', '皮肤科主治医师，擅长真菌性皮肤病（手足癣、甲癣）及病毒性皮肤病的综合治疗。', 36, 250, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+-- 上海市第六人民医院（骨科）
+INSERT INTO `tb_doctor` VALUES (46, 19, 9, '罗勇', '主任医师', '', '上海市第六人民医院骨科主任，国内创伤骨科及关节外科权威，擅长复杂关节置换术及翻修术，在四肢骨折微创治疗方面享有盛誉。', 49, 2100, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor` VALUES (47, 19, 9, '韩冰', '副主任医师', '', '骨科副主任医师，专注脊柱外科，擅长腰椎间盘突出、腰椎管狭窄的微创手术治疗及脊柱侧弯矫形。', 46, 1100, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor` VALUES (48, 19, 9, '沈强', '主治医师', '', '骨科主治医师，擅长运动损伤的关节镜微创治疗，包括膝关节半月板损伤、交叉韧带重建及肩袖损伤修复。', 42, 600, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+-- 上海长征医院（骨科）
+INSERT INTO `tb_doctor` VALUES (49, 20, 9, '叶晓明', '主任医师', '', '长征医院骨科脊柱外科主任，国内脊柱外科领域领军人物，擅长颈椎病、腰椎滑脱及脊柱肿瘤的疑难手术，在脊柱畸形矫正方面有极深造诣。', 48, 1800, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor` VALUES (50, 20, 9, '钱峰', '副主任医师', '', '骨科副主任医师，专注骨肿瘤及软组织肿瘤的外科治疗，擅长四肢及骨盆恶性肿瘤的保肢手术。', 44, 650, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+-- 瑞金医院（神经内科）
+INSERT INTO `tb_doctor` VALUES (51, 21, 10, '陈伟民', '主任医师', '', '瑞金医院神经内科主任，国内脑血管病诊疗权威，擅长急性脑梗死的溶栓及介入治疗，在帕金森病及运动障碍疾病的诊治方面有深入研究。', 49, 2000, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor` VALUES (52, 21, 10, '李雪', '副主任医师', '', '神经内科副主任医师，专注癫痫及发作性疾病的诊断与治疗，擅长难治性癫痫的药物调整及术前评估。', 45, 950, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor` VALUES (53, 21, 10, '吴兵', '主治医师', '', '神经内科主治医师，擅长头痛、头晕、失眠等常见症状的鉴别诊断及治疗，在认知障碍及痴呆的早期筛查方面经验丰富。', 41, 450, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+-- 上海市同济医院（神经内科）
+INSERT INTO `tb_doctor` VALUES (54, 22, 10, '黄海波', '副主任医师', '', '同济医院神经内科副主任，擅长脑血管病的一级二级预防及康复治疗，对多发性硬化及视神经脊髓炎谱系疾病的诊治有丰富经验。', 44, 750, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor` VALUES (55, 22, 10, '赵莹', '主治医师', '', '神经内科主治医师，擅长周围神经病及肌肉疾病的电生理诊断与治疗，在重症肌无力及格林-巴利综合征的综合管理方面经验丰富。', 39, 300, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+-- 复旦大学附属中山医院（内科）
+INSERT INTO `tb_doctor` VALUES (56, 23, 1, '葛建华', '主任医师', '', '中山医院心内科主任，国内心血管疾病权威，擅长冠心病、心律失常的介入治疗及心力衰竭的综合管理，在心脏起搏器植入方面经验丰富。', 49, 2500, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor` VALUES (57, 23, 1, '高敏', '副主任医师', '', '消化内科副主任医师，擅长慢性胃炎、消化性溃疡、炎症性肠病的诊治及胃肠镜下的微创治疗。', 46, 950, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor` VALUES (58, 23, 1, '陶然', '主治医师', '', '呼吸内科主治医师，擅长慢性阻塞性肺疾病、支气管哮喘的规范化治疗及肺部结节的早期鉴别诊断。', 42, 500, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+-- 上海市第十人民医院（内科）
+INSERT INTO `tb_doctor` VALUES (59, 24, 1, '秦明', '主任医师', '', '上海市第十人民医院内分泌科主任，擅长糖尿病及甲状腺疾病的综合管理，在骨质疏松诊疗方面有丰富的临床经验。', 46, 1300, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor` VALUES (60, 24, 1, '沈琳', '副主任医师', '', '肾内科副主任医师，擅长慢性肾小球肾炎、肾功能不全的规范化治疗及血液透析通路建立与维护。', 43, 700, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+-- 上海长海医院（外科）
+INSERT INTO `tb_doctor` VALUES (61, 25, 2, '张卫东', '主任医师', '', '长海医院普外科主任，国内肝胆胰外科权威，擅长肝癌、胰腺癌的根治性手术及腹腔镜微创手术，在门脉高压症的外科治疗方面有深厚造诣。', 48, 1800, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor` VALUES (62, 25, 2, '李志强', '副主任医师', '', '长海医院泌尿外科副主任，专注泌尿系肿瘤及微创手术，擅长前列腺癌根治术及肾癌保留肾单位手术。', 44, 850, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor` VALUES (63, 25, 2, '王磊', '主治医师', '', '普外科主治医师，擅长甲状腺、乳腺良性疾病的微创手术及腹股沟疝的腹腔镜无张力修补术。', 40, 420, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+-- 上海市普陀区中心医院（外科）
+INSERT INTO `tb_doctor` VALUES (64, 26, 2, '陈国华', '副主任医师', '', '普陀区中心医院普外科副主任，擅长胆囊结石、阑尾炎等常见疾病的腹腔镜微创手术及肛肠疾病的规范化治疗。', 41, 550, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor` VALUES (65, 26, 2, '黄燕', '主治医师', '', '普外科主治医师，擅长乳腺良性肿瘤的微创旋切手术及甲状腺结节的精细化手术治疗。', 37, 280, '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+
+-- ----------------------------
+-- 新增医生排班（每位医生未来7天）
+-- ----------------------------
+-- Doctor 16（陈建平，儿科·主任医师 → 专家号fee_id=20）
+INSERT INTO `tb_doctor_schedule` VALUES (101501, 16, CURDATE() + INTERVAL 1 DAY, '上午', 30, 30, 20, CONCAT(CURDATE() + INTERVAL 1 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 1 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (101502, 16, CURDATE() + INTERVAL 1 DAY, '下午', 30, 30, 20, CONCAT(CURDATE() + INTERVAL 1 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 1 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (101503, 16, CURDATE() + INTERVAL 2 DAY, '上午', 30, 30, 20, CONCAT(CURDATE() + INTERVAL 2 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 2 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (101504, 16, CURDATE() + INTERVAL 2 DAY, '下午', 30, 30, 20, CONCAT(CURDATE() + INTERVAL 2 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 2 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (101505, 16, CURDATE() + INTERVAL 3 DAY, '上午', 30, 30, 20, CONCAT(CURDATE() + INTERVAL 3 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 3 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (101506, 16, CURDATE() + INTERVAL 3 DAY, '下午', 30, 30, 20, CONCAT(CURDATE() + INTERVAL 3 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 3 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (101507, 16, CURDATE() + INTERVAL 4 DAY, '上午', 30, 30, 20, CONCAT(CURDATE() + INTERVAL 4 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 4 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (101508, 16, CURDATE() + INTERVAL 4 DAY, '下午', 30, 30, 20, CONCAT(CURDATE() + INTERVAL 4 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 4 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (101509, 16, CURDATE() + INTERVAL 5 DAY, '上午', 30, 30, 20, CONCAT(CURDATE() + INTERVAL 5 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 5 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (101510, 16, CURDATE() + INTERVAL 5 DAY, '下午', 30, 30, 20, CONCAT(CURDATE() + INTERVAL 5 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 5 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (101511, 16, CURDATE() + INTERVAL 6 DAY, '上午', 30, 30, 20, CONCAT(CURDATE() + INTERVAL 6 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 6 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (101512, 16, CURDATE() + INTERVAL 6 DAY, '下午', 30, 30, 20, CONCAT(CURDATE() + INTERVAL 6 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 6 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (101513, 16, CURDATE() + INTERVAL 7 DAY, '上午', 30, 30, 20, CONCAT(CURDATE() + INTERVAL 7 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 7 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (101514, 16, CURDATE() + INTERVAL 7 DAY, '下午', 30, 30, 20, CONCAT(CURDATE() + INTERVAL 7 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 7 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+-- Doctor 17（李敏，儿科·副主任医师 → 专家号fee_id=20）
+INSERT INTO `tb_doctor_schedule` VALUES (101601, 17, CURDATE() + INTERVAL 1 DAY, '上午', 25, 25, 20, CONCAT(CURDATE() + INTERVAL 1 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 1 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (101602, 17, CURDATE() + INTERVAL 1 DAY, '下午', 25, 25, 20, CONCAT(CURDATE() + INTERVAL 1 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 1 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (101603, 17, CURDATE() + INTERVAL 3 DAY, '上午', 25, 25, 20, CONCAT(CURDATE() + INTERVAL 3 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 3 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (101604, 17, CURDATE() + INTERVAL 3 DAY, '下午', 25, 25, 20, CONCAT(CURDATE() + INTERVAL 3 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 3 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (101605, 17, CURDATE() + INTERVAL 5 DAY, '上午', 25, 25, 20, CONCAT(CURDATE() + INTERVAL 5 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 5 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (101606, 17, CURDATE() + INTERVAL 5 DAY, '下午', 25, 25, 20, CONCAT(CURDATE() + INTERVAL 5 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 5 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (101607, 17, CURDATE() + INTERVAL 7 DAY, '上午', 25, 25, 20, CONCAT(CURDATE() + INTERVAL 7 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 7 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (101608, 17, CURDATE() + INTERVAL 7 DAY, '下午', 25, 25, 20, CONCAT(CURDATE() + INTERVAL 7 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 7 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+-- Doctor 18（周晓峰，儿科·主治医师 → 普通号fee_id=19）
+INSERT INTO `tb_doctor_schedule` VALUES (101701, 18, CURDATE() + INTERVAL 1 DAY, '上午', 30, 30, 19, CONCAT(CURDATE() + INTERVAL 1 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 1 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (101702, 18, CURDATE() + INTERVAL 1 DAY, '下午', 30, 30, 19, CONCAT(CURDATE() + INTERVAL 1 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 1 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (101703, 18, CURDATE() + INTERVAL 2 DAY, '上午', 30, 30, 19, CONCAT(CURDATE() + INTERVAL 2 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 2 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (101704, 18, CURDATE() + INTERVAL 2 DAY, '下午', 30, 30, 19, CONCAT(CURDATE() + INTERVAL 2 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 2 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (101705, 18, CURDATE() + INTERVAL 3 DAY, '上午', 30, 30, 19, CONCAT(CURDATE() + INTERVAL 3 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 3 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (101706, 18, CURDATE() + INTERVAL 3 DAY, '下午', 30, 30, 19, CONCAT(CURDATE() + INTERVAL 3 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 3 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (101707, 18, CURDATE() + INTERVAL 4 DAY, '上午', 30, 30, 19, CONCAT(CURDATE() + INTERVAL 4 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 4 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (101708, 18, CURDATE() + INTERVAL 4 DAY, '下午', 30, 30, 19, CONCAT(CURDATE() + INTERVAL 4 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 4 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (101709, 18, CURDATE() + INTERVAL 5 DAY, '上午', 30, 30, 19, CONCAT(CURDATE() + INTERVAL 5 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 5 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (101710, 18, CURDATE() + INTERVAL 5 DAY, '下午', 30, 30, 19, CONCAT(CURDATE() + INTERVAL 5 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 5 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (101711, 18, CURDATE() + INTERVAL 6 DAY, '上午', 30, 30, 19, CONCAT(CURDATE() + INTERVAL 6 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 6 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (101712, 18, CURDATE() + INTERVAL 6 DAY, '下午', 30, 30, 19, CONCAT(CURDATE() + INTERVAL 6 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 6 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (101713, 18, CURDATE() + INTERVAL 7 DAY, '上午', 30, 30, 19, CONCAT(CURDATE() + INTERVAL 7 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 7 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (101714, 18, CURDATE() + INTERVAL 7 DAY, '下午', 30, 30, 19, CONCAT(CURDATE() + INTERVAL 7 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 7 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+-- Doctor 19（王磊，儿科·主任医师 → 专家号fee_id=23）
+INSERT INTO `tb_doctor_schedule` VALUES (101801, 19, CURDATE() + INTERVAL 1 DAY, '上午', 30, 30, 23, CONCAT(CURDATE() + INTERVAL 1 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 1 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (101802, 19, CURDATE() + INTERVAL 1 DAY, '下午', 30, 30, 23, CONCAT(CURDATE() + INTERVAL 1 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 1 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (101803, 19, CURDATE() + INTERVAL 2 DAY, '上午', 30, 30, 23, CONCAT(CURDATE() + INTERVAL 2 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 2 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (101804, 19, CURDATE() + INTERVAL 2 DAY, '下午', 30, 30, 23, CONCAT(CURDATE() + INTERVAL 2 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 2 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (101805, 19, CURDATE() + INTERVAL 3 DAY, '上午', 30, 30, 23, CONCAT(CURDATE() + INTERVAL 3 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 3 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (101806, 19, CURDATE() + INTERVAL 3 DAY, '下午', 30, 30, 23, CONCAT(CURDATE() + INTERVAL 3 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 3 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (101807, 19, CURDATE() + INTERVAL 4 DAY, '上午', 30, 30, 23, CONCAT(CURDATE() + INTERVAL 4 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 4 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (101808, 19, CURDATE() + INTERVAL 4 DAY, '下午', 30, 30, 23, CONCAT(CURDATE() + INTERVAL 4 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 4 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (101809, 19, CURDATE() + INTERVAL 5 DAY, '上午', 30, 30, 23, CONCAT(CURDATE() + INTERVAL 5 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 5 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (101810, 19, CURDATE() + INTERVAL 5 DAY, '下午', 30, 30, 23, CONCAT(CURDATE() + INTERVAL 5 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 5 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (101811, 19, CURDATE() + INTERVAL 6 DAY, '上午', 30, 30, 23, CONCAT(CURDATE() + INTERVAL 6 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 6 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (101812, 19, CURDATE() + INTERVAL 6 DAY, '下午', 30, 30, 23, CONCAT(CURDATE() + INTERVAL 6 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 6 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (101813, 19, CURDATE() + INTERVAL 7 DAY, '上午', 30, 30, 23, CONCAT(CURDATE() + INTERVAL 7 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 7 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (101814, 19, CURDATE() + INTERVAL 7 DAY, '下午', 30, 30, 23, CONCAT(CURDATE() + INTERVAL 7 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 7 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+-- Doctor 20（张婷，儿科·副主任医师 → 专家号fee_id=23）
+INSERT INTO `tb_doctor_schedule` VALUES (101901, 20, CURDATE() + INTERVAL 1 DAY, '上午', 25, 25, 23, CONCAT(CURDATE() + INTERVAL 1 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 1 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (101902, 20, CURDATE() + INTERVAL 3 DAY, '上午', 25, 25, 23, CONCAT(CURDATE() + INTERVAL 3 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 3 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (101903, 20, CURDATE() + INTERVAL 5 DAY, '上午', 25, 25, 23, CONCAT(CURDATE() + INTERVAL 5 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 5 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (101904, 20, CURDATE() + INTERVAL 7 DAY, '上午', 25, 25, 23, CONCAT(CURDATE() + INTERVAL 7 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 7 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+-- Doctor 21（徐明，儿科·主治医师 → 普通号fee_id=22）
+INSERT INTO `tb_doctor_schedule` VALUES (102001, 21, CURDATE() + INTERVAL 1 DAY, '上午', 30, 30, 22, CONCAT(CURDATE() + INTERVAL 1 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 1 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (102002, 21, CURDATE() + INTERVAL 1 DAY, '下午', 30, 30, 22, CONCAT(CURDATE() + INTERVAL 1 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 1 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (102003, 21, CURDATE() + INTERVAL 2 DAY, '上午', 30, 30, 22, CONCAT(CURDATE() + INTERVAL 2 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 2 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (102004, 21, CURDATE() + INTERVAL 3 DAY, '上午', 30, 30, 22, CONCAT(CURDATE() + INTERVAL 3 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 3 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (102005, 21, CURDATE() + INTERVAL 4 DAY, '上午', 30, 30, 22, CONCAT(CURDATE() + INTERVAL 4 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 4 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (102006, 21, CURDATE() + INTERVAL 5 DAY, '上午', 30, 30, 22, CONCAT(CURDATE() + INTERVAL 5 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 5 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (102007, 21, CURDATE() + INTERVAL 6 DAY, '上午', 30, 30, 22, CONCAT(CURDATE() + INTERVAL 6 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 6 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (102008, 21, CURDATE() + INTERVAL 7 DAY, '上午', 30, 30, 22, CONCAT(CURDATE() + INTERVAL 7 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 7 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+-- Doctor 22（林芳，妇产科·主任医师 → 专家号fee_id=26）
+INSERT INTO `tb_doctor_schedule` VALUES (102101, 22, CURDATE() + INTERVAL 1 DAY, '上午', 30, 30, 26, CONCAT(CURDATE() + INTERVAL 1 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 1 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (102102, 22, CURDATE() + INTERVAL 1 DAY, '下午', 30, 30, 26, CONCAT(CURDATE() + INTERVAL 1 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 1 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (102103, 22, CURDATE() + INTERVAL 3 DAY, '上午', 30, 30, 26, CONCAT(CURDATE() + INTERVAL 3 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 3 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (102104, 22, CURDATE() + INTERVAL 3 DAY, '下午', 30, 30, 26, CONCAT(CURDATE() + INTERVAL 3 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 3 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (102105, 22, CURDATE() + INTERVAL 5 DAY, '上午', 30, 30, 26, CONCAT(CURDATE() + INTERVAL 5 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 5 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (102106, 22, CURDATE() + INTERVAL 5 DAY, '下午', 30, 30, 26, CONCAT(CURDATE() + INTERVAL 5 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 5 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (102107, 22, CURDATE() + INTERVAL 7 DAY, '上午', 30, 30, 26, CONCAT(CURDATE() + INTERVAL 7 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 7 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (102108, 22, CURDATE() + INTERVAL 7 DAY, '下午', 30, 30, 26, CONCAT(CURDATE() + INTERVAL 7 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 7 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+-- Doctor 23（顾晓燕，妇产科·副主任医师 → 专家号fee_id=26）
+INSERT INTO `tb_doctor_schedule` VALUES (102201, 23, CURDATE() + INTERVAL 2 DAY, '上午', 25, 25, 26, CONCAT(CURDATE() + INTERVAL 2 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 2 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (102202, 23, CURDATE() + INTERVAL 2 DAY, '下午', 25, 25, 26, CONCAT(CURDATE() + INTERVAL 2 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 2 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (102203, 23, CURDATE() + INTERVAL 4 DAY, '上午', 25, 25, 26, CONCAT(CURDATE() + INTERVAL 4 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 4 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (102204, 23, CURDATE() + INTERVAL 4 DAY, '下午', 25, 25, 26, CONCAT(CURDATE() + INTERVAL 4 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 4 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (102205, 23, CURDATE() + INTERVAL 6 DAY, '上午', 25, 25, 26, CONCAT(CURDATE() + INTERVAL 6 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 6 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (102206, 23, CURDATE() + INTERVAL 6 DAY, '下午', 25, 25, 26, CONCAT(CURDATE() + INTERVAL 6 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 6 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+-- Doctor 24（唐艳，妇产科·主治医师 → 普通号fee_id=25）
+INSERT INTO `tb_doctor_schedule` VALUES (102301, 24, CURDATE() + INTERVAL 1 DAY, '上午', 30, 30, 25, CONCAT(CURDATE() + INTERVAL 1 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 1 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (102302, 24, CURDATE() + INTERVAL 1 DAY, '下午', 30, 30, 25, CONCAT(CURDATE() + INTERVAL 1 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 1 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (102303, 24, CURDATE() + INTERVAL 2 DAY, '上午', 30, 30, 25, CONCAT(CURDATE() + INTERVAL 2 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 2 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (102304, 24, CURDATE() + INTERVAL 3 DAY, '上午', 30, 30, 25, CONCAT(CURDATE() + INTERVAL 3 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 3 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (102305, 24, CURDATE() + INTERVAL 4 DAY, '上午', 30, 30, 25, CONCAT(CURDATE() + INTERVAL 4 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 4 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (102306, 24, CURDATE() + INTERVAL 5 DAY, '上午', 30, 30, 25, CONCAT(CURDATE() + INTERVAL 5 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 5 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (102307, 24, CURDATE() + INTERVAL 6 DAY, '上午', 30, 30, 25, CONCAT(CURDATE() + INTERVAL 6 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 6 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (102308, 24, CURDATE() + INTERVAL 7 DAY, '上午', 30, 30, 25, CONCAT(CURDATE() + INTERVAL 7 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 7 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+-- Doctor 25（孙丽君，妇产科·主任医师 → 专家号fee_id=29）
+INSERT INTO `tb_doctor_schedule` VALUES (102401, 25, CURDATE() + INTERVAL 1 DAY, '上午', 30, 30, 29, CONCAT(CURDATE() + INTERVAL 1 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 1 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (102402, 25, CURDATE() + INTERVAL 1 DAY, '下午', 30, 30, 29, CONCAT(CURDATE() + INTERVAL 1 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 1 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (102403, 25, CURDATE() + INTERVAL 3 DAY, '上午', 30, 30, 29, CONCAT(CURDATE() + INTERVAL 3 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 3 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (102404, 25, CURDATE() + INTERVAL 3 DAY, '下午', 30, 30, 29, CONCAT(CURDATE() + INTERVAL 3 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 3 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (102405, 25, CURDATE() + INTERVAL 5 DAY, '上午', 30, 30, 29, CONCAT(CURDATE() + INTERVAL 5 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 5 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (102406, 25, CURDATE() + INTERVAL 5 DAY, '下午', 30, 30, 29, CONCAT(CURDATE() + INTERVAL 5 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 5 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (102407, 25, CURDATE() + INTERVAL 7 DAY, '上午', 30, 30, 29, CONCAT(CURDATE() + INTERVAL 7 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 7 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (102408, 25, CURDATE() + INTERVAL 7 DAY, '下午', 30, 30, 29, CONCAT(CURDATE() + INTERVAL 7 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 7 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+-- Doctor 26（何雯，妇产科·副主任医师 → 专家号fee_id=29）
+INSERT INTO `tb_doctor_schedule` VALUES (102501, 26, CURDATE() + INTERVAL 2 DAY, '上午', 25, 25, 29, CONCAT(CURDATE() + INTERVAL 2 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 2 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (102502, 26, CURDATE() + INTERVAL 4 DAY, '上午', 25, 25, 29, CONCAT(CURDATE() + INTERVAL 4 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 4 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (102503, 26, CURDATE() + INTERVAL 6 DAY, '上午', 25, 25, 29, CONCAT(CURDATE() + INTERVAL 6 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 6 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+-- Doctor 27（孙强，眼科·主任医师 → 专家号fee_id=32）
+INSERT INTO `tb_doctor_schedule` VALUES (102601, 27, CURDATE() + INTERVAL 1 DAY, '上午', 30, 30, 32, CONCAT(CURDATE() + INTERVAL 1 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 1 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (102602, 27, CURDATE() + INTERVAL 1 DAY, '下午', 30, 30, 32, CONCAT(CURDATE() + INTERVAL 1 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 1 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (102603, 27, CURDATE() + INTERVAL 2 DAY, '上午', 30, 30, 32, CONCAT(CURDATE() + INTERVAL 2 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 2 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (102604, 27, CURDATE() + INTERVAL 2 DAY, '下午', 30, 30, 32, CONCAT(CURDATE() + INTERVAL 2 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 2 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (102605, 27, CURDATE() + INTERVAL 3 DAY, '上午', 30, 30, 32, CONCAT(CURDATE() + INTERVAL 3 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 3 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (102606, 27, CURDATE() + INTERVAL 3 DAY, '下午', 30, 30, 32, CONCAT(CURDATE() + INTERVAL 3 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 3 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (102607, 27, CURDATE() + INTERVAL 4 DAY, '上午', 30, 30, 32, CONCAT(CURDATE() + INTERVAL 4 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 4 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (102608, 27, CURDATE() + INTERVAL 4 DAY, '下午', 30, 30, 32, CONCAT(CURDATE() + INTERVAL 4 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 4 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (102609, 27, CURDATE() + INTERVAL 5 DAY, '上午', 30, 30, 32, CONCAT(CURDATE() + INTERVAL 5 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 5 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (102610, 27, CURDATE() + INTERVAL 5 DAY, '下午', 30, 30, 32, CONCAT(CURDATE() + INTERVAL 5 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 5 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (102611, 27, CURDATE() + INTERVAL 6 DAY, '上午', 30, 30, 32, CONCAT(CURDATE() + INTERVAL 6 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 6 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (102612, 27, CURDATE() + INTERVAL 6 DAY, '下午', 30, 30, 32, CONCAT(CURDATE() + INTERVAL 6 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 6 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (102613, 27, CURDATE() + INTERVAL 7 DAY, '上午', 30, 30, 32, CONCAT(CURDATE() + INTERVAL 7 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 7 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (102614, 27, CURDATE() + INTERVAL 7 DAY, '下午', 30, 30, 32, CONCAT(CURDATE() + INTERVAL 7 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 7 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+-- Doctor 28（赵敏，眼科·副主任医师 → 专家号fee_id=32）
+INSERT INTO `tb_doctor_schedule` VALUES (102701, 28, CURDATE() + INTERVAL 1 DAY, '上午', 25, 25, 32, CONCAT(CURDATE() + INTERVAL 1 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 1 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (102702, 28, CURDATE() + INTERVAL 1 DAY, '下午', 25, 25, 32, CONCAT(CURDATE() + INTERVAL 1 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 1 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (102703, 28, CURDATE() + INTERVAL 3 DAY, '上午', 25, 25, 32, CONCAT(CURDATE() + INTERVAL 3 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 3 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (102704, 28, CURDATE() + INTERVAL 3 DAY, '下午', 25, 25, 32, CONCAT(CURDATE() + INTERVAL 3 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 3 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (102705, 28, CURDATE() + INTERVAL 5 DAY, '上午', 25, 25, 32, CONCAT(CURDATE() + INTERVAL 5 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 5 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (102706, 28, CURDATE() + INTERVAL 5 DAY, '下午', 25, 25, 32, CONCAT(CURDATE() + INTERVAL 5 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 5 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (102707, 28, CURDATE() + INTERVAL 7 DAY, '上午', 25, 25, 32, CONCAT(CURDATE() + INTERVAL 7 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 7 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (102708, 28, CURDATE() + INTERVAL 7 DAY, '下午', 25, 25, 32, CONCAT(CURDATE() + INTERVAL 7 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 7 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+-- Doctor 29（周文，眼科·主治医师 → 普通号fee_id=31）
+INSERT INTO `tb_doctor_schedule` VALUES (102801, 29, CURDATE() + INTERVAL 1 DAY, '上午', 30, 30, 31, CONCAT(CURDATE() + INTERVAL 1 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 1 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (102802, 29, CURDATE() + INTERVAL 2 DAY, '上午', 30, 30, 31, CONCAT(CURDATE() + INTERVAL 2 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 2 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (102803, 29, CURDATE() + INTERVAL 3 DAY, '上午', 30, 30, 31, CONCAT(CURDATE() + INTERVAL 3 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 3 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (102804, 29, CURDATE() + INTERVAL 4 DAY, '上午', 30, 30, 31, CONCAT(CURDATE() + INTERVAL 4 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 4 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (102805, 29, CURDATE() + INTERVAL 5 DAY, '上午', 30, 30, 31, CONCAT(CURDATE() + INTERVAL 5 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 5 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (102806, 29, CURDATE() + INTERVAL 6 DAY, '上午', 30, 30, 31, CONCAT(CURDATE() + INTERVAL 6 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 6 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (102807, 29, CURDATE() + INTERVAL 7 DAY, '上午', 30, 30, 31, CONCAT(CURDATE() + INTERVAL 7 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 7 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+-- Doctor 30（刘志刚，眼科·副主任医师 → 专家号fee_id=35）
+INSERT INTO `tb_doctor_schedule` VALUES (102901, 30, CURDATE() + INTERVAL 1 DAY, '上午', 25, 25, 35, CONCAT(CURDATE() + INTERVAL 1 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 1 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (102902, 30, CURDATE() + INTERVAL 3 DAY, '上午', 25, 25, 35, CONCAT(CURDATE() + INTERVAL 3 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 3 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (102903, 30, CURDATE() + INTERVAL 5 DAY, '上午', 25, 25, 35, CONCAT(CURDATE() + INTERVAL 5 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 5 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (102904, 30, CURDATE() + INTERVAL 7 DAY, '上午', 25, 25, 35, CONCAT(CURDATE() + INTERVAL 7 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 7 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+-- Doctor 31（陈晓燕，眼科·主治医师 → 普通号fee_id=34）
+INSERT INTO `tb_doctor_schedule` VALUES (103001, 31, CURDATE() + INTERVAL 2 DAY, '上午', 30, 30, 34, CONCAT(CURDATE() + INTERVAL 2 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 2 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (103002, 31, CURDATE() + INTERVAL 4 DAY, '上午', 30, 30, 34, CONCAT(CURDATE() + INTERVAL 4 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 4 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (103003, 31, CURDATE() + INTERVAL 6 DAY, '上午', 30, 30, 34, CONCAT(CURDATE() + INTERVAL 6 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 6 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+-- Doctor 32（杨建平，耳鼻喉科·主任医师 → 专家号fee_id=38）
+INSERT INTO `tb_doctor_schedule` VALUES (103101, 32, CURDATE() + INTERVAL 1 DAY, '上午', 30, 30, 38, CONCAT(CURDATE() + INTERVAL 1 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 1 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (103102, 32, CURDATE() + INTERVAL 1 DAY, '下午', 30, 30, 38, CONCAT(CURDATE() + INTERVAL 1 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 1 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (103103, 32, CURDATE() + INTERVAL 3 DAY, '上午', 30, 30, 38, CONCAT(CURDATE() + INTERVAL 3 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 3 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (103104, 32, CURDATE() + INTERVAL 3 DAY, '下午', 30, 30, 38, CONCAT(CURDATE() + INTERVAL 3 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 3 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (103105, 32, CURDATE() + INTERVAL 5 DAY, '上午', 30, 30, 38, CONCAT(CURDATE() + INTERVAL 5 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 5 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (103106, 32, CURDATE() + INTERVAL 5 DAY, '下午', 30, 30, 38, CONCAT(CURDATE() + INTERVAL 5 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 5 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (103107, 32, CURDATE() + INTERVAL 7 DAY, '上午', 30, 30, 38, CONCAT(CURDATE() + INTERVAL 7 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 7 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (103108, 32, CURDATE() + INTERVAL 7 DAY, '下午', 30, 30, 38, CONCAT(CURDATE() + INTERVAL 7 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 7 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+-- Doctor 33（吴敏，耳鼻喉科·副主任医师 → 专家号fee_id=38）
+INSERT INTO `tb_doctor_schedule` VALUES (103201, 33, CURDATE() + INTERVAL 2 DAY, '上午', 25, 25, 38, CONCAT(CURDATE() + INTERVAL 2 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 2 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (103202, 33, CURDATE() + INTERVAL 2 DAY, '下午', 25, 25, 38, CONCAT(CURDATE() + INTERVAL 2 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 2 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (103203, 33, CURDATE() + INTERVAL 4 DAY, '上午', 25, 25, 38, CONCAT(CURDATE() + INTERVAL 4 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 4 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (103204, 33, CURDATE() + INTERVAL 4 DAY, '下午', 25, 25, 38, CONCAT(CURDATE() + INTERVAL 4 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 4 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (103205, 33, CURDATE() + INTERVAL 6 DAY, '上午', 25, 25, 38, CONCAT(CURDATE() + INTERVAL 6 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 6 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (103206, 33, CURDATE() + INTERVAL 6 DAY, '下午', 25, 25, 38, CONCAT(CURDATE() + INTERVAL 6 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 6 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+-- Doctor 34（林晓，耳鼻喉科·主治医师 → 普通号fee_id=37）
+INSERT INTO `tb_doctor_schedule` VALUES (103301, 34, CURDATE() + INTERVAL 1 DAY, '上午', 30, 30, 37, CONCAT(CURDATE() + INTERVAL 1 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 1 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (103302, 34, CURDATE() + INTERVAL 2 DAY, '上午', 30, 30, 37, CONCAT(CURDATE() + INTERVAL 2 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 2 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (103303, 34, CURDATE() + INTERVAL 3 DAY, '上午', 30, 30, 37, CONCAT(CURDATE() + INTERVAL 3 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 3 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (103304, 34, CURDATE() + INTERVAL 4 DAY, '上午', 30, 30, 37, CONCAT(CURDATE() + INTERVAL 4 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 4 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (103305, 34, CURDATE() + INTERVAL 5 DAY, '上午', 30, 30, 37, CONCAT(CURDATE() + INTERVAL 5 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 5 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (103306, 34, CURDATE() + INTERVAL 6 DAY, '上午', 30, 30, 37, CONCAT(CURDATE() + INTERVAL 6 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 6 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (103307, 34, CURDATE() + INTERVAL 7 DAY, '上午', 30, 30, 37, CONCAT(CURDATE() + INTERVAL 7 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 7 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+-- Doctor 35（黄伟，耳鼻喉科·副主任医师 → 专家号fee_id=41）
+INSERT INTO `tb_doctor_schedule` VALUES (103401, 35, CURDATE() + INTERVAL 1 DAY, '上午', 25, 25, 41, CONCAT(CURDATE() + INTERVAL 1 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 1 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (103402, 35, CURDATE() + INTERVAL 3 DAY, '上午', 25, 25, 41, CONCAT(CURDATE() + INTERVAL 3 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 3 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (103403, 35, CURDATE() + INTERVAL 5 DAY, '上午', 25, 25, 41, CONCAT(CURDATE() + INTERVAL 5 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 5 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (103404, 35, CURDATE() + INTERVAL 7 DAY, '上午', 25, 25, 41, CONCAT(CURDATE() + INTERVAL 7 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 7 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+-- Doctor 36（张丽华，耳鼻喉科·主治医师 → 普通号fee_id=40）
+INSERT INTO `tb_doctor_schedule` VALUES (103501, 36, CURDATE() + INTERVAL 2 DAY, '上午', 30, 30, 40, CONCAT(CURDATE() + INTERVAL 2 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 2 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (103502, 36, CURDATE() + INTERVAL 4 DAY, '上午', 30, 30, 40, CONCAT(CURDATE() + INTERVAL 4 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 4 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (103503, 36, CURDATE() + INTERVAL 6 DAY, '上午', 30, 30, 40, CONCAT(CURDATE() + INTERVAL 6 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 6 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+-- Doctor 37（郑建华，口腔科·主任医师 → 专家号fee_id=44）
+INSERT INTO `tb_doctor_schedule` VALUES (103601, 37, CURDATE() + INTERVAL 1 DAY, '上午', 30, 30, 44, CONCAT(CURDATE() + INTERVAL 1 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 1 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (103602, 37, CURDATE() + INTERVAL 1 DAY, '下午', 30, 30, 44, CONCAT(CURDATE() + INTERVAL 1 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 1 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (103603, 37, CURDATE() + INTERVAL 3 DAY, '上午', 30, 30, 44, CONCAT(CURDATE() + INTERVAL 3 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 3 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (103604, 37, CURDATE() + INTERVAL 3 DAY, '下午', 30, 30, 44, CONCAT(CURDATE() + INTERVAL 3 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 3 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (103605, 37, CURDATE() + INTERVAL 5 DAY, '上午', 30, 30, 44, CONCAT(CURDATE() + INTERVAL 5 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 5 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (103606, 37, CURDATE() + INTERVAL 5 DAY, '下午', 30, 30, 44, CONCAT(CURDATE() + INTERVAL 5 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 5 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (103607, 37, CURDATE() + INTERVAL 7 DAY, '上午', 30, 30, 44, CONCAT(CURDATE() + INTERVAL 7 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 7 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (103608, 37, CURDATE() + INTERVAL 7 DAY, '下午', 30, 30, 44, CONCAT(CURDATE() + INTERVAL 7 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 7 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+-- Doctor 38（陈洁，口腔科·副主任医师 → 专家号fee_id=44）
+INSERT INTO `tb_doctor_schedule` VALUES (103701, 38, CURDATE() + INTERVAL 2 DAY, '上午', 25, 25, 44, CONCAT(CURDATE() + INTERVAL 2 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 2 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (103702, 38, CURDATE() + INTERVAL 2 DAY, '下午', 25, 25, 44, CONCAT(CURDATE() + INTERVAL 2 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 2 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (103703, 38, CURDATE() + INTERVAL 4 DAY, '上午', 25, 25, 44, CONCAT(CURDATE() + INTERVAL 4 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 4 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (103704, 38, CURDATE() + INTERVAL 4 DAY, '下午', 25, 25, 44, CONCAT(CURDATE() + INTERVAL 4 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 4 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (103705, 38, CURDATE() + INTERVAL 6 DAY, '上午', 25, 25, 44, CONCAT(CURDATE() + INTERVAL 6 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 6 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (103706, 38, CURDATE() + INTERVAL 6 DAY, '下午', 25, 25, 44, CONCAT(CURDATE() + INTERVAL 6 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 6 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+-- Doctor 39（马晓军，口腔科·副主任医师 → 专家号fee_id=47）
+INSERT INTO `tb_doctor_schedule` VALUES (103801, 39, CURDATE() + INTERVAL 1 DAY, '上午', 25, 25, 47, CONCAT(CURDATE() + INTERVAL 1 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 1 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (103802, 39, CURDATE() + INTERVAL 1 DAY, '下午', 25, 25, 47, CONCAT(CURDATE() + INTERVAL 1 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 1 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (103803, 39, CURDATE() + INTERVAL 3 DAY, '上午', 25, 25, 47, CONCAT(CURDATE() + INTERVAL 3 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 3 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (103804, 39, CURDATE() + INTERVAL 3 DAY, '下午', 25, 25, 47, CONCAT(CURDATE() + INTERVAL 3 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 3 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (103805, 39, CURDATE() + INTERVAL 5 DAY, '上午', 25, 25, 47, CONCAT(CURDATE() + INTERVAL 5 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 5 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (103806, 39, CURDATE() + INTERVAL 5 DAY, '下午', 25, 25, 47, CONCAT(CURDATE() + INTERVAL 5 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 5 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (103807, 39, CURDATE() + INTERVAL 7 DAY, '上午', 25, 25, 47, CONCAT(CURDATE() + INTERVAL 7 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 7 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (103808, 39, CURDATE() + INTERVAL 7 DAY, '下午', 25, 25, 47, CONCAT(CURDATE() + INTERVAL 7 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 7 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+-- Doctor 40（徐莉，口腔科·主治医师 → 普通号fee_id=46）
+INSERT INTO `tb_doctor_schedule` VALUES (103901, 40, CURDATE() + INTERVAL 1 DAY, '上午', 30, 30, 46, CONCAT(CURDATE() + INTERVAL 1 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 1 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (103902, 40, CURDATE() + INTERVAL 2 DAY, '上午', 30, 30, 46, CONCAT(CURDATE() + INTERVAL 2 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 2 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (103903, 40, CURDATE() + INTERVAL 3 DAY, '上午', 30, 30, 46, CONCAT(CURDATE() + INTERVAL 3 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 3 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (103904, 40, CURDATE() + INTERVAL 4 DAY, '上午', 30, 30, 46, CONCAT(CURDATE() + INTERVAL 4 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 4 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (103905, 40, CURDATE() + INTERVAL 5 DAY, '上午', 30, 30, 46, CONCAT(CURDATE() + INTERVAL 5 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 5 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (103906, 40, CURDATE() + INTERVAL 6 DAY, '上午', 30, 30, 46, CONCAT(CURDATE() + INTERVAL 6 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 6 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (103907, 40, CURDATE() + INTERVAL 7 DAY, '上午', 30, 30, 46, CONCAT(CURDATE() + INTERVAL 7 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 7 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+-- Doctor 41（高磊，口腔科·主治医师 → 普通号fee_id=46）
+INSERT INTO `tb_doctor_schedule` VALUES (104001, 41, CURDATE() + INTERVAL 1 DAY, '上午', 30, 30, 46, CONCAT(CURDATE() + INTERVAL 1 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 1 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (104002, 41, CURDATE() + INTERVAL 3 DAY, '上午', 30, 30, 46, CONCAT(CURDATE() + INTERVAL 3 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 3 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (104003, 41, CURDATE() + INTERVAL 5 DAY, '上午', 30, 30, 46, CONCAT(CURDATE() + INTERVAL 5 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 5 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (104004, 41, CURDATE() + INTERVAL 7 DAY, '上午', 30, 30, 46, CONCAT(CURDATE() + INTERVAL 7 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 7 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+-- Doctor 42（章力，皮肤科·主任医师 → 专家号fee_id=50）
+INSERT INTO `tb_doctor_schedule` VALUES (104101, 42, CURDATE() + INTERVAL 1 DAY, '上午', 30, 30, 50, CONCAT(CURDATE() + INTERVAL 1 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 1 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (104102, 42, CURDATE() + INTERVAL 1 DAY, '下午', 30, 30, 50, CONCAT(CURDATE() + INTERVAL 1 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 1 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (104103, 42, CURDATE() + INTERVAL 3 DAY, '上午', 30, 30, 50, CONCAT(CURDATE() + INTERVAL 3 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 3 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (104104, 42, CURDATE() + INTERVAL 3 DAY, '下午', 30, 30, 50, CONCAT(CURDATE() + INTERVAL 3 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 3 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (104105, 42, CURDATE() + INTERVAL 5 DAY, '上午', 30, 30, 50, CONCAT(CURDATE() + INTERVAL 5 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 5 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (104106, 42, CURDATE() + INTERVAL 5 DAY, '下午', 30, 30, 50, CONCAT(CURDATE() + INTERVAL 5 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 5 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (104107, 42, CURDATE() + INTERVAL 7 DAY, '上午', 30, 30, 50, CONCAT(CURDATE() + INTERVAL 7 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 7 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (104108, 42, CURDATE() + INTERVAL 7 DAY, '下午', 30, 30, 50, CONCAT(CURDATE() + INTERVAL 7 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 7 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+-- Doctor 43（王婷婷，皮肤科·副主任医师 → 专家号fee_id=50）
+INSERT INTO `tb_doctor_schedule` VALUES (104201, 43, CURDATE() + INTERVAL 2 DAY, '上午', 25, 25, 50, CONCAT(CURDATE() + INTERVAL 2 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 2 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (104202, 43, CURDATE() + INTERVAL 2 DAY, '下午', 25, 25, 50, CONCAT(CURDATE() + INTERVAL 2 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 2 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (104203, 43, CURDATE() + INTERVAL 4 DAY, '上午', 25, 25, 50, CONCAT(CURDATE() + INTERVAL 4 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 4 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (104204, 43, CURDATE() + INTERVAL 4 DAY, '下午', 25, 25, 50, CONCAT(CURDATE() + INTERVAL 4 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 4 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (104205, 43, CURDATE() + INTERVAL 6 DAY, '上午', 25, 25, 50, CONCAT(CURDATE() + INTERVAL 6 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 6 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (104206, 43, CURDATE() + INTERVAL 6 DAY, '下午', 25, 25, 50, CONCAT(CURDATE() + INTERVAL 6 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 6 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+-- Doctor 44（郭峰，皮肤科·副主任医师 → 专家号fee_id=53）
+INSERT INTO `tb_doctor_schedule` VALUES (104301, 44, CURDATE() + INTERVAL 1 DAY, '上午', 25, 25, 53, CONCAT(CURDATE() + INTERVAL 1 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 1 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (104302, 44, CURDATE() + INTERVAL 3 DAY, '上午', 25, 25, 53, CONCAT(CURDATE() + INTERVAL 3 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 3 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (104303, 44, CURDATE() + INTERVAL 5 DAY, '上午', 25, 25, 53, CONCAT(CURDATE() + INTERVAL 5 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 5 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (104304, 44, CURDATE() + INTERVAL 7 DAY, '上午', 25, 25, 53, CONCAT(CURDATE() + INTERVAL 7 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 7 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+-- Doctor 45（周莉，皮肤科·主治医师 → 普通号fee_id=52）
+INSERT INTO `tb_doctor_schedule` VALUES (104401, 45, CURDATE() + INTERVAL 2 DAY, '上午', 30, 30, 52, CONCAT(CURDATE() + INTERVAL 2 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 2 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (104402, 45, CURDATE() + INTERVAL 4 DAY, '上午', 30, 30, 52, CONCAT(CURDATE() + INTERVAL 4 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 4 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (104403, 45, CURDATE() + INTERVAL 6 DAY, '上午', 30, 30, 52, CONCAT(CURDATE() + INTERVAL 6 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 6 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+-- Doctor 46（罗勇，骨科·主任医师 → 专家号fee_id=56）
+INSERT INTO `tb_doctor_schedule` VALUES (104501, 46, CURDATE() + INTERVAL 1 DAY, '上午', 30, 30, 56, CONCAT(CURDATE() + INTERVAL 1 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 1 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (104502, 46, CURDATE() + INTERVAL 1 DAY, '下午', 30, 30, 56, CONCAT(CURDATE() + INTERVAL 1 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 1 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (104503, 46, CURDATE() + INTERVAL 3 DAY, '上午', 30, 30, 56, CONCAT(CURDATE() + INTERVAL 3 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 3 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (104504, 46, CURDATE() + INTERVAL 3 DAY, '下午', 30, 30, 56, CONCAT(CURDATE() + INTERVAL 3 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 3 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (104505, 46, CURDATE() + INTERVAL 5 DAY, '上午', 30, 30, 56, CONCAT(CURDATE() + INTERVAL 5 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 5 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (104506, 46, CURDATE() + INTERVAL 5 DAY, '下午', 30, 30, 56, CONCAT(CURDATE() + INTERVAL 5 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 5 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (104507, 46, CURDATE() + INTERVAL 7 DAY, '上午', 30, 30, 56, CONCAT(CURDATE() + INTERVAL 7 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 7 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (104508, 46, CURDATE() + INTERVAL 7 DAY, '下午', 30, 30, 56, CONCAT(CURDATE() + INTERVAL 7 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 7 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+-- Doctor 47（韩冰，骨科·副主任医师 → 专家号fee_id=56）
+INSERT INTO `tb_doctor_schedule` VALUES (104601, 47, CURDATE() + INTERVAL 2 DAY, '上午', 25, 25, 56, CONCAT(CURDATE() + INTERVAL 2 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 2 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (104602, 47, CURDATE() + INTERVAL 2 DAY, '下午', 25, 25, 56, CONCAT(CURDATE() + INTERVAL 2 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 2 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (104603, 47, CURDATE() + INTERVAL 4 DAY, '上午', 25, 25, 56, CONCAT(CURDATE() + INTERVAL 4 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 4 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (104604, 47, CURDATE() + INTERVAL 4 DAY, '下午', 25, 25, 56, CONCAT(CURDATE() + INTERVAL 4 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 4 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (104605, 47, CURDATE() + INTERVAL 6 DAY, '上午', 25, 25, 56, CONCAT(CURDATE() + INTERVAL 6 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 6 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (104606, 47, CURDATE() + INTERVAL 6 DAY, '下午', 25, 25, 56, CONCAT(CURDATE() + INTERVAL 6 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 6 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+-- Doctor 48（沈强，骨科·主治医师 → 普通号fee_id=55）
+INSERT INTO `tb_doctor_schedule` VALUES (104701, 48, CURDATE() + INTERVAL 1 DAY, '上午', 30, 30, 55, CONCAT(CURDATE() + INTERVAL 1 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 1 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (104702, 48, CURDATE() + INTERVAL 2 DAY, '上午', 30, 30, 55, CONCAT(CURDATE() + INTERVAL 2 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 2 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (104703, 48, CURDATE() + INTERVAL 3 DAY, '上午', 30, 30, 55, CONCAT(CURDATE() + INTERVAL 3 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 3 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (104704, 48, CURDATE() + INTERVAL 4 DAY, '上午', 30, 30, 55, CONCAT(CURDATE() + INTERVAL 4 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 4 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (104705, 48, CURDATE() + INTERVAL 5 DAY, '上午', 30, 30, 55, CONCAT(CURDATE() + INTERVAL 5 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 5 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (104706, 48, CURDATE() + INTERVAL 6 DAY, '上午', 30, 30, 55, CONCAT(CURDATE() + INTERVAL 6 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 6 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (104707, 48, CURDATE() + INTERVAL 7 DAY, '上午', 30, 30, 55, CONCAT(CURDATE() + INTERVAL 7 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 7 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+-- Doctor 49（叶晓明，骨科·主任医师 → 专家号fee_id=59）
+INSERT INTO `tb_doctor_schedule` VALUES (104801, 49, CURDATE() + INTERVAL 1 DAY, '上午', 30, 30, 59, CONCAT(CURDATE() + INTERVAL 1 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 1 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (104802, 49, CURDATE() + INTERVAL 1 DAY, '下午', 30, 30, 59, CONCAT(CURDATE() + INTERVAL 1 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 1 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (104803, 49, CURDATE() + INTERVAL 3 DAY, '上午', 30, 30, 59, CONCAT(CURDATE() + INTERVAL 3 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 3 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (104804, 49, CURDATE() + INTERVAL 3 DAY, '下午', 30, 30, 59, CONCAT(CURDATE() + INTERVAL 3 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 3 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (104805, 49, CURDATE() + INTERVAL 5 DAY, '上午', 30, 30, 59, CONCAT(CURDATE() + INTERVAL 5 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 5 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (104806, 49, CURDATE() + INTERVAL 5 DAY, '下午', 30, 30, 59, CONCAT(CURDATE() + INTERVAL 5 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 5 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (104807, 49, CURDATE() + INTERVAL 7 DAY, '上午', 30, 30, 59, CONCAT(CURDATE() + INTERVAL 7 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 7 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (104808, 49, CURDATE() + INTERVAL 7 DAY, '下午', 30, 30, 59, CONCAT(CURDATE() + INTERVAL 7 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 7 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+-- Doctor 50（钱峰，骨科·副主任医师 → 专家号fee_id=59）
+INSERT INTO `tb_doctor_schedule` VALUES (104901, 50, CURDATE() + INTERVAL 2 DAY, '上午', 25, 25, 59, CONCAT(CURDATE() + INTERVAL 2 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 2 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (104902, 50, CURDATE() + INTERVAL 4 DAY, '上午', 25, 25, 59, CONCAT(CURDATE() + INTERVAL 4 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 4 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (104903, 50, CURDATE() + INTERVAL 6 DAY, '上午', 25, 25, 59, CONCAT(CURDATE() + INTERVAL 6 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 6 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+-- Doctor 51（陈伟民，神经内科·主任医师 → 专家号fee_id=62）
+INSERT INTO `tb_doctor_schedule` VALUES (105001, 51, CURDATE() + INTERVAL 1 DAY, '上午', 30, 30, 62, CONCAT(CURDATE() + INTERVAL 1 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 1 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (105002, 51, CURDATE() + INTERVAL 1 DAY, '下午', 30, 30, 62, CONCAT(CURDATE() + INTERVAL 1 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 1 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (105003, 51, CURDATE() + INTERVAL 3 DAY, '上午', 30, 30, 62, CONCAT(CURDATE() + INTERVAL 3 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 3 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (105004, 51, CURDATE() + INTERVAL 3 DAY, '下午', 30, 30, 62, CONCAT(CURDATE() + INTERVAL 3 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 3 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (105005, 51, CURDATE() + INTERVAL 5 DAY, '上午', 30, 30, 62, CONCAT(CURDATE() + INTERVAL 5 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 5 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (105006, 51, CURDATE() + INTERVAL 5 DAY, '下午', 30, 30, 62, CONCAT(CURDATE() + INTERVAL 5 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 5 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (105007, 51, CURDATE() + INTERVAL 7 DAY, '上午', 30, 30, 62, CONCAT(CURDATE() + INTERVAL 7 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 7 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (105008, 51, CURDATE() + INTERVAL 7 DAY, '下午', 30, 30, 62, CONCAT(CURDATE() + INTERVAL 7 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 7 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+-- Doctor 52（李雪，神经内科·副主任医师 → 专家号fee_id=62）
+INSERT INTO `tb_doctor_schedule` VALUES (105101, 52, CURDATE() + INTERVAL 2 DAY, '上午', 25, 25, 62, CONCAT(CURDATE() + INTERVAL 2 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 2 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (105102, 52, CURDATE() + INTERVAL 2 DAY, '下午', 25, 25, 62, CONCAT(CURDATE() + INTERVAL 2 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 2 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (105103, 52, CURDATE() + INTERVAL 4 DAY, '上午', 25, 25, 62, CONCAT(CURDATE() + INTERVAL 4 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 4 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (105104, 52, CURDATE() + INTERVAL 4 DAY, '下午', 25, 25, 62, CONCAT(CURDATE() + INTERVAL 4 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 4 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (105105, 52, CURDATE() + INTERVAL 6 DAY, '上午', 25, 25, 62, CONCAT(CURDATE() + INTERVAL 6 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 6 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (105106, 52, CURDATE() + INTERVAL 6 DAY, '下午', 25, 25, 62, CONCAT(CURDATE() + INTERVAL 6 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 6 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+-- Doctor 53（吴兵，神经内科·主治医师 → 普通号fee_id=61）
+INSERT INTO `tb_doctor_schedule` VALUES (105201, 53, CURDATE() + INTERVAL 1 DAY, '上午', 30, 30, 61, CONCAT(CURDATE() + INTERVAL 1 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 1 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (105202, 53, CURDATE() + INTERVAL 2 DAY, '上午', 30, 30, 61, CONCAT(CURDATE() + INTERVAL 2 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 2 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (105203, 53, CURDATE() + INTERVAL 3 DAY, '上午', 30, 30, 61, CONCAT(CURDATE() + INTERVAL 3 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 3 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (105204, 53, CURDATE() + INTERVAL 4 DAY, '上午', 30, 30, 61, CONCAT(CURDATE() + INTERVAL 4 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 4 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (105205, 53, CURDATE() + INTERVAL 5 DAY, '上午', 30, 30, 61, CONCAT(CURDATE() + INTERVAL 5 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 5 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (105206, 53, CURDATE() + INTERVAL 6 DAY, '上午', 30, 30, 61, CONCAT(CURDATE() + INTERVAL 6 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 6 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (105207, 53, CURDATE() + INTERVAL 7 DAY, '上午', 30, 30, 61, CONCAT(CURDATE() + INTERVAL 7 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 7 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+-- Doctor 54（黄海波，神经内科·副主任医师 → 专家号fee_id=65）
+INSERT INTO `tb_doctor_schedule` VALUES (105301, 54, CURDATE() + INTERVAL 1 DAY, '上午', 25, 25, 65, CONCAT(CURDATE() + INTERVAL 1 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 1 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (105302, 54, CURDATE() + INTERVAL 3 DAY, '上午', 25, 25, 65, CONCAT(CURDATE() + INTERVAL 3 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 3 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (105303, 54, CURDATE() + INTERVAL 5 DAY, '上午', 25, 25, 65, CONCAT(CURDATE() + INTERVAL 5 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 5 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (105304, 54, CURDATE() + INTERVAL 7 DAY, '上午', 25, 25, 65, CONCAT(CURDATE() + INTERVAL 7 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 7 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+-- Doctor 55（赵莹，神经内科·主治医师 → 普通号fee_id=64）
+INSERT INTO `tb_doctor_schedule` VALUES (105401, 55, CURDATE() + INTERVAL 2 DAY, '上午', 30, 30, 64, CONCAT(CURDATE() + INTERVAL 2 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 2 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (105402, 55, CURDATE() + INTERVAL 4 DAY, '上午', 30, 30, 64, CONCAT(CURDATE() + INTERVAL 4 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 4 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (105403, 55, CURDATE() + INTERVAL 6 DAY, '上午', 30, 30, 64, CONCAT(CURDATE() + INTERVAL 6 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 6 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+-- Doctor 56（葛建华，内科·主任医师 → 专家号fee_id=68）
+INSERT INTO `tb_doctor_schedule` VALUES (105501, 56, CURDATE() + INTERVAL 1 DAY, '上午', 30, 30, 68, CONCAT(CURDATE() + INTERVAL 1 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 1 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (105502, 56, CURDATE() + INTERVAL 1 DAY, '下午', 30, 30, 68, CONCAT(CURDATE() + INTERVAL 1 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 1 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (105503, 56, CURDATE() + INTERVAL 3 DAY, '上午', 30, 30, 68, CONCAT(CURDATE() + INTERVAL 3 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 3 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (105504, 56, CURDATE() + INTERVAL 3 DAY, '下午', 30, 30, 68, CONCAT(CURDATE() + INTERVAL 3 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 3 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (105505, 56, CURDATE() + INTERVAL 5 DAY, '上午', 30, 30, 68, CONCAT(CURDATE() + INTERVAL 5 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 5 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (105506, 56, CURDATE() + INTERVAL 5 DAY, '下午', 30, 30, 68, CONCAT(CURDATE() + INTERVAL 5 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 5 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (105507, 56, CURDATE() + INTERVAL 7 DAY, '上午', 30, 30, 68, CONCAT(CURDATE() + INTERVAL 7 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 7 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (105508, 56, CURDATE() + INTERVAL 7 DAY, '下午', 30, 30, 68, CONCAT(CURDATE() + INTERVAL 7 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 7 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+-- Doctor 57（高敏，内科·副主任医师 → 专家号fee_id=68）
+INSERT INTO `tb_doctor_schedule` VALUES (105601, 57, CURDATE() + INTERVAL 2 DAY, '上午', 25, 25, 68, CONCAT(CURDATE() + INTERVAL 2 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 2 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (105602, 57, CURDATE() + INTERVAL 2 DAY, '下午', 25, 25, 68, CONCAT(CURDATE() + INTERVAL 2 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 2 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (105603, 57, CURDATE() + INTERVAL 4 DAY, '上午', 25, 25, 68, CONCAT(CURDATE() + INTERVAL 4 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 4 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (105604, 57, CURDATE() + INTERVAL 4 DAY, '下午', 25, 25, 68, CONCAT(CURDATE() + INTERVAL 4 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 4 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (105605, 57, CURDATE() + INTERVAL 6 DAY, '上午', 25, 25, 68, CONCAT(CURDATE() + INTERVAL 6 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 6 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (105606, 57, CURDATE() + INTERVAL 6 DAY, '下午', 25, 25, 68, CONCAT(CURDATE() + INTERVAL 6 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 6 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+-- Doctor 58（陶然，内科·主治医师 → 普通号fee_id=67）
+INSERT INTO `tb_doctor_schedule` VALUES (105701, 58, CURDATE() + INTERVAL 1 DAY, '上午', 30, 30, 67, CONCAT(CURDATE() + INTERVAL 1 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 1 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (105702, 58, CURDATE() + INTERVAL 2 DAY, '上午', 30, 30, 67, CONCAT(CURDATE() + INTERVAL 2 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 2 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (105703, 58, CURDATE() + INTERVAL 3 DAY, '上午', 30, 30, 67, CONCAT(CURDATE() + INTERVAL 3 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 3 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (105704, 58, CURDATE() + INTERVAL 4 DAY, '上午', 30, 30, 67, CONCAT(CURDATE() + INTERVAL 4 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 4 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (105705, 58, CURDATE() + INTERVAL 5 DAY, '上午', 30, 30, 67, CONCAT(CURDATE() + INTERVAL 5 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 5 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (105706, 58, CURDATE() + INTERVAL 6 DAY, '上午', 30, 30, 67, CONCAT(CURDATE() + INTERVAL 6 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 6 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (105707, 58, CURDATE() + INTERVAL 7 DAY, '上午', 30, 30, 67, CONCAT(CURDATE() + INTERVAL 7 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 7 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+-- Doctor 59（秦明，内科·主任医师 → 专家号fee_id=71）
+INSERT INTO `tb_doctor_schedule` VALUES (105801, 59, CURDATE() + INTERVAL 1 DAY, '上午', 30, 30, 71, CONCAT(CURDATE() + INTERVAL 1 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 1 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (105802, 59, CURDATE() + INTERVAL 1 DAY, '下午', 30, 30, 71, CONCAT(CURDATE() + INTERVAL 1 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 1 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (105803, 59, CURDATE() + INTERVAL 3 DAY, '上午', 30, 30, 71, CONCAT(CURDATE() + INTERVAL 3 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 3 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (105804, 59, CURDATE() + INTERVAL 3 DAY, '下午', 30, 30, 71, CONCAT(CURDATE() + INTERVAL 3 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 3 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (105805, 59, CURDATE() + INTERVAL 5 DAY, '上午', 30, 30, 71, CONCAT(CURDATE() + INTERVAL 5 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 5 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (105806, 59, CURDATE() + INTERVAL 5 DAY, '下午', 30, 30, 71, CONCAT(CURDATE() + INTERVAL 5 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 5 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (105807, 59, CURDATE() + INTERVAL 7 DAY, '上午', 30, 30, 71, CONCAT(CURDATE() + INTERVAL 7 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 7 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (105808, 59, CURDATE() + INTERVAL 7 DAY, '下午', 30, 30, 71, CONCAT(CURDATE() + INTERVAL 7 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 7 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+-- Doctor 60（沈琳，内科·副主任医师 → 专家号fee_id=71）
+INSERT INTO `tb_doctor_schedule` VALUES (105901, 60, CURDATE() + INTERVAL 2 DAY, '上午', 25, 25, 71, CONCAT(CURDATE() + INTERVAL 2 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 2 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (105902, 60, CURDATE() + INTERVAL 4 DAY, '上午', 25, 25, 71, CONCAT(CURDATE() + INTERVAL 4 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 4 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (105903, 60, CURDATE() + INTERVAL 6 DAY, '上午', 25, 25, 71, CONCAT(CURDATE() + INTERVAL 6 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 6 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+-- Doctor 61（张卫东，外科·主任医师 → 专家号fee_id=74）
+INSERT INTO `tb_doctor_schedule` VALUES (106001, 61, CURDATE() + INTERVAL 1 DAY, '上午', 30, 30, 74, CONCAT(CURDATE() + INTERVAL 1 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 1 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (106002, 61, CURDATE() + INTERVAL 1 DAY, '下午', 30, 30, 74, CONCAT(CURDATE() + INTERVAL 1 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 1 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (106003, 61, CURDATE() + INTERVAL 3 DAY, '上午', 30, 30, 74, CONCAT(CURDATE() + INTERVAL 3 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 3 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (106004, 61, CURDATE() + INTERVAL 3 DAY, '下午', 30, 30, 74, CONCAT(CURDATE() + INTERVAL 3 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 3 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (106005, 61, CURDATE() + INTERVAL 5 DAY, '上午', 30, 30, 74, CONCAT(CURDATE() + INTERVAL 5 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 5 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (106006, 61, CURDATE() + INTERVAL 5 DAY, '下午', 30, 30, 74, CONCAT(CURDATE() + INTERVAL 5 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 5 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (106007, 61, CURDATE() + INTERVAL 7 DAY, '上午', 30, 30, 74, CONCAT(CURDATE() + INTERVAL 7 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 7 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (106008, 61, CURDATE() + INTERVAL 7 DAY, '下午', 30, 30, 74, CONCAT(CURDATE() + INTERVAL 7 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 7 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+-- Doctor 62（李志强，外科·副主任医师 → 专家号fee_id=74）
+INSERT INTO `tb_doctor_schedule` VALUES (106101, 62, CURDATE() + INTERVAL 2 DAY, '上午', 25, 25, 74, CONCAT(CURDATE() + INTERVAL 2 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 2 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (106102, 62, CURDATE() + INTERVAL 2 DAY, '下午', 25, 25, 74, CONCAT(CURDATE() + INTERVAL 2 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 2 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (106103, 62, CURDATE() + INTERVAL 4 DAY, '上午', 25, 25, 74, CONCAT(CURDATE() + INTERVAL 4 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 4 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (106104, 62, CURDATE() + INTERVAL 4 DAY, '下午', 25, 25, 74, CONCAT(CURDATE() + INTERVAL 4 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 4 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (106105, 62, CURDATE() + INTERVAL 6 DAY, '上午', 25, 25, 74, CONCAT(CURDATE() + INTERVAL 6 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 6 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (106106, 62, CURDATE() + INTERVAL 6 DAY, '下午', 25, 25, 74, CONCAT(CURDATE() + INTERVAL 6 DAY, ' 13:00:00'), CONCAT(CURDATE() + INTERVAL 6 DAY, ' 17:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+-- Doctor 63（王磊，外科·主治医师 → 普通号fee_id=73）
+INSERT INTO `tb_doctor_schedule` VALUES (106201, 63, CURDATE() + INTERVAL 1 DAY, '上午', 30, 30, 73, CONCAT(CURDATE() + INTERVAL 1 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 1 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (106202, 63, CURDATE() + INTERVAL 2 DAY, '上午', 30, 30, 73, CONCAT(CURDATE() + INTERVAL 2 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 2 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (106203, 63, CURDATE() + INTERVAL 3 DAY, '上午', 30, 30, 73, CONCAT(CURDATE() + INTERVAL 3 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 3 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (106204, 63, CURDATE() + INTERVAL 4 DAY, '上午', 30, 30, 73, CONCAT(CURDATE() + INTERVAL 4 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 4 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (106205, 63, CURDATE() + INTERVAL 5 DAY, '上午', 30, 30, 73, CONCAT(CURDATE() + INTERVAL 5 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 5 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (106206, 63, CURDATE() + INTERVAL 6 DAY, '上午', 30, 30, 73, CONCAT(CURDATE() + INTERVAL 6 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 6 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (106207, 63, CURDATE() + INTERVAL 7 DAY, '上午', 30, 30, 73, CONCAT(CURDATE() + INTERVAL 7 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 7 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+-- Doctor 64（陈国华，外科·副主任医师 → 专家号fee_id=77）
+INSERT INTO `tb_doctor_schedule` VALUES (106301, 64, CURDATE() + INTERVAL 1 DAY, '上午', 25, 25, 77, CONCAT(CURDATE() + INTERVAL 1 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 1 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (106302, 64, CURDATE() + INTERVAL 3 DAY, '上午', 25, 25, 77, CONCAT(CURDATE() + INTERVAL 3 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 3 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (106303, 64, CURDATE() + INTERVAL 5 DAY, '上午', 25, 25, 77, CONCAT(CURDATE() + INTERVAL 5 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 5 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (106304, 64, CURDATE() + INTERVAL 7 DAY, '上午', 25, 25, 77, CONCAT(CURDATE() + INTERVAL 7 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 7 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+-- Doctor 65（黄燕，外科·主治医师 → 普通号fee_id=76）
+INSERT INTO `tb_doctor_schedule` VALUES (106401, 65, CURDATE() + INTERVAL 2 DAY, '上午', 30, 30, 76, CONCAT(CURDATE() + INTERVAL 2 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 2 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (106402, 65, CURDATE() + INTERVAL 4 DAY, '上午', 30, 30, 76, CONCAT(CURDATE() + INTERVAL 4 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 4 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+INSERT INTO `tb_doctor_schedule` VALUES (106403, 65, CURDATE() + INTERVAL 6 DAY, '上午', 30, 30, 76, CONCAT(CURDATE() + INTERVAL 6 DAY, ' 08:00:00'), CONCAT(CURDATE() + INTERVAL 6 DAY, ' 12:00:00'), '2026-06-01 08:00:00', '2026-06-01 08:00:00');
+
 SET FOREIGN_KEY_CHECKS = 1;

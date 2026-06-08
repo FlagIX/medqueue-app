@@ -73,9 +73,10 @@ public class HospitalController {
     @GetMapping("/page")
     public Result queryPage(
             @RequestParam(value = "current", defaultValue = "1") Integer current,
-            @RequestParam(value = "name", required = false) String name
+            @RequestParam(value = "name", required = false) String name,
+            @RequestParam(value = "departmentId", required = false) Long departmentId
     ) {
-        return hospitalService.queryPage(current, name);
+        return hospitalService.queryPage(current, name, departmentId);
     }
 
     @GetMapping("/nearby")

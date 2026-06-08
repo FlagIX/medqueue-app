@@ -16,7 +16,7 @@ public interface IHospitalService extends IService<Hospital> {
 
     Result updateHospital(Hospital hospital);
 
-    Result queryPage(Integer current, String name);
+    Result queryPage(Integer current, String name, Long departmentId);
 
     Result queryNearby(Double x, Double y, Integer distance);
 }

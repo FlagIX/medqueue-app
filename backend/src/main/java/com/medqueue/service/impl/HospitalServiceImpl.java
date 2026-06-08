@@ -85,8 +85,9 @@ public class HospitalServiceImpl extends ServiceImpl<HospitalMapper, Hospital> i
     }
 
     @Override
-    public Result queryPage(Integer current, String name) {
+    public Result queryPage(Integer current, String name, Long departmentId) {
         Page<Hospital> page = query()
+                .eq(departmentId != null, "department_id", departmentId)
                 .like(StrUtil.isNotBlank(name), "name", name)
                 .page(new Page<>(current, SystemConstants.DEFAULT_PAGE_SIZE));
         return Result.ok(page);
