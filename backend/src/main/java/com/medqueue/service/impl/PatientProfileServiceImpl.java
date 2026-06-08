@@ -14,6 +14,10 @@ public class PatientProfileServiceImpl extends ServiceImpl<PatientProfileMapper,
 
     @Override
     public Result addProfile(PatientProfile profile, Long userId) {
+        Long count = lambdaQuery().eq(PatientProfile::getIdCard, profile.getIdCard()).count();
+        if (count > 0) {
+            return Result.fail("该身份证已被绑定，请核对后重试");
+        }
         profile.setUserId(userId);
         profile.setCreateTime(LocalDateTime.now());
         profile.setUpdateTime(LocalDateTime.now());
@@ -31,6 +35,12 @@ public class PatientProfileServiceImpl extends ServiceImpl<PatientProfileMapper,
         PatientProfile existing = getById(profile.getId());
         if (existing == null) {
             return Result.fail("就诊人不存在");
+        }
+        if (profile.getIdCard() != null && !profile.getIdCard().equals(existing.getIdCard())) {
+            Long count = lambdaQuery().eq(PatientProfile::getIdCard, profile.getIdCard()).count();
+            if (count > 0) {
+                return Result.fail("该身份证已被绑定，请核对后重试");
+            }
         }
         profile.setUserId(null).setCreateTime(null).setUpdateTime(LocalDateTime.now());
         updateById(profile);
