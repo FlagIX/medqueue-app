@@ -4,6 +4,24 @@ import { useRouter } from 'vue-router'
 import { departmentApi } from '@/api/department'
 import { hospitalApi } from '@/api/hospital'
 
+const deptEmoji = {
+  '内科': '💊',
+  '外科': '🔪',
+  '儿科': '👶',
+  '妇产科': '🤰',
+  '眼科': '👁',
+  '耳鼻喉科': '👃',
+  '口腔科': '🦷',
+  '皮肤科': '✋',
+  '骨科': '🦴',
+  '神经内科': '🧠'
+}
+const deptColors = [
+  '#e3f2fd', '#fce4ec', '#e8f5e9', '#fff3e0', '#f3e5f5',
+  '#e0f7fa', '#fff8e1', '#fbe9e7', '#e8eaf6', '#f1f8e9'
+]
+function getDeptEmoji(name) { return deptEmoji[name] || '🏥' }
+
 const router = useRouter()
 const departments = ref([])
 const hospitals = ref([])
@@ -37,12 +55,15 @@ function goHospital(id) { router.push(`/hospital/${id}`) }
       <h2 class="section-title">按科室挂号</h2>
       <div class="dept-grid">
         <div
-          v-for="d in departments"
+          v-for="(d, idx) in departments"
           :key="d.id"
           class="dept-item"
           @click="goDepartment(d.id)"
         >
-          <span class="dept-icon">{{ d.icon || '🏥' }}</span>
+          <span
+            class="dept-icon"
+            :style="{ backgroundColor: deptColors[idx % deptColors.length] }"
+          >{{ getDeptEmoji(d.name) }}</span>
           <span class="dept-name">{{ d.name }}</span>
         </div>
       </div>
@@ -119,7 +140,17 @@ function goHospital(id) { router.push(`/hospital/${id}`) }
   box-shadow: 0 4px 16px rgba(45, 140, 240, 0.12);
   border-color: var(--color-primary);
 }
-.dept-icon { font-size: 28px; }
+.dept-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  line-height: 1;
+  flex-shrink: 0;
+}
 .dept-name { font-size: 13px; color: #333; }
 .hospital-item {
   display: flex;
