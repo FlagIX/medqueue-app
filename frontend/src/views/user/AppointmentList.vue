@@ -1,6 +1,7 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
+import { ElMessage, ElMessageBox } from 'element-plus'
 import { appointmentApi } from '@/api/appointment'
 import { APPOINTMENT_STATUS } from '@/utils/constants'
 

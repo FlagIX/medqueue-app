@@ -1,8 +1,12 @@
 <script setup>
 import { ref, onMounted } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 import { patientApi } from '@/api/patient'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { PATIENT_RELATIONS } from '@/utils/constants'
+
+const route = useRoute()
+const router = useRouter()
 
 const patients = ref([])
 const dialogVisible = ref(false)
@@ -40,6 +44,8 @@ async function handleSave() {
       ElMessage.success(editingId.value ? '已更新' : '添加成功')
       dialogVisible.value = false
       await loadPatients()
+      const redirect = route.query.redirect
+      if (redirect) router.replace(redirect)
     } else {
       ElMessage.error(res.errorMsg || '操作失败')
     }
