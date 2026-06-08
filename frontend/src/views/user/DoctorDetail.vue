@@ -2,7 +2,7 @@
 import { ref, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { doctorApi } from '@/api/doctor'
-import { formatDate } from '@/utils/format'
+import { formatDate, getDoctorGradient } from '@/utils/format'
 
 const route = useRoute()
 const router = useRouter()
@@ -49,7 +49,7 @@ function goAppointment(schedule) {
 <template>
   <div class="page-container" v-if="doctor">
     <div class="doctor-header card">
-      <el-avatar :size="72" :src="doctor.avatar" />
+      <div class="doc-avatar" :style="{ background: getDoctorGradient(doctor.id) }">👨‍⚕️</div>
       <div class="info">
         <div class="name-row">
           <h1>{{ doctor.name }}</h1>
@@ -113,6 +113,17 @@ function goAppointment(schedule) {
 .name-row h1 { font-size: 22px; }
 .info p { color: #606266; font-size: 14px; margin-bottom: 4px; }
 .intro { margin-top: 8px; color: #333; }
+.doc-avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  line-height: 1;
+  flex-shrink: 0;
+}
 .date-list {
   display: flex;
   gap: 8px;

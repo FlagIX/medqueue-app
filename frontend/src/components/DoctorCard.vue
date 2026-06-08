@@ -1,4 +1,5 @@
 <script setup>
+import { getDoctorGradient } from '@/utils/format'
 defineProps({
   doctor: Object
 })
@@ -7,7 +8,7 @@ defineProps({
 <template>
   <div class="doctor-card">
     <div class="avatar">
-      <el-avatar :size="56" :src="doctor.avatar" />
+      <div class="doc-avatar" :style="{ background: getDoctorGradient(doctor.id) }">👨‍⚕️</div>
     </div>
     <div class="info">
       <div class="name-row">
@@ -38,6 +39,16 @@ defineProps({
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
 }
 .avatar { flex-shrink: 0; }
+.doc-avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  line-height: 1;
+}
 .info { flex: 1; }
 .name-row {
   display: flex;

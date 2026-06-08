@@ -25,3 +25,16 @@ const hospGradients = [
 export function getHospitalGradient(id) {
   return hospGradients[Number(id) % hospGradients.length]
 }
+
+const docGradients = [
+  'linear-gradient(135deg, #2d8cf0, #19be6b)',
+  'linear-gradient(135deg, #667eea, #764ba2)',
+  'linear-gradient(135deg, #4facfe, #00f2fe)',
+  'linear-gradient(135deg, #43e97b, #38f9d7)',
+  'linear-gradient(135deg, #fa709a, #fee140)',
+  'linear-gradient(135deg, #f093fb, #f5576c)',
+]
+
+export function getDoctorGradient(id) {
+  return docGradients[Number(id) % docGradients.length]
+}
