@@ -34,7 +34,10 @@ async function handleCancel(id) {
   try {
     await ElMessageBox.confirm('确定取消该预约吗？')
     const res = await appointmentApi.cancel(id)
-    if (res.success) { ElMessage.success('已取消'); loadRecords() }
+    if (res.success) {
+      ElMessage.success({ message: '已取消', duration: 2000 })
+      loadRecords()
+    }
   } catch {}
 }
 

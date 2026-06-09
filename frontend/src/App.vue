@@ -1,5 +1,6 @@
 <script setup>
 import HeaderBar from '@/components/HeaderBar.vue'
+import BreadcrumbNav from '@/components/BreadcrumbNav.vue'
 import FooterBar from '@/components/FooterBar.vue'
 import { useRoute } from 'vue-router'
 
@@ -10,6 +11,7 @@ const isAdminPage = () => route.path.startsWith('/admin')
 <template>
   <div id="app-container">
     <HeaderBar v-if="!isAdminPage()" />
+    <BreadcrumbNav v-if="!isAdminPage()" />
     <main :class="{ 'admin-main': isAdminPage() }">
       <router-view />
     </main>

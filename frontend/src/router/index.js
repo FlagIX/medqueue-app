@@ -2,18 +2,66 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 const routes = [
   // 用户端
-  { path: '/', name: 'Home', component: () => import('@/views/user/Home.vue') },
-  { path: '/login', name: 'Login', component: () => import('@/views/user/Login.vue') },
-  { path: '/register', name: 'Register', component: () => import('@/views/user/Register.vue') },
-  { path: '/hospital', name: 'HospitalList', component: () => import('@/views/user/HospitalList.vue') },
-  { path: '/hospital/:id', name: 'HospitalDetail', component: () => import('@/views/user/HospitalDetail.vue') },
-  { path: '/doctor/:id', name: 'DoctorDetail', component: () => import('@/views/user/DoctorDetail.vue') },
-  { path: '/appointment/create', name: 'AppointmentCreate', component: () => import('@/views/user/AppointmentCreate.vue') },
-  { path: '/appointment/list', name: 'AppointmentList', component: () => import('@/views/user/AppointmentList.vue') },
-  { path: '/patient', name: 'PatientProfile', component: () => import('@/views/user/PatientProfile.vue') },
-  { path: '/profile/edit', name: 'ProfileEdit', component: () => import('@/views/user/ProfileEdit.vue') },
-  { path: '/review/list', name: 'MyReviews', component: () => import('@/views/user/MyReviews.vue') },
-  { path: '/follow/list', name: 'MyFollows', component: () => import('@/views/user/MyFollows.vue') },
+  {
+    path: '/', name: 'Home',
+    meta: { title: '首页' },
+    component: () => import('@/views/user/Home.vue')
+  },
+  {
+    path: '/login', name: 'Login',
+    meta: { title: '登录', breadcrumb: [{ title: '首页', path: '/' }, { title: '登录', path: '' }] },
+    component: () => import('@/views/user/Login.vue')
+  },
+  {
+    path: '/register', name: 'Register',
+    meta: { title: '注册', breadcrumb: [{ title: '首页', path: '/' }, { title: '注册', path: '' }] },
+    component: () => import('@/views/user/Register.vue')
+  },
+  {
+    path: '/hospital', name: 'HospitalList',
+    meta: { title: '医院列表', breadcrumb: [{ title: '首页', path: '/' }, { title: '医院列表', path: '' }] },
+    component: () => import('@/views/user/HospitalList.vue')
+  },
+  {
+    path: '/hospital/:id', name: 'HospitalDetail',
+    meta: { title: '医院详情', breadcrumb: [{ title: '首页', path: '/' }, { title: '医院列表', path: '/hospital' }, { title: '医院详情', path: '' }] },
+    component: () => import('@/views/user/HospitalDetail.vue')
+  },
+  {
+    path: '/doctor/:id', name: 'DoctorDetail',
+    meta: { title: '医生详情', breadcrumb: [{ title: '首页', path: '/' }, { title: '医生详情', path: '' }] },
+    component: () => import('@/views/user/DoctorDetail.vue')
+  },
+  {
+    path: '/appointment/create', name: 'AppointmentCreate',
+    meta: { title: '预约挂号', breadcrumb: [{ title: '首页', path: '/' }, { title: '预约挂号', path: '' }] },
+    component: () => import('@/views/user/AppointmentCreate.vue')
+  },
+  {
+    path: '/appointment/list', name: 'AppointmentList',
+    meta: { title: '我的预约', breadcrumb: [{ title: '首页', path: '/' }, { title: '我的预约', path: '' }] },
+    component: () => import('@/views/user/AppointmentList.vue')
+  },
+  {
+    path: '/patient', name: 'PatientProfile',
+    meta: { title: '就诊人管理', breadcrumb: [{ title: '首页', path: '/' }, { title: '就诊人管理', path: '' }] },
+    component: () => import('@/views/user/PatientProfile.vue')
+  },
+  {
+    path: '/profile/edit', name: 'ProfileEdit',
+    meta: { title: '个人信息', breadcrumb: [{ title: '首页', path: '/' }, { title: '个人信息', path: '' }] },
+    component: () => import('@/views/user/ProfileEdit.vue')
+  },
+  {
+    path: '/review/list', name: 'MyReviews',
+    meta: { title: '我的评价', breadcrumb: [{ title: '首页', path: '/' }, { title: '我的评价', path: '' }] },
+    component: () => import('@/views/user/MyReviews.vue')
+  },
+  {
+    path: '/follow/list', name: 'MyFollows',
+    meta: { title: '我的关注', breadcrumb: [{ title: '首页', path: '/' }, { title: '我的关注', path: '' }] },
+    component: () => import('@/views/user/MyFollows.vue')
+  },
   // 管理端
   { path: '/admin/login', name: 'AdminLogin', component: () => import('@/views/admin/Login.vue') },
   { path: '/admin/dashboard', name: 'Dashboard', component: () => import('@/views/admin/Dashboard.vue') },

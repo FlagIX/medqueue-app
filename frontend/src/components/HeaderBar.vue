@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { useUserStore } from '@/stores/user'
 import { departmentApi } from '@/api/department'
@@ -10,6 +10,16 @@ const userStore = useUserStore()
 const departments = ref([])
 const searchKeyword = ref('')
 const drawerVisible = ref(false)
+
+const showBack = computed(() => route.path !== '/')
+
+function goBack() {
+  if (window.history.length > 1) {
+    router.back()
+  } else {
+    router.push('/')
+  }
+}
 
 onMounted(async () => {
   try {
@@ -42,6 +52,11 @@ function handleLogout() {
 <template>
   <header class="header">
     <div class="header-inner">
+      <el-button v-if="showBack" text class="back-btn" @click="goBack">
+        <el-icon><ArrowLeft /></el-icon>
+        <span>返回</span>
+      </el-button>
+
       <div class="logo" @click="goHome">
         <span class="logo-icon">+</span>
         <span class="logo-text">MedQueue</span>
@@ -121,6 +136,12 @@ function handleLogout() {
   gap: 20px;
   padding: 0 20px;
 }
+.back-btn {
+  flex-shrink: 0;
+  color: var(--color-text);
+  font-size: 14px;
+}
+
 .logo {
   display: flex;
   align-items: center;
