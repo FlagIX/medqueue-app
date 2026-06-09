@@ -18,7 +18,7 @@ public class AppointmentRecordController {
 
     @PostMapping
     public Result bookAppointment(@RequestBody AppointmentBookingDTO dto) {
-        return appointmentRecordService.bookAppointment(dto);
+        return appointmentRecordService.createAppointmentRecord(dto);
     }
 
     @GetMapping("/list")
