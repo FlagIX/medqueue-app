@@ -1,6 +1,7 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
+import { ElMessage, ElMessageBox } from 'element-plus'
 import { followApi } from '@/api/follow'
 import HospitalCard from '@/components/HospitalCard.vue'
 
@@ -13,7 +14,7 @@ onMounted(() => loadFollows())
 async function loadFollows() {
   loading.value = true
   try {
-    const res = await followApi.list({ type: 0, current: 1, pageSize: 999 })
+    const res = await followApi.list({ type: 1 })
     if (res.success) follows.value = res.data?.records || []
   } finally { loading.value = false }
 }
@@ -21,7 +22,7 @@ async function loadFollows() {
 async function handleUnfollow(id) {
   try {
     await ElMessageBox.confirm('确定取消关注？')
-    const res = await followApi.unfollow(id, 0)
+    const res = await followApi.unfollow(id, 1)
     if (res.success) { ElMessage.success('已取消'); loadFollows() }
   } catch {}
 }

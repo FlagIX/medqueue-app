@@ -61,6 +61,33 @@ public class ReviewController {
         }
     }
 
+    @GetMapping("/of/hospital/{hospitalId}")
+    public Result queryByHospital(
+            @PathVariable("hospitalId") Long hospitalId,
+            @RequestParam(value = "current", defaultValue = "1") Integer current) {
+        Page<MedicalReview> page = reviewService.query()
+                .eq("hospital_id", hospitalId)
+                .orderByDesc("create_time")
+                .page(new Page<>(current, SystemConstants.MAX_PAGE_SIZE));
+        List<MedicalReview> records = page.getRecords();
+        if (!records.isEmpty()) {
+            List<Long> userIds = records.stream()
+                    .map(MedicalReview::getUserId)
+                    .distinct()
+                    .collect(Collectors.toList());
+            Map<Long, User> userMap = userService.listByIds(userIds).stream()
+                    .collect(Collectors.toMap(User::getId, u -> u));
+            records.forEach(review -> {
+                User u = userMap.get(review.getUserId());
+                if (u != null) {
+                    review.setName(u.getNickName());
+                    review.setIcon(u.getIcon());
+                }
+            });
+        }
+        return Result.ok(page);
+    }
+
     @GetMapping("/of/me")
     public Result queryMyReview(@RequestParam(value = "current", defaultValue = "1") Integer current) {
         UserDTO user = UserHolder.getUser();

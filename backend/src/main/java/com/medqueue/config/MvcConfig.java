@@ -26,6 +26,7 @@ public class MvcConfig implements WebMvcConfigurer {
                         "/upload/**",
                         "/review/hot",
                         "/review/page",
+                        "/review/of/hospital/**",
                         "/review-comment/of/**",
                         "/doctor/**",
                         "/user/code",

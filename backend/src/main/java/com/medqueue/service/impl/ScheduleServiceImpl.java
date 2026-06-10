@@ -7,14 +7,14 @@ import com.medqueue.service.IScheduleService;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.context.event.EventListener;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.concurrent.CompletableFuture;
 
 import static com.medqueue.utils.RedisConstants.APPOINTMENT_ORDER_KEY;
 import static com.medqueue.utils.RedisConstants.APPOINTMENT_STOCK_KEY;
@@ -29,17 +29,15 @@ public class ScheduleServiceImpl implements IScheduleService {
     @Resource
     private StringRedisTemplate stringRedisTemplate;
 
-    @PostConstruct
+    @EventListener(ApplicationReadyEvent.class)
     public void init() {
-        log.info("开始同步排班号源到 Redis...（异步）");
-        CompletableFuture.runAsync(() -> {
-            try {
-                Result result = syncAllSchedules();
-                log.info("排班号源同步完成：{}", result.getData());
-            } catch (Exception e) {
-                log.error("排班号源同步异常", e);
-            }
-        });
+        log.info("开始同步排班号源到 Redis...");
+        try {
+            Result result = syncAllSchedules();
+            log.info("排班号源同步完成：{}", result.getData());
+        } catch (Exception e) {
+            log.error("排班号源同步异常", e);
+        }
     }
 
     @Override

@@ -4,6 +4,9 @@ export const reviewApi = {
   page(params) {
     return request.get('/review/page', { params })
   },
+  byHospital(hospitalId, params) {
+    return request.get(`/review/of/hospital/${hospitalId}`, { params })
+  },
   save(data) {
     return request.post('/review', data)
   },

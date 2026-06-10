@@ -1,5 +1,6 @@
 <script setup>
 import { ref, onMounted } from 'vue'
+import { ElMessage } from 'element-plus'
 import { reviewApi } from '@/api/review'
 import { hospitalApi } from '@/api/hospital'
 import StarRating from '@/components/StarRating.vue'
@@ -22,8 +23,26 @@ async function loadReviews() {
   loading.value = true
   try {
     const res = await reviewApi.page({ current: current.value, pageSize: 10 })
-    if (res.success) { reviews.value = res.data?.records || []; total.value = res.data?.total || 0 }
+    if (res.success) {
+      reviews.value = (res.data?.records || []).map(r => ({ ...r, _liked: false }))
+      total.value = res.data?.total || 0
+    }
   } finally { loading.value = false }
+}
+
+function onPageChange(page) {
+  current.value = page
+  loadReviews()
+}
+
+async function toggleLike(r) {
+  try {
+    const res = await reviewApi.like(r.id)
+    if (res.success) {
+      r._liked = !r._liked
+      r.liked = (r.liked || 0) + (r._liked ? 1 : -1)
+    }
+  } catch {}
 }
 
 function openAdd() {
@@ -54,7 +73,24 @@ async function handleSave() {
       <div v-for="r in reviews" :key="r.id" class="review-item">
         <StarRating :model-value="r.rating ? r.rating / 10 : 0" />
         <p>{{ r.content }}</p>
-        <span class="time">{{ r.createTime }}</span>
+        <div class="review-actions">
+          <span class="time">{{ r.createTime }}</span>
+          <span class="like-btn" :class="{ liked: r._liked }" @click="toggleLike(r)">
+            <span v-if="r._liked">❤️</span>
+            <span v-else>🤍</span>
+            {{ r.liked || 0 }}
+          </span>
+        </div>
+      </div>
+
+      <div class="pagination-wrap" v-if="total > 10">
+        <el-pagination
+          v-model:current-page="current"
+          :total="total"
+          :page-size="10"
+          layout="prev, pager, next"
+          @current-change="onPageChange"
+        />
       </div>
 
       <el-dialog v-model="dialogVisible" title="发表评价" width="500px">
@@ -86,5 +122,27 @@ async function handleSave() {
   border-bottom: 1px solid #ebeef5;
 }
 .review-item p { margin: 8px 0; font-size: 14px; }
+.review-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 .time { font-size: 12px; color: #909399; }
+.like-btn {
+  font-size: 14px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: #909399;
+  transition: color 0.2s;
+  user-select: none;
+}
+.like-btn:hover { color: #f56c6c; }
+.like-btn.liked { color: #f56c6c; font-weight: 600; }
+.pagination-wrap {
+  display: flex;
+  justify-content: center;
+  margin-top: 24px;
+}
 </style>

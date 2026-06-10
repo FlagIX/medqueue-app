@@ -4,6 +4,7 @@ import com.medqueue.dto.AppointmentBookingDTO;
 import com.medqueue.dto.Result;
 import com.medqueue.dto.UserDTO;
 import com.medqueue.service.IAppointmentRecordService;
+import com.medqueue.utils.SystemConstants;
 import com.medqueue.utils.UserHolder;
 import org.springframework.web.bind.annotation.*;
 
