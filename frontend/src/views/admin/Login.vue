@@ -1,18 +1,29 @@
 <script setup>
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
+import { ElMessage } from 'element-plus'
+import { adminApi } from '@/api/admin'
 
 const router = useRouter()
 const form = ref({ username: '', password: '' })
 const loading = ref(false)
 
-function handleLogin() {
-  if (form.value.username === 'admin' && form.value.password === 'admin123') {
-    localStorage.setItem('adminToken', 'admin-token')
-    ElMessage.success('欢迎回来')
-    router.push('/admin/dashboard')
-  } else {
-    ElMessage.error('账号或密码错误')
+async function handleLogin() {
+  if (!form.value.username || !form.value.password) {
+    return ElMessage.warning('请输入账号和密码')
+  }
+  loading.value = true
+  try {
+    const res = await adminApi.login(form.value)
+    if (res.success) {
+      localStorage.setItem('adminToken', res.data)
+      ElMessage.success('欢迎回来')
+      router.push('/admin/dashboard')
+    }
+  } catch {
+    // 错误已由响应拦截器统一处理
+  } finally {
+    loading.value = false
   }
 }
 </script>
