@@ -14,14 +14,11 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.medqueue.utils.RedisIdWorker;
 import com.medqueue.utils.UserHolder;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import org.redisson.api.RLock;
-import org.redisson.api.RedissonClient;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.core.script.DefaultRedisScript;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import java.time.LocalDate;
@@ -46,9 +43,6 @@ public class AppointmentRecordServiceImpl extends ServiceImpl<AppointmentRecordM
     private RedisIdWorker redisIdWorker;
     @Resource
     private StringRedisTemplate stringRedisTemplate;
-    @Resource
-    private RedissonClient redissonClient;
-
     private final BlockingQueue<AppointmentRecord> queue = new ArrayBlockingQueue<>(1024 * 1024);
 
     private static final DefaultRedisScript<Long> APPOINTMENT_SCRIPT;
@@ -135,58 +129,61 @@ public class AppointmentRecordServiceImpl extends ServiceImpl<AppointmentRecordM
         return Result.ok(orderId);
     }
 
-    @Override
-    @Transactional
-    public Result createAppointmentRecord(AppointmentBookingDTO dto) {
-        if (dto.getScheduleId() == null || dto.getPatientId() == null) {
-            return Result.fail("参数错误");
-        }
-
-        Long userId = UserHolder.getUser().getId();
-        RLock lock = redissonClient.getLock("lock:appointment:" + dto.getScheduleId());
-        try {
-            lock.lock();
-            long count = lambdaQuery()
-                    .eq(AppointmentRecord::getUserId, userId)
-                    .eq(AppointmentRecord::getScheduleId, dto.getScheduleId())
-                    .count();
-            if (count > 0) {
-                return Result.fail("用户已预约，不可重复预约");
-            }
-
-            boolean success = doctorScheduleService.update()
-                    .setSql("remain_count = remain_count - 1")
-                    .eq("schedule_id", dto.getScheduleId())
-                    .gt("remain_count", 0)
-                    .update();
-            if (!success) {
-                return Result.fail("号源不足");
-            }
-
-            DoctorSchedule schedule = doctorScheduleService.getById(dto.getScheduleId());
-            Doctor doctor = doctorService.getById(dto.getDoctorId());
-
-            long orderId = redisIdWorker.nextId("appointment");
-            AppointmentRecord record = new AppointmentRecord();
-            record.setId(orderId);
-            record.setUserId(userId);
-            record.setPatientId(dto.getPatientId());
-            record.setDoctorId(dto.getDoctorId());
-            record.setScheduleId(dto.getScheduleId());
-            record.setHospitalId(doctor != null ? doctor.getHospitalId() : null);
-            record.setFeeId(schedule != null ? schedule.getFeeId() : null);
-            record.setAppointDate(LocalDate.parse(dto.getDate()));
-            record.setTimeSlot(dto.getTimeSlot());
-            record.setStatus(1);
-            record.setCreateTime(LocalDateTime.now());
-            record.setUpdateTime(LocalDateTime.now());
-            save(record);
-
-            return Result.ok(orderId);
-        } finally {
-            lock.unlock();
-        }
-    }
+    // ==================== REFERENCE: 分布式锁+同步写库备选方案 ====================
+    // 如需切换为分布式锁方案，取消注释此方法，并将 Controller 中的调用改为 createAppointmentRecord
+    // 同时确保 RedissonClient、@Transactional 等依赖可用
+    // @Override
+    // @Transactional
+    // public Result createAppointmentRecord(AppointmentBookingDTO dto) {
+    //     if (dto.getScheduleId() == null || dto.getPatientId() == null) {
+    //         return Result.fail("参数错误");
+    //     }
+    //
+    //     Long userId = UserHolder.getUser().getId();
+    //     RLock lock = redissonClient.getLock("lock:appointment:" + dto.getScheduleId());
+    //     try {
+    //         lock.lock();
+    //         long count = lambdaQuery()
+    //                 .eq(AppointmentRecord::getUserId, userId)
+    //                 .eq(AppointmentRecord::getScheduleId, dto.getScheduleId())
+    //                 .count();
+    //         if (count > 0) {
+    //             return Result.fail("用户已预约，不可重复预约");
+    //         }
+    //
+    //         boolean success = doctorScheduleService.update()
+    //                 .setSql("remain_count = remain_count - 1")
+    //                 .eq("schedule_id", dto.getScheduleId())
+    //                 .gt("remain_count", 0)
+    //                 .update();
+    //         if (!success) {
+    //             return Result.fail("号源不足");
+    //         }
+    //
+    //         DoctorSchedule schedule = doctorScheduleService.getById(dto.getScheduleId());
+    //         Doctor doctor = doctorService.getById(dto.getDoctorId());
+    //
+    //         long orderId = redisIdWorker.nextId("appointment");
+    //         AppointmentRecord record = new AppointmentRecord();
+    //         record.setId(orderId);
+    //         record.setUserId(userId);
+    //         record.setPatientId(dto.getPatientId());
+    //         record.setDoctorId(dto.getDoctorId());
+    //         record.setScheduleId(dto.getScheduleId());
+    //         record.setHospitalId(doctor != null ? doctor.getHospitalId() : null);
+    //         record.setFeeId(schedule != null ? schedule.getFeeId() : null);
+    //         record.setAppointDate(LocalDate.parse(dto.getDate()));
+    //         record.setTimeSlot(dto.getTimeSlot());
+    //         record.setStatus(1);
+    //         record.setCreateTime(LocalDateTime.now());
+    //         record.setUpdateTime(LocalDateTime.now());
+    //         save(record);
+    //
+    //         return Result.ok(orderId);
+    //     } finally {
+    //         lock.unlock();
+    //     }
+    // }
 
     @Override
     public Result queryUserRecords(Long userId, Integer current, Integer pageSize, Integer status) {

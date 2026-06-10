@@ -2,34 +2,4 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.medqueue.mapper.MedicalReviewMapper">
 
-    <resultMap id="ReviewWithUserMap" type="com.medqueue.entity.MedicalReview">
-        <id column="id" property="id"/>
-        <result column="hospital_id" property="hospitalId"/>
-        <result column="doctor_id" property="doctorId"/>
-        <result column="user_id" property="userId"/>
-        <result column="content" property="content"/>
-        <result column="liked" property="liked"/>
-        <result column="rating" property="rating"/>
-        <result column="status" property="status"/>
-        <result column="create_time" property="createTime"/>
-        <result column="update_time" property="updateTime"/>
-        <result column="name" property="name"/>
-        <result column="icon" property="icon"/>
-    </resultMap>
-
-    <select id="queryReviewsByHospital" resultMap="ReviewWithUserMap">
-        SELECT r.*, u.nick_name AS name, u.icon
-        FROM tb_medical_review r
-        LEFT JOIN tb_user u ON r.user_id = u.id
-        WHERE r.hospital_id = #{hospitalId}
-        ORDER BY r.create_time DESC
-    </select>
-
-    <select id="queryReviewsByDoctor" resultMap="ReviewWithUserMap">
-        SELECT r.*, u.nick_name AS name, u.icon
-        FROM tb_medical_review r
-        LEFT JOIN tb_user u ON r.user_id = u.id
-        WHERE r.doctor_id = #{doctorId}
-        ORDER BY r.create_time DESC
-    </select>
 </mapper>

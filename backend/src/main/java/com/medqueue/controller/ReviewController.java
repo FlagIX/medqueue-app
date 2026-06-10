@@ -9,10 +9,15 @@ import com.medqueue.service.IMedicalReviewService;
 import com.medqueue.service.IUserService;
 import com.medqueue.utils.SystemConstants;
 import com.medqueue.utils.UserHolder;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+import static com.medqueue.utils.RedisConstants.REVIEW_LIKED_KEY;
 
 @RestController
 @RequestMapping("/review")
@@ -31,11 +36,29 @@ public class ReviewController {
         return Result.ok(review.getId());
     }
 
+    @Resource
+    private StringRedisTemplate stringRedisTemplate;
+
     @PutMapping("/like/{id}")
     public Result likeReview(@PathVariable("id") Long id) {
-        reviewService.update()
-                .setSql("liked = liked + 1").eq("id", id).update();
-        return Result.ok();
+        UserDTO user = UserHolder.getUser();
+        if (user == null) {
+            return Result.fail("请先登录");
+        }
+        String key = REVIEW_LIKED_KEY + id;
+        String userId = user.getId().toString();
+        Boolean isLiked = stringRedisTemplate.opsForSet().isMember(key, userId);
+        if (Boolean.TRUE.equals(isLiked)) {
+            // 已赞 → 取消赞
+            stringRedisTemplate.opsForSet().remove(key, userId);
+            reviewService.update().setSql("liked = liked - 1").eq("id", id).gt("liked", 0).update();
+            return Result.ok("取消点赞");
+        } else {
+            // 未赞 → 点赞
+            stringRedisTemplate.opsForSet().add(key, userId);
+            reviewService.update().setSql("liked = liked + 1").eq("id", id).update();
+            return Result.ok("点赞成功");
+        }
     }
 
     @GetMapping("/of/me")
@@ -52,13 +75,21 @@ public class ReviewController {
                 .orderByDesc("create_time")
                 .page(new Page<>(current, SystemConstants.MAX_PAGE_SIZE));
         List<MedicalReview> records = page.getRecords();
-        records.forEach(review -> {
-            User user = userService.getById(review.getUserId());
-            if (user != null) {
-                review.setName(user.getNickName());
-                review.setIcon(user.getIcon());
-            }
-        });
+        if (!records.isEmpty()) {
+            List<Long> userIds = records.stream()
+                    .map(MedicalReview::getUserId)
+                    .distinct()
+                    .collect(Collectors.toList());
+            Map<Long, User> userMap = userService.listByIds(userIds).stream()
+                    .collect(Collectors.toMap(User::getId, u -> u));
+            records.forEach(review -> {
+                User u = userMap.get(review.getUserId());
+                if (u != null) {
+                    review.setName(u.getNickName());
+                    review.setIcon(u.getIcon());
+                }
+            });
+        }
         return Result.ok(page);
     }
 
@@ -68,12 +99,21 @@ public class ReviewController {
                 .orderByDesc("liked")
                 .page(new Page<>(current, SystemConstants.MAX_PAGE_SIZE));
         List<MedicalReview> records = page.getRecords();
-        records.forEach(review -> {
-            Long userId = review.getUserId();
-            User user = userService.getById(userId);
-            review.setName(user.getNickName());
-            review.setIcon(user.getIcon());
-        });
+        if (!records.isEmpty()) {
+            List<Long> userIds = records.stream()
+                    .map(MedicalReview::getUserId)
+                    .distinct()
+                    .collect(Collectors.toList());
+            Map<Long, User> userMap = userService.listByIds(userIds).stream()
+                    .collect(Collectors.toMap(User::getId, u -> u));
+            records.forEach(review -> {
+                User u = userMap.get(review.getUserId());
+                if (u != null) {
+                    review.setName(u.getNickName());
+                    review.setIcon(u.getIcon());
+                }
+            });
+        }
         return Result.ok(page);
     }
 }

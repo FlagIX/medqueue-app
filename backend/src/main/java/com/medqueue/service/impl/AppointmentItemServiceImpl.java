@@ -18,9 +18,4 @@ public class AppointmentItemServiceImpl extends ServiceImpl<AppointmentItemMappe
         List<AppointmentItem> items = getBaseMapper().queryItemsOfHospital(hospitalId);
         return Result.ok(items);
     }
-
-    @Override
-    public void addAppointmentItem(AppointmentItem item) {
-        save(item);
-    }
 }

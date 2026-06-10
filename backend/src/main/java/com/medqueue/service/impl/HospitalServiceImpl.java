@@ -19,8 +19,7 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
@@ -95,16 +94,39 @@ public class HospitalServiceImpl extends ServiceImpl<HospitalMapper, Hospital> i
 
     @Override
     public Result queryNearby(Double x, Double y, Integer distance) {
+        // 1. 查询指定范围内的医院 GEO 信息（含距离）
         Circle circle = new Circle(new Point(x, y), new Distance(distance, Metrics.KILOMETERS));
         GeoResults<RedisGeoCommands.GeoLocation<String>> results =
                 stringRedisTemplate.opsForGeo().radius(HOSPITAL_GEO_KEY, circle);
-        List<Long> ids = results.getContent().stream()
-                .map(r -> Long.valueOf(r.getContent().getName()))
-                .collect(Collectors.toList());
-        if (ids.isEmpty()) {
+
+        if (results.getContent().isEmpty()) {
             return Result.ok(Collections.emptyList());
         }
-        List<Hospital> list = lambdaQuery().in(Hospital::getId, ids).list();
-        return Result.ok(list);
+
+        // 2. 提取医院 ID 和对应的距离（按距离升序）
+        Map<Long, Double> distanceMap = new LinkedHashMap<>();
+        results.getContent().stream()
+                .sorted(Comparator.comparing(r -> r.getDistance().getValue()))
+                .forEach(r -> {
+                    Long id = Long.valueOf(r.getContent().getName());
+                    distanceMap.put(id, r.getDistance().getValue());
+                });
+
+        // 3. 根据 ID 查询医院详情（保持距离排序）
+        List<Hospital> list = lambdaQuery().in(Hospital::getId, new ArrayList<>(distanceMap.keySet())).list();
+
+        // 4. 填充 distance 并按距离排序
+        Map<Long, Hospital> hospitalMap = list.stream()
+                .collect(Collectors.toMap(Hospital::getId, h -> h));
+        List<Hospital> ordered = new ArrayList<>(distanceMap.size());
+        distanceMap.forEach((id, dist) -> {
+            Hospital h = hospitalMap.get(id);
+            if (h != null) {
+                h.setDistance(dist);
+                ordered.add(h);
+            }
+        });
+
+        return Result.ok(ordered);
     }
 }

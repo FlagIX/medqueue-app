@@ -1,8 +1,5 @@
 package com.medqueue.utils;
 
-/**
- * @author 虎哥
- */
 public abstract class RegexPatterns {
     /**
      * 手机号正则
@@ -20,5 +17,9 @@ public abstract class RegexPatterns {
      * 验证码正则, 6位数字或字母
      */
     public static final String VERIFY_CODE_REGEX = "^[a-zA-Z\\d]{6}$";
+    /**
+     * 身份证正则，15位或18位（末位允许X/x）
+     */
+    public static final String ID_CARD_REGEX = "^(^[1-9]\\d{14}$|^[1-9]\\d{16}[\\dXx]$)";
 
 }

@@ -4,6 +4,7 @@ import com.medqueue.dto.Result;
 import com.medqueue.entity.PatientProfile;
 import com.medqueue.mapper.PatientProfileMapper;
 import com.medqueue.service.IPatientProfileService;
+import com.medqueue.utils.RegexUtils;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +15,9 @@ public class PatientProfileServiceImpl extends ServiceImpl<PatientProfileMapper,
 
     @Override
     public Result addProfile(PatientProfile profile, Long userId) {
+        if (RegexUtils.isIdCardInvalid(profile.getIdCard())) {
+            return Result.fail("身份证格式错误");
+        }
         Long count = lambdaQuery().eq(PatientProfile::getIdCard, profile.getIdCard()).count();
         if (count > 0) {
             return Result.fail("该身份证已被绑定，请核对后重试");
@@ -36,10 +40,15 @@ public class PatientProfileServiceImpl extends ServiceImpl<PatientProfileMapper,
         if (existing == null) {
             return Result.fail("就诊人不存在");
         }
-        if (profile.getIdCard() != null && !profile.getIdCard().equals(existing.getIdCard())) {
-            Long count = lambdaQuery().eq(PatientProfile::getIdCard, profile.getIdCard()).count();
-            if (count > 0) {
-                return Result.fail("该身份证已被绑定，请核对后重试");
+        if (profile.getIdCard() != null) {
+            if (RegexUtils.isIdCardInvalid(profile.getIdCard())) {
+                return Result.fail("身份证格式错误");
+            }
+            if (!profile.getIdCard().equals(existing.getIdCard())) {
+                Long count = lambdaQuery().eq(PatientProfile::getIdCard, profile.getIdCard()).count();
+                if (count > 0) {
+                    return Result.fail("该身份证已被绑定，请核对后重试");
+                }
             }
         }
         profile.setUserId(null).setCreateTime(null).setUpdateTime(LocalDateTime.now());

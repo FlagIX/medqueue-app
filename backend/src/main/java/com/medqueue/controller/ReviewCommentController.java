@@ -1,9 +1,11 @@
 package com.medqueue.controller;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.medqueue.dto.Result;
 import com.medqueue.dto.UserDTO;
 import com.medqueue.entity.ReviewComment;
 import com.medqueue.service.IReviewCommentService;
+import com.medqueue.utils.SystemConstants;
 import com.medqueue.utils.UserHolder;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,10 +27,14 @@ public class ReviewCommentController {
     }
 
     @GetMapping("/of/{reviewId}")
-    public Result queryCommentsOfReview(@PathVariable("reviewId") Long reviewId) {
-        return Result.ok(reviewCommentService.query()
+    public Result queryCommentsOfReview(
+            @PathVariable("reviewId") Long reviewId,
+            @RequestParam(value = "current", defaultValue = "1") Integer current,
+            @RequestParam(value = "pageSize", defaultValue = "10") Integer pageSize) {
+        Page<ReviewComment> page = reviewCommentService.query()
                 .eq("review_id", reviewId)
                 .orderByDesc("create_time")
-                .list());
+                .page(new Page<>(current, Math.min(pageSize, SystemConstants.MAX_PAGE_SIZE)));
+        return Result.ok(page);
     }
 }

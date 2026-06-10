@@ -14,7 +14,7 @@ import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Set;
+import java.util.concurrent.CompletableFuture;
 
 import static com.medqueue.utils.RedisConstants.APPOINTMENT_ORDER_KEY;
 import static com.medqueue.utils.RedisConstants.APPOINTMENT_STOCK_KEY;
@@ -31,9 +31,15 @@ public class ScheduleServiceImpl implements IScheduleService {
 
     @PostConstruct
     public void init() {
-        log.info("开始同步排班号源到 Redis...");
-        Result result = syncAllSchedules();
-        log.info("排班号源同步完成：{}", result.getData());
+        log.info("开始同步排班号源到 Redis...（异步）");
+        CompletableFuture.runAsync(() -> {
+            try {
+                Result result = syncAllSchedules();
+                log.info("排班号源同步完成：{}", result.getData());
+            } catch (Exception e) {
+                log.error("排班号源同步异常", e);
+            }
+        });
     }
 
     @Override

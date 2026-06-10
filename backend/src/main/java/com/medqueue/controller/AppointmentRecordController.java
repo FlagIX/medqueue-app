@@ -18,7 +18,7 @@ public class AppointmentRecordController {
 
     @PostMapping
     public Result bookAppointment(@RequestBody AppointmentBookingDTO dto) {
-        return appointmentRecordService.createAppointmentRecord(dto);
+        return appointmentRecordService.bookAppointment(dto);
     }
 
     @GetMapping("/list")
@@ -27,6 +27,7 @@ public class AppointmentRecordController {
             @RequestParam(value = "pageSize", defaultValue = "10") Integer pageSize,
             @RequestParam(required = false) Integer status) {
         UserDTO user = UserHolder.getUser();
+        pageSize = Math.min(pageSize, SystemConstants.MAX_PAGE_SIZE);
         return appointmentRecordService.queryUserRecords(user.getId(), current, pageSize, status);
     }
 

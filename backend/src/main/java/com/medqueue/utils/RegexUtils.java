@@ -2,9 +2,6 @@ package com.medqueue.utils;
 
 import cn.hutool.core.util.StrUtil;
 
-/**
- * @author 虎哥
- */
 public class RegexUtils {
     /**
      * 是否是无效手机格式
@@ -30,6 +27,14 @@ public class RegexUtils {
      */
     public static boolean isCodeInvalid(String code){
         return mismatch(code, RegexPatterns.VERIFY_CODE_REGEX);
+    }
+    /**
+     * 是否是无效身份证格式
+     * @param idCard 要校验的身份证号
+     * @return true:无效，false：有效
+     */
+    public static boolean isIdCardInvalid(String idCard){
+        return mismatch(idCard, RegexPatterns.ID_CARD_REGEX);
     }
 
     // 校验是否不符合正则格式

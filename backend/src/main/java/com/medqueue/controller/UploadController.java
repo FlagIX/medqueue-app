@@ -34,7 +34,7 @@ public class UploadController {
         }
     }
 
-    @GetMapping("/review/delete")
+    @DeleteMapping("/review/delete")
     public Result deleteReviewImg(@RequestParam("name") String filename) {
         File file = new File(SystemConstants.IMAGE_UPLOAD_DIR, filename);
         if (file.isDirectory()) {
