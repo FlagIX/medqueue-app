@@ -9,10 +9,14 @@ import com.medqueue.service.IUserInfoService;
 import com.medqueue.service.IUserService;
 import com.medqueue.utils.UserHolder;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+
+import static com.medqueue.utils.RedisConstants.LOGIN_USER_KEY;
 
 @Slf4j
 @RestController
@@ -40,9 +44,17 @@ public class UserController {
         return userService.register(loginForm);
     }
 
+    @Resource
+    private StringRedisTemplate stringRedisTemplate;
+
     @PostMapping("/logout")
-    public Result logout() {
-        return Result.fail("功能未完成");
+    public Result logout(HttpServletRequest request) {
+        String token = request.getHeader("authorization");
+        if (token != null) {
+            stringRedisTemplate.delete(LOGIN_USER_KEY + token);
+        }
+        UserHolder.removeUser();
+        return Result.ok();
     }
 
     @GetMapping("/me")
