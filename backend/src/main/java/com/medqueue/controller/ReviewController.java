@@ -1,6 +1,8 @@
 package com.medqueue.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.medqueue.common.BizException;
+import com.medqueue.common.ErrorCode;
 import com.medqueue.dto.Result;
 import com.medqueue.dto.UserDTO;
 import com.medqueue.entity.MedicalReview;
@@ -43,7 +45,7 @@ public class ReviewController {
     public Result likeReview(@PathVariable("id") Long id) {
         UserDTO user = UserHolder.getUser();
         if (user == null) {
-            return Result.fail("请先登录");
+            throw new BizException(ErrorCode.UNAUTHORIZED, "请先登录");
         }
         String key = REVIEW_LIKED_KEY + id;
         String userId = user.getId().toString();

@@ -2,6 +2,8 @@ package com.medqueue.service.impl;
 
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.medqueue.common.BizException;
+import com.medqueue.common.ErrorCode;
 import com.medqueue.dto.Result;
 import com.medqueue.entity.Doctor;
 import com.medqueue.mapper.DoctorMapper;
@@ -28,7 +30,7 @@ public class DoctorServiceImpl extends ServiceImpl<DoctorMapper, Doctor> impleme
         Doctor doctor = cacheClient
                 .getWithPassThrough(CACHE_DOCTOR_KEY + id, Doctor.class, id, CACHE_DOCTOR_TTL, TimeUnit.MINUTES, this::getById);
         if (doctor == null) {
-            return Result.fail("医生不存在");
+            throw new BizException(ErrorCode.DOCTOR_NOT_EXIST, "医生不存在");
         }
         return Result.ok(doctor);
     }

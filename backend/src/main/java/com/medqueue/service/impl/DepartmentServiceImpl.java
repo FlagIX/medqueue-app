@@ -1,6 +1,8 @@
 package com.medqueue.service.impl;
 
 import cn.hutool.json.JSONUtil;
+import com.medqueue.common.BizException;
+import com.medqueue.common.ErrorCode;
 import com.medqueue.dto.Result;
 import com.medqueue.entity.Department;
 import com.medqueue.mapper.DepartmentMapper;
@@ -30,7 +32,7 @@ public class DepartmentServiceImpl extends ServiceImpl<DepartmentMapper, Departm
         List<String> cacheList = stringRedisTemplate.opsForList().range(key, 0, -1);
         if (cacheList != null) {
             if (cacheList.isEmpty() || "_".equals(cacheList.get(0))) {
-                return Result.fail("科室不存在");
+                throw new BizException(ErrorCode.DEPARTMENT_NOT_EXIST, "科室不存在");
             }
             List<Department> list = new ArrayList<>(cacheList.size());
             for (String json : cacheList) {
@@ -42,7 +44,7 @@ public class DepartmentServiceImpl extends ServiceImpl<DepartmentMapper, Departm
         if (dbList == null || dbList.isEmpty()) {
             stringRedisTemplate.opsForList().rightPushAll(key, "_");
             stringRedisTemplate.expire(key, CACHE_NULL_TTL, TimeUnit.MINUTES);
-            return Result.fail("科室不存在");
+            throw new BizException(ErrorCode.DEPARTMENT_NOT_EXIST, "科室不存在");
         }
         List<String> jsonList = new ArrayList<>(dbList.size());
         for (Department department : dbList) {

@@ -1,5 +1,7 @@
 package com.medqueue.service.impl;
 
+import com.medqueue.common.BizException;
+import com.medqueue.common.ErrorCode;
 import com.medqueue.dto.Result;
 import com.medqueue.entity.PatientProfile;
 import com.medqueue.mapper.PatientProfileMapper;
@@ -16,11 +18,11 @@ public class PatientProfileServiceImpl extends ServiceImpl<PatientProfileMapper,
     @Override
     public Result addProfile(PatientProfile profile, Long userId) {
         if (RegexUtils.isIdCardInvalid(profile.getIdCard())) {
-            return Result.fail("身份证格式错误");
+            throw new BizException(ErrorCode.ID_CARD_FORMAT_ERROR, "身份证格式错误");
         }
         Long count = lambdaQuery().eq(PatientProfile::getIdCard, profile.getIdCard()).count();
         if (count > 0) {
-            return Result.fail("该身份证已被绑定，请核对后重试");
+            throw new BizException(ErrorCode.PATIENT_ID_CARD_BOUND, "该身份证已被绑定，请核对后重试");
         }
         profile.setUserId(userId);
         profile.setCreateTime(LocalDateTime.now());
@@ -38,16 +40,16 @@ public class PatientProfileServiceImpl extends ServiceImpl<PatientProfileMapper,
     public Result updateProfile(PatientProfile profile) {
         PatientProfile existing = getById(profile.getId());
         if (existing == null) {
-            return Result.fail("就诊人不存在");
+            throw new BizException(ErrorCode.PATIENT_NOT_EXIST, "就诊人不存在");
         }
         if (profile.getIdCard() != null) {
             if (RegexUtils.isIdCardInvalid(profile.getIdCard())) {
-                return Result.fail("身份证格式错误");
+                throw new BizException(ErrorCode.ID_CARD_FORMAT_ERROR, "身份证格式错误");
             }
             if (!profile.getIdCard().equals(existing.getIdCard())) {
                 Long count = lambdaQuery().eq(PatientProfile::getIdCard, profile.getIdCard()).count();
                 if (count > 0) {
-                    return Result.fail("该身份证已被绑定，请核对后重试");
+                    throw new BizException(ErrorCode.PATIENT_ID_CARD_BOUND, "该身份证已被绑定，请核对后重试");
                 }
             }
         }
@@ -60,10 +62,10 @@ public class PatientProfileServiceImpl extends ServiceImpl<PatientProfileMapper,
     public Result deleteProfile(Long id, Long userId) {
         PatientProfile existing = getById(id);
         if (existing == null) {
-            return Result.fail("就诊人不存在");
+            throw new BizException(ErrorCode.PATIENT_NOT_EXIST, "就诊人不存在");
         }
         if (!existing.getUserId().equals(userId)) {
-            return Result.fail("无权删除该就诊人");
+            throw new BizException(ErrorCode.PATIENT_DELETE_FORBIDDEN, "无权删除该就诊人");
         }
         removeById(id);
         return Result.ok();

@@ -1,5 +1,7 @@
 package com.medqueue.service.impl;
 
+import com.medqueue.common.BizException;
+import com.medqueue.common.ErrorCode;
 import com.medqueue.dto.AppointmentBookingDTO;
 import com.medqueue.dto.Result;
 import com.medqueue.dto.UserDTO;
@@ -97,19 +99,19 @@ public class AppointmentRecordServiceImpl extends ServiceImpl<AppointmentRecordM
     @Override
     public Result bookAppointment(AppointmentBookingDTO dto) {
         if (dto.getScheduleId() == null || dto.getPatientId() == null) {
-            return Result.fail("参数错误");
+            throw new BizException(ErrorCode.APPOINTMENT_PARAM_ERROR, "参数错误");
         }
 
         UserDTO user = UserHolder.getUser();
 
         DoctorSchedule schedule = doctorScheduleService.getById(dto.getScheduleId());
         if (schedule == null) {
-            return Result.fail("排班不存在");
+            throw new BizException(ErrorCode.SCHEDULE_NOT_EXIST, "排班不存在");
         }
 
         Doctor doctor = doctorService.getById(dto.getDoctorId());
         if (doctor == null) {
-            return Result.fail("医生不存在");
+            throw new BizException(ErrorCode.DOCTOR_NOT_EXIST, "医生不存在");
         }
 
         Long result = stringRedisTemplate.execute(
@@ -119,8 +121,11 @@ public class AppointmentRecordServiceImpl extends ServiceImpl<AppointmentRecordM
                 user.getId().toString()
         );
         int r = result.intValue();
-        if (r != 0) {
-            return Result.fail(r == 1 ? "号源不足" : "用户已预约，不可重复预约");
+        if (r == 1) {
+            throw new BizException(ErrorCode.APPOINTMENT_STOCK_SHORTAGE, "号源不足");
+        }
+        if (r == 2) {
+            throw new BizException(ErrorCode.APPOINTMENT_DUPLICATE, "用户已预约，不可重复预约");
         }
 
         long orderId = redisIdWorker.nextId("appointment");
@@ -203,10 +208,10 @@ public class AppointmentRecordServiceImpl extends ServiceImpl<AppointmentRecordM
     public Result queryDetail(Long id, Long userId) {
         AppointmentRecord record = getById(id);
         if (record == null) {
-            return Result.fail("预约记录不存在");
+            throw new BizException(ErrorCode.APPOINTMENT_NOT_EXIST, "预约记录不存在");
         }
         if (!record.getUserId().equals(userId)) {
-            return Result.fail("无权查看该记录");
+            throw new BizException(ErrorCode.APPOINTMENT_VIEW_FORBIDDEN, "无权查看该记录");
         }
 
         Map<String, Object> detail = new HashMap<>();
@@ -259,13 +264,13 @@ public class AppointmentRecordServiceImpl extends ServiceImpl<AppointmentRecordM
     public Result cancelAppointment(Long id, Long userId) {
         AppointmentRecord record = getById(id);
         if (record == null) {
-            return Result.fail("预约记录不存在");
+            throw new BizException(ErrorCode.APPOINTMENT_NOT_EXIST, "预约记录不存在");
         }
         if (!record.getUserId().equals(userId)) {
-            return Result.fail("无权取消该预约");
+            throw new BizException(ErrorCode.APPOINTMENT_CANCEL_FORBIDDEN, "无权取消该预约");
         }
         if (record.getStatus() != 1) {
-            return Result.fail("当前状态不可取消");
+            throw new BizException(ErrorCode.APPOINTMENT_CANCEL_FORBIDDEN, "当前状态不可取消");
         }
 
         record.setStatus(3);

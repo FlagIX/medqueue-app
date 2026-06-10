@@ -1,5 +1,7 @@
 package com.medqueue.service.impl;
 
+import com.medqueue.common.BizException;
+import com.medqueue.common.ErrorCode;
 import com.medqueue.dto.Result;
 import com.medqueue.entity.DoctorSchedule;
 import com.medqueue.mapper.DoctorScheduleMapper;
@@ -63,7 +65,7 @@ public class ScheduleServiceImpl implements IScheduleService {
     public Result syncSchedule(Long scheduleId) {
         DoctorSchedule schedule = doctorScheduleMapper.selectById(scheduleId);
         if (schedule == null) {
-            return Result.fail("排班不存在");
+            throw new BizException(ErrorCode.SCHEDULE_NOT_EXIST, "排班不存在");
         }
 
         String stockKey = APPOINTMENT_STOCK_KEY + scheduleId;

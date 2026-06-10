@@ -2,6 +2,8 @@ package com.medqueue.controller;
 
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.util.StrUtil;
+import com.medqueue.common.BizException;
+import com.medqueue.common.ErrorCode;
 import com.medqueue.dto.Result;
 import com.medqueue.utils.SystemConstants;
 import lombok.extern.slf4j.Slf4j;
@@ -30,7 +32,7 @@ public class UploadController {
             log.debug("文件上传成功，{}", fileName);
             return Result.ok(fileName);
         } catch (IOException e) {
-            throw new RuntimeException("文件上传失败", e);
+            throw new BizException(ErrorCode.FILE_UPLOAD_ERROR, "文件上传失败", e);
         }
     }
 
@@ -38,7 +40,7 @@ public class UploadController {
     public Result deleteReviewImg(@RequestParam("name") String filename) {
         File file = new File(SystemConstants.IMAGE_UPLOAD_DIR, filename);
         if (file.isDirectory()) {
-            return Result.fail("错误的文件名称");
+            throw new BizException(ErrorCode.FILE_NAME_ERROR, "错误的文件名称");
         }
         FileUtil.del(file);
         return Result.ok();

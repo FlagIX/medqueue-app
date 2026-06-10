@@ -1,5 +1,7 @@
 package com.medqueue.service.impl;
 
+import com.medqueue.common.BizException;
+import com.medqueue.common.ErrorCode;
 import com.medqueue.dto.Result;
 import com.medqueue.entity.Hospital;
 import com.medqueue.mapper.HospitalMapper;
@@ -37,7 +39,7 @@ public class HospitalServiceImpl extends ServiceImpl<HospitalMapper, Hospital> i
         Hospital hospital = cacheClient
                 .getWithPassThrough(CACHE_HOSPITAL_KEY + id, Hospital.class, id, CACHE_HOSPITAL_TTL, TimeUnit.MINUTES, this::getById);
         if (hospital == null) {
-            return Result.fail("医院不存在");
+            throw new BizException(ErrorCode.HOSPITAL_NOT_EXIST, "医院不存在");
         }
         return Result.ok(hospital);
     }
@@ -52,7 +54,7 @@ public class HospitalServiceImpl extends ServiceImpl<HospitalMapper, Hospital> i
         Hospital hospital = cacheClient
                 .getWithPassThrough(CACHE_HOSPITAL_KEY + id, Hospital.class, id, CACHE_HOSPITAL_TTL, TimeUnit.MINUTES, this::getById);
         if (hospital == null) {
-            return Result.fail("医院不存在");
+            throw new BizException(ErrorCode.HOSPITAL_NOT_EXIST, "医院不存在");
         }
         return Result.ok(hospital);
     }
@@ -62,7 +64,7 @@ public class HospitalServiceImpl extends ServiceImpl<HospitalMapper, Hospital> i
         Hospital hospital = cacheClient
                 .getWithLogicalExpire(CACHE_HOSPITAL_KEY + id, Hospital.class, id, CACHE_HOSPITAL_TTL, TimeUnit.MINUTES, this::getById);
         if (hospital == null) {
-            return Result.fail("医院不存在");
+            throw new BizException(ErrorCode.HOSPITAL_NOT_EXIST, "医院不存在");
         }
         return Result.ok(hospital);
     }
@@ -71,7 +73,7 @@ public class HospitalServiceImpl extends ServiceImpl<HospitalMapper, Hospital> i
     public Result updateHospital(Hospital hospital) {
         Long id = hospital.getId();
         if (id == null) {
-            return Result.fail("医院id不能为空");
+            throw new BizException(ErrorCode.HOSPITAL_ID_REQUIRED, "医院id不能为空");
         }
         updateById(hospital);
         stringRedisTemplate.delete(CACHE_HOSPITAL_KEY + id);

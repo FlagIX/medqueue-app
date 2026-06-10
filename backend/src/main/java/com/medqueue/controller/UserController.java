@@ -8,6 +8,8 @@ import com.medqueue.entity.UserInfo;
 import com.medqueue.service.IUserInfoService;
 import com.medqueue.service.IUserService;
 import com.medqueue.utils.UserHolder;
+import com.medqueue.common.BizException;
+import com.medqueue.common.ErrorCode;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.bind.annotation.*;
@@ -78,7 +80,7 @@ public class UserController {
     public Result myInfo() {
         UserDTO userDTO = UserHolder.getUser();
         if (userDTO == null) {
-            return Result.fail("请先登录");
+            throw new BizException(ErrorCode.UNAUTHORIZED, "请先登录");
         }
         UserInfo info = userInfoService.getById(userDTO.getId());
         return Result.ok(info);

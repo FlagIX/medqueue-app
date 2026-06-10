@@ -5,6 +5,8 @@ import cn.hutool.core.lang.UUID;
 import cn.hutool.core.util.RandomUtil;
 import cn.hutool.crypto.digest.BCrypt;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.medqueue.common.BizException;
+import com.medqueue.common.ErrorCode;
 import com.medqueue.dto.LoginFormDTO;
 import com.medqueue.dto.ProfileUpdateDTO;
 import com.medqueue.dto.Result;
@@ -43,7 +45,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     @Override
     public Result sendCode(String phone, HttpSession session) {
         if (RegexUtils.isPhoneInvalid(phone)) {
-            return Result.fail("手机格式错误");
+            throw new BizException(ErrorCode.PHONE_FORMAT_ERROR, "手机格式错误");
         }
         String code = RandomUtil.randomNumbers(6);
         stringRedisTemplate.opsForValue().set(LOGIN_CODE_KEY + phone, code, LOGIN_CODE_TTL, TimeUnit.MINUTES);
@@ -55,25 +57,25 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     public Result login(LoginFormDTO loginForm, HttpSession session) {
         String phone = loginForm.getPhone();
         if (RegexUtils.isPhoneInvalid(phone)) {
-            return Result.fail("手机格式错误");
+            throw new BizException(ErrorCode.PHONE_FORMAT_ERROR, "手机格式错误");
         }
 
         User user = query().eq("phone", phone).one();
         if (user == null) {
-            return Result.fail("用户不存在，请先注册");
+            throw new BizException(ErrorCode.USER_NOT_EXIST, "用户不存在，请先注册");
         }
 
         String code = loginForm.getCode();
         if (code != null) {
             String cacheCode = stringRedisTemplate.opsForValue().get(LOGIN_CODE_KEY + phone);
             if (cacheCode == null || !cacheCode.equals(code)) {
-                return Result.fail("验证码错误");
+                throw new BizException(ErrorCode.LOGIN_CODE_ERROR, "验证码错误");
             }
             stringRedisTemplate.delete(LOGIN_CODE_KEY + phone);
         } else {
             String password = loginForm.getPassword();
             if (password == null || !BCrypt.checkpw(password, user.getPassword())) {
-                return Result.fail("密码错误");
+                throw new BizException(ErrorCode.LOGIN_PASSWORD_ERROR, "密码错误");
             }
         }
 
@@ -95,24 +97,24 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     public Result register(LoginFormDTO loginForm) {
         String phone = loginForm.getPhone();
         if (RegexUtils.isPhoneInvalid(phone)) {
-            return Result.fail("手机格式错误");
+            throw new BizException(ErrorCode.PHONE_FORMAT_ERROR, "手机格式错误");
         }
 
         String password = loginForm.getPassword();
         if (password == null || password.length() < 6) {
-            return Result.fail("密码长度不能少于6位");
+            throw new BizException(ErrorCode.PASSWORD_FORMAT_ERROR, "密码长度不能少于6位");
         }
 
         String cacheCode = stringRedisTemplate.opsForValue().get(LOGIN_CODE_KEY + phone);
         String code = loginForm.getCode();
         if (cacheCode == null || !cacheCode.equals(code)) {
-            return Result.fail("验证码错误");
+            throw new BizException(ErrorCode.LOGIN_CODE_ERROR, "验证码错误");
         }
         stringRedisTemplate.delete(LOGIN_CODE_KEY + phone);
 
         User existing = query().eq("phone", phone).one();
         if (existing != null) {
-            return Result.fail("该手机号已注册");
+            throw new BizException(ErrorCode.USER_ALREADY_EXIST, "该手机号已注册");
         }
 
         User user = new User();
@@ -133,7 +135,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     public Result updateProfile(ProfileUpdateDTO dto) {
         UserDTO userDTO = UserHolder.getUser();
         if (userDTO == null) {
-            return Result.fail("请先登录");
+            throw new BizException(ErrorCode.UNAUTHORIZED, "请先登录");
         }
         Long userId = userDTO.getId();
 

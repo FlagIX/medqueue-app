@@ -1,5 +1,7 @@
 package com.medqueue.service.impl;
 
+import com.medqueue.common.BizException;
+import com.medqueue.common.ErrorCode;
 import com.medqueue.dto.Result;
 import com.medqueue.entity.DoctorSchedule;
 import com.medqueue.mapper.DoctorScheduleMapper;
@@ -20,7 +22,7 @@ public class DoctorScheduleServiceImpl extends ServiceImpl<DoctorScheduleMapper,
     @Override
     public Result querySchedules(Long doctorId, LocalDate date) {
         if (doctorId == null || date == null) {
-            return Result.fail("参数错误");
+            throw new BizException(ErrorCode.PARAM_ERROR, "参数错误");
         }
         List<DoctorSchedule> list = doctorScheduleMapper.querySchedules(doctorId, date);
         return Result.ok(list);
@@ -29,7 +31,7 @@ public class DoctorScheduleServiceImpl extends ServiceImpl<DoctorScheduleMapper,
     @Override
     public Result queryAvailableSchedules(Long doctorId, LocalDate beginDate, LocalDate endDate) {
         if (doctorId == null || beginDate == null || endDate == null) {
-            return Result.fail("参数错误");
+            throw new BizException(ErrorCode.PARAM_ERROR, "参数错误");
         }
         List<DoctorSchedule> list = doctorScheduleMapper.queryAvailableSchedules(doctorId, beginDate, endDate);
         return Result.ok(list);
