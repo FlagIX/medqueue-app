@@ -4,7 +4,7 @@
 
 ## 项目概述
 
-基于 hm-dianping（大众点评克隆）魔改的医疗预约挂号平台后端，用于大三找实习的简历项目。提供医院/医生信息查询、号源管理、在线预约挂号、就医评价等核心功能。
+医疗预约挂号平台，提供医院/医生信息查询、号源管理、在线预约挂号、就医评价等核心功能。
 
 ## 构建与运行
 
@@ -41,6 +41,7 @@ cd frontend && npm run dev
 medqueue/
 ├── backend/           ← Spring Boot 后端
 │   └── src/main/java/com/medqueue/
+│       ├── common/      → 通用类（BizException, ErrorCode）
 │       ├── controller/  → REST 接口
 │       ├── service/     → 业务接口
 │       ├── service/impl/→ 业务实现
@@ -70,11 +71,11 @@ medqueue/
 
 | 模块 | Controller | Service | 说明 |
 |------|-----------|---------|------|
-| 用户 | UserController | IUserService | 手机验证码登录、Token认证 |
-| 就诊人 | PatientProfileController | IPatientProfileService | 就诊人管理（新增） |
+| 用户 | UserController | IUserService | 手机验证码登录、Token认证、登出 |
+| 就诊人 | PatientProfileController | IPatientProfileService | 就诊人管理 |
 | 医院 | HospitalController | IHospitalService | 医院CRUD、Redis缓存、GEO附近搜索 |
 | 科室 | DepartmentController | IDepartmentService | 科室列表（Redis缓存） |
-| 医生 | DoctorController | IDoctorService | 医生信息、排班查询（新增） |
+| 医生 | DoctorController | IDoctorService | 医生信息、排班查询 |
 | 预约 | AppointmentController | IAppointmentService | Redis+Lua原子扣号源、异步写库 |
 | 费用标准 | AppointmentItemController | IAppointmentItemService | 挂号费用类型管理 |
 | 评价 | ReviewController | IReviewService | 就医评价、评分、点赞 |

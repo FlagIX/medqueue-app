@@ -1,6 +1,6 @@
 # MedQueue 医疗预约挂号平台 — 项目设计文档
 
-> 基于 hm-dianping（大众点评克隆）魔改的全新项目，用于大三找实习的简历项目
+> 医疗预约挂号平台，提供在线预约挂号、就医评价等核心功能
 
 ---
 
@@ -390,7 +390,7 @@ PUT /api/appointment/{id}/cancel
 | 顺序 | 内容 | 说明 |
 |------|------|------|
 | 1 | 新建 medqueue 数据库，导入 SQL | 所有新表的建表语句 |
-| 2 | IDE一键重构包名 `com.hmdp` → `com.medqueue` | 全部文件统一换包名 |
+| 2 | 全局重命名，统一为 medqueue 包名 | `com.hmdp` → `com.medqueue` |
 | 3 | 修改 `application.yaml` | 数据库名、Redis配置 |
 | 4 | 重命名实体类 | Shop→Hospital, ShopType→Department, Voucher→AppointmentItem, SeckillVoucher→DoctorSchedule, VoucherOrder→AppointmentRecord, Blog→MedicalReview |
 | 5 | 新增实体 | Doctor, PatientProfile |
