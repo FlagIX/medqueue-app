@@ -6,9 +6,15 @@ import com.medqueue.dto.UserDTO;
 import com.medqueue.entity.AppointmentRecord;
 import com.medqueue.entity.Doctor;
 import com.medqueue.entity.DoctorSchedule;
+import com.medqueue.entity.Hospital;
+import com.medqueue.entity.PatientProfile;
+import com.medqueue.entity.AppointmentItem;
 import com.medqueue.mapper.AppointmentRecordMapper;
+import com.medqueue.service.IAppointmentItemService;
 import com.medqueue.service.IDoctorScheduleService;
 import com.medqueue.service.IDoctorService;
+import com.medqueue.service.IHospitalService;
+import com.medqueue.service.IPatientProfileService;
 import com.medqueue.service.IAppointmentRecordService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.medqueue.utils.RedisIdWorker;
@@ -24,6 +30,8 @@ import javax.annotation.Resource;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ExecutorService;
@@ -39,6 +47,12 @@ public class AppointmentRecordServiceImpl extends ServiceImpl<AppointmentRecordM
     private IDoctorScheduleService doctorScheduleService;
     @Resource
     private IDoctorService doctorService;
+    @Resource
+    private IHospitalService hospitalService;
+    @Resource
+    private IPatientProfileService patientProfileService;
+    @Resource
+    private IAppointmentItemService appointmentItemService;
     @Resource
     private RedisIdWorker redisIdWorker;
     @Resource
@@ -184,6 +198,51 @@ public class AppointmentRecordServiceImpl extends ServiceImpl<AppointmentRecordM
     //         lock.unlock();
     //     }
     // }
+
+    @Override
+    public Result queryDetail(Long id, Long userId) {
+        AppointmentRecord record = getById(id);
+        if (record == null) {
+            return Result.fail("预约记录不存在");
+        }
+        if (!record.getUserId().equals(userId)) {
+            return Result.fail("无权查看该记录");
+        }
+
+        Map<String, Object> detail = new HashMap<>();
+        detail.put("id", record.getId());
+        detail.put("appointDate", record.getAppointDate());
+        detail.put("timeSlot", record.getTimeSlot());
+        detail.put("status", record.getStatus());
+        detail.put("createTime", record.getCreateTime());
+
+        // 关联查询医院
+        if (record.getHospitalId() != null) {
+            Hospital hospital = hospitalService.getById(record.getHospitalId());
+            detail.put("hospitalName", hospital != null ? hospital.getName() : null);
+        }
+        // 关联查询医生
+        if (record.getDoctorId() != null) {
+            Doctor doctor = doctorService.getById(record.getDoctorId());
+            if (doctor != null) {
+                detail.put("doctorName", doctor.getName());
+                detail.put("doctorTitle", doctor.getTitle());
+            }
+        }
+        // 关联查询就诊人
+        if (record.getPatientId() != null) {
+            PatientProfile patient = patientProfileService.getById(record.getPatientId());
+            detail.put("patientName", patient != null ? patient.getName() : null);
+        }
+        // 关联查询费用项
+        if (record.getFeeId() != null) {
+            AppointmentItem fee = appointmentItemService.getById(record.getFeeId());
+            detail.put("feeTitle", fee != null ? fee.getTitle() : null);
+            detail.put("fee", fee != null ? fee.getFee() : null);
+        }
+
+        return Result.ok(detail);
+    }
 
     @Override
     public Result queryUserRecords(Long userId, Integer current, Integer pageSize, Integer status) {

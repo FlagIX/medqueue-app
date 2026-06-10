@@ -11,19 +11,20 @@ const departments = ref([])
 const hospitals = ref([])
 const total = ref(0)
 const current = ref(1)
-const selectedDept = ref(null)
+const selectedDept = ref('')
 const loading = ref(false)
 const pageSize = 10
 
 onMounted(async () => {
   const deptRes = await departmentApi.list()
   if (deptRes.success) departments.value = deptRes.data || []
-  if (route.query.deptId) selectedDept.value = Number(route.query.deptId)
+  if (route.query.deptId) selectedDept.value = route.query.deptId
   await loadHospitals()
 })
 
 watch(() => route.query, () => {
-  if (route.query.deptId) selectedDept.value = Number(route.query.deptId)
+  if (route.query.deptId) selectedDept.value = route.query.deptId
+  else selectedDept.value = ''
   current.value = 1
   loadHospitals()
 })
@@ -43,7 +44,7 @@ async function loadHospitals() {
 }
 
 function onSelectDept(id) {
-  selectedDept.value = id
+  selectedDept.value = id || ''
   current.value = 1
   router.push({ query: { ...route.query, deptId: id || undefined } })
 }
@@ -63,7 +64,7 @@ function goHospital(id) { router.push(`/hospital/${id}`) }
       <div class="dept-list">
         <div
           :class="['dept-item', { active: !selectedDept && !route.query.name }]"
-          @click="onSelectDept(null)"
+          @click="selectedDept = ''; onSelectDept(null)"
         >全部</div>
         <div
           v-for="d in departments"

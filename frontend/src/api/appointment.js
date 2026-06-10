@@ -7,6 +7,9 @@ export const appointmentApi = {
   list(params) {
     return request.get('/appointment/list', { params })
   },
+  detail(id) {
+    return request.get(`/appointment/${id}/detail`)
+  },
   cancel(id) {
     return request.put(`/appointment/${id}/cancel`)
   }

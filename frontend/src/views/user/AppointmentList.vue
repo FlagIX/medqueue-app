@@ -13,6 +13,11 @@ const statusFilter = ref(null)
 const loading = ref(false)
 const pageSize = 10
 
+// 详情弹窗
+const detailVisible = ref(false)
+const detailData = ref(null)
+const detailLoading = ref(false)
+
 onMounted(() => loadRecords())
 
 async function loadRecords() {
@@ -41,6 +46,16 @@ async function handleCancel(id) {
   } catch {}
 }
 
+async function showDetail(row) {
+  detailLoading.value = true
+  detailVisible.value = true
+  try {
+    const res = await appointmentApi.detail(row.id)
+    if (res.success) detailData.value = res.data
+  } catch { detailVisible.value = false }
+  finally { detailLoading.value = false }
+}
+
 function getStatusTag(s) {
   return APPOINTMENT_STATUS[s] || { label: '未知', type: 'info' }
 }
@@ -59,7 +74,7 @@ function getStatusTag(s) {
         </el-select>
       </div>
 
-      <el-table :data="records" v-loading="loading" style="margin-top:16px">
+      <el-table :data="records" v-loading="loading" style="margin-top:16px" @row-click="showDetail">
         <el-table-column prop="id" label="订单号" width="180" />
         <el-table-column label="预约日期">
           <template #default="{ row }">{{ row.appointDate }}</template>
@@ -78,7 +93,7 @@ function getStatusTag(s) {
               v-if="row.status === 1"
               type="danger"
               size="small"
-              @click="handleCancel(row.id)"
+              @click.stop="handleCancel(row.id)"
             >取消预约</el-button>
           </template>
         </el-table-column>
@@ -95,6 +110,33 @@ function getStatusTag(s) {
       </div>
       <el-empty v-if="!loading && !records.length" description="暂无预约记录" />
     </div>
+
+    <!-- 预约详情弹窗 -->
+    <el-dialog v-model="detailVisible" title="预约详情" width="500px" :close-on-click-modal="false">
+      <el-skeleton :loading="detailLoading" animated :count="5">
+        <el-descriptions v-if="detailData" :column="1" border>
+          <el-descriptions-item label="订单号">{{ detailData.id }}</el-descriptions-item>
+          <el-descriptions-item label="医院">{{ detailData.hospitalName || '—' }}</el-descriptions-item>
+          <el-descriptions-item label="医生">
+            {{ detailData.doctorName || '—' }}
+            <el-tag size="small" style="margin-left:6px" v-if="detailData.doctorTitle">{{ detailData.doctorTitle }}</el-tag>
+          </el-descriptions-item>
+          <el-descriptions-item label="就诊人">{{ detailData.patientName || '—' }}</el-descriptions-item>
+          <el-descriptions-item label="预约日期">{{ detailData.appointDate }}</el-descriptions-item>
+          <el-descriptions-item label="就诊时段">{{ detailData.timeSlot }}</el-descriptions-item>
+          <el-descriptions-item label="挂号费" v-if="detailData.fee != null">
+            {{ (detailData.fee / 100).toFixed(2) }} 元
+          </el-descriptions-item>
+          <el-descriptions-item label="状态">
+            <el-tag :type="getStatusTag(detailData.status).type">{{ getStatusTag(detailData.status).label }}</el-tag>
+          </el-descriptions-item>
+          <el-descriptions-item label="创建时间">{{ detailData.createTime }}</el-descriptions-item>
+        </el-descriptions>
+      </el-skeleton>
+      <template #footer>
+        <el-button @click="detailVisible = false">关闭</el-button>
+      </template>
+    </el-dialog>
   </div>
 </template>
 

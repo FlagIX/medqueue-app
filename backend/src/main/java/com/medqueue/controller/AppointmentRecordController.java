@@ -32,6 +32,12 @@ public class AppointmentRecordController {
         return appointmentRecordService.queryUserRecords(user.getId(), current, pageSize, status);
     }
 
+    @GetMapping("/{id}/detail")
+    public Result queryDetail(@PathVariable("id") Long id) {
+        UserDTO user = UserHolder.getUser();
+        return appointmentRecordService.queryDetail(id, user.getId());
+    }
+
     @PutMapping("/{id}/cancel")
     public Result cancelAppointment(@PathVariable("id") Long id) {
         UserDTO user = UserHolder.getUser();
